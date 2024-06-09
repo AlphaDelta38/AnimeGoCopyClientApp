@@ -1,0 +1,22 @@
+
+
+.App{
+    min-height: 4000px;
+    position: relative;
+    transition: 0.3s ease;
+    z-index: 4;
+}
+
+
+
+
+
+.AppTranslate{
+    z-index: 4;
+    min-height: 4000px;
+    transition: 0.3s ease;
+    margin-left: var(--translate-value);
+}
+
+
+

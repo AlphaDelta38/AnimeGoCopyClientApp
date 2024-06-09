@@ -1,0 +1,980 @@
+
+
+
+
+.HeaderContainer{
+    width: 100%;
+    padding: 0 10px 0 10px;
+    height: 46px;
+    background: #343a40;
+    border-bottom: 3px solid #ff5c57;
+    transition: 1s ease;
+    position: static;
+    z-index: 5;
+}
+
+.HeaderContainerScrollPosition{
+    width: 100%;
+    padding: 0 10px 0 10px;
+    height: 46px;
+    background: #343a40;
+    border-bottom: 3px solid #ff5c57;
+    animation: ScrollAnimation 1s ease;
+    transition: 0.2s ease;
+    position: fixed;
+    z-index: 5;
+}
+
+@keyframes ScrollAnimation {
+    0% {
+        transform: translateY(-100px);
+    }
+    43% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+.container{
+    max-width: 1340px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 43px;
+    padding: 0 10px 0 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+.Logo{
+    width: 93px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-right: 10px;
+}
+
+.HeaderSVGlogo{
+    fill: white;
+    cursor: pointer;
+}
+
+.navigation{
+    width: 1201px;
+    height: 43px;
+    display: flex;
+}
+
+.firstNavigation{
+    flex-direction: row;
+    list-style: none;
+    display: flex;
+    height: 43px;
+    width: 420px;
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+.firstLi{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    display: flex;
+    color: #fff;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: .6rem 1rem;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.firstLi:hover{
+    opacity: 80%;
+
+}
+
+.firstLi:nth-child(1){
+    width: 78px;
+    height: 43px;
+}
+
+.firstLi:nth-child(2){
+    width: 74px;
+    height: 43px;
+}
+
+.firstLi:nth-child(3){
+    width: 112px;
+    height: 43px;
+}
+
+.firstLi:nth-child(4){
+    width: 157px;
+    height: 43px;
+}
+
+
+.SecondNavigation{
+    justify-content: flex-end;
+    flex-direction: row;
+    list-style: none;
+    display: flex;
+    height: 43px;
+    max-width: 420px;
+    margin-left: 10px;
+}
+
+.SecondLi{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    display: flex;
+    color: #fff;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: .6rem 1rem;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+
+.SecondLi:nth-child(1){
+    width: 80px;
+    height: 43px;
+    position: relative;
+}
+
+.SecondLi:nth-child(1):after{
+    content: '';
+    width: 1px;
+    background-color: rgba(255, 255, 255, .5);
+    position: absolute;
+    left: 94%;
+    height: 50%;
+}
+
+.SecondLi:nth-child(2){
+    width: 52px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+}
+
+.SecondLi:hover{
+    opacity: 80%;
+}
+
+.SecondLiSearch{
+    width: 360px;
+    position: relative;
+    height: 33px;
+    padding: 4px;
+}
+
+.SecondLiSearch div:nth-child(1){
+    transition: 1s ease-in-out;
+    background-color: white;
+    width: 360px;
+    height: 33px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.SecondLiSearch div input{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 0.9rem;
+    line-height: 1.5;
+    width: 300px;
+    height: 23px;
+    border: none;
+    outline: none;
+}
+
+.SearchIconInput{
+    width: 20px;
+    height: 20px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    margin-left: 4px;
+}
+
+.userBar{
+    justify-content: flex-end;
+    flex-direction: row;
+    list-style: none;
+    display: flex;
+    height: 43px;
+    max-width: 416px;
+    margin-left: 10px;
+
+}
+
+.userBar li{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    display: flex;
+    color: #fff;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: .6rem 1rem;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+
+.WithLoginNavigation{
+    justify-content: flex-end;
+    flex-direction: row;
+    list-style: none;
+    display: flex;
+    height: 43px;
+    max-width: 490px;
+    position: relative;
+}
+
+.WithLoginNavigation li{
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    display: flex;
+    color: #fff;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: .6rem 1rem;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    justify-content: center;
+    align-items: center;
+}
+
+.WithLoginNavigation li:hover{
+    opacity: 80%;
+}
+
+.WithLoginNavigation li:not(:last-child):after{
+    content: '';
+    width: 1px;
+    background-color: rgba(255, 255, 255, .5);
+    position: absolute;
+    left: 100%;
+    height: 50%;
+}
+
+.navigationUser{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    height: 43px;
+}
+
+.navigationUser li:after{
+    content: '';
+    width: 1px;
+    background-color: rgba(255, 255, 255, .5);
+    position: absolute;
+    left: 100%;
+    height: 50%;
+}
+
+.navigationUser li:nth-child(1){
+    height: 43px;
+    max-width: 140px;
+}
+
+.navigationUser li:nth-child(2){
+    height: 43px;
+    width: 55px;
+}
+
+.navigationUser li:nth-child(3){
+    height: 43px;
+    width: 55px;
+}
+
+.WithLoginSearch {
+    width: 360px;
+    height: 33px;
+    background-color: #FFF;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-top: 4px;
+    border-radius: 2px;
+}
+
+.WithLoginSearch input{
+    width: 315px;
+    height: 100%;
+    outline: none;
+    border: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.WithLoginSearchIconInput{
+    width: 20px;
+    height: 20px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    margin-left: 4px;
+}
+
+
+/*////////////////////////////Break Points 1400///////////////////////*/
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .container{
+        max-width: 1140px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 43px;
+        padding: 0 10px 0 10px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+
+
+/*////////////////////////////Break Points 1200///////////////////////*/
+@media (min-width: 992px) and (max-width: 1200px) {
+    .container{
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 43px;
+        padding: 0 10px 0 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .firstLi:nth-child(4){
+        display: none;
+    }
+}
+
+
+
+
+
+.BurgerButton{
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 22px;
+    transform-origin: 0 0;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation1Revese 1s linear forwards;
+}
+
+.BurgerButton::before{
+    left: 0;
+    top: -11px;
+    height: 2px;
+    width: 30px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation2Revese 1s linear forwards;
+}
+
+.BurgerButton::after{
+    left: 0;
+    top: -22px;
+    height: 2px;
+    width: 30px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation3Revese 1s linear forwards;
+}
+
+
+
+/*active */ /*active *//*active *//*active *//*active *//*active */
+
+.BurgerButtonActive{
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 22px;
+    transition: 0.3s ease-in-out;
+    transform-origin: 0 0;
+    animation: ButtonAnimation1 1s linear forwards;
+}
+
+.BurgerButtonActive::before{
+    left: 0;
+    top: -11px;
+    height: 2px;
+    width: 30px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation2 1s linear forwards;
+}
+
+
+.BurgerButtonActive::after{
+    left: 0;
+    top: -22px;
+    height: 2px;
+    width: 30px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation3 1s linear forwards;
+}
+
+
+
+
+
+
+@keyframes ButtonAnimation1 {
+    0% {
+        rotate: 0deg;
+    }
+    30% {
+        rotate: 0deg;
+    }
+    40% {
+        rotate: -45deg;
+    }
+    100% {
+        rotate: -45deg;
+    }
+}
+
+@keyframes ButtonAnimation2 {
+    0% {
+        left: 0;
+        top: -11px;
+
+    }
+    20% {
+        left: 0;
+        top: -11px;
+
+    }
+    30% {
+        left: 0;
+        top: 0;
+        rotate: 0deg;
+
+    }
+    50% {
+        left: 0;
+        top: 0;
+        rotate: -90deg;
+
+    }
+    100% {
+        left: 0;
+        top: 0;
+        rotate: -90deg;
+    }
+}
+
+@keyframes ButtonAnimation3 {
+    0% {
+        left: 0;
+        top: -22px;
+
+    }
+    20% {
+        left: 0;
+        top: -11px;
+
+    }
+    30% {
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        top: 0;
+        opacity: 1;
+
+    }
+}
+
+@keyframes ButtonAnimation1Revese {
+    0% {
+        rotate: -45deg;
+    }
+    30% {
+        rotate: -45deg;
+    }
+    40% {
+        rotate: 0deg;
+    }
+    100% {
+        rotate: 0deg;
+    }
+}
+
+
+
+@keyframes ButtonAnimation2Revese {
+    0% {
+        left: 0;
+        top: 0;
+        rotate: -90deg;
+
+    }
+    20% {
+        left: 0;
+        top: 0;
+        rotate: -90deg;
+    }
+    30% {
+        left: 0;
+        top: 0;
+        rotate: 0deg;
+
+    }
+    50% {
+        left: 0;
+        top: -11px;
+
+
+    }
+    100% {
+        left: 0;
+        top: -11px;
+    }
+}
+
+@keyframes ButtonAnimation3Revese {
+    0% {
+        left: 0;
+        top: 0;
+        opacity: 1;
+
+    }
+    20% {
+        left: 0;
+        top: 0;
+        opacity: 0;
+
+    }
+    30% {
+        left: 0;
+        top: -11px;
+        opacity: 0;
+    }
+    64% {
+        left: 0;
+        top: -22px;
+        opacity: 1;
+    }
+
+    100% {
+        left: 0;
+        top: -22px;
+        opacity: 1;
+    }
+}
+
+
+
+/* additional Navigation under main navigatiom///////////////////*/
+
+.AdditionalNavigation{
+    width: 100%;
+    height: 60px;
+    background-color: #4b545c;
+    position: fixed;
+    transition: 0.3s ease;
+    z-index: 2;
+    animation: 1s ScrollAnimationAdditionalBarReverse ease;
+}
+
+.AdditionalNavigation__container{
+    width: 720px;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.AdditionalNavigation__container div{
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.AdditionalNavigation__container div:nth-child(1)::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.AdditionalNavigationActive{
+    width: 100%;
+    height: 60px;
+    background-color: #4b545c;
+    position: fixed;
+    top: 60px;
+    transition: 0.3s ease;
+    animation: 1s ScrollAnimationAdditionalBar ease;
+    z-index: 2;
+
+}
+
+
+
+@keyframes ScrollAnimationAdditionalBar {
+    0% {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+    43% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes ScrollAnimationAdditionalBarReverse {
+    0% {
+        transform: translateY(60px);
+    }
+    43% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+
+.SideBarMenu{
+    position: fixed;
+    height: 100%;
+    width: var(--translate-value);
+    z-index: 2;
+    background-color: #e9ebee;
+    border-color: rgba(0, 0, 0, .1);
+    left: -440px;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.SideBarMenuActive{
+    position: fixed;
+    height: 100%;
+    width: var(--translate-value);
+    z-index: 5;
+    background-color: #e9ebee;
+    border-color: rgba(0, 0, 0, .1);
+    left: 0;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+
+
+.CLoseFieldForSideNavBar{
+     width: 0;
+     height: 100%;
+     background-color: black;
+     transition: 0.4s ease ;
+     z-index: 4;
+     position: fixed;
+     right: 0;
+     opacity: 0;
+     visibility: hidden;
+ }
+
+
+.CLoseFieldForSideNavBarActive{
+    visibility: visible;
+    width: calc(100% - var(--translate-value));
+    height: 100%;
+    background-color: black;
+    display: block;
+    opacity: 0.3;
+    transition: 0.4s ease ;
+    z-index: 4;
+    position: fixed;
+    right: 0;
+}
+
+
+.SideBarHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 140px;
+    width: 100%;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    box-sizing: content-box;
+    background-color: rgba(0, 0, 0, .05);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.SideBarHeader div:nth-child(1){
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: .5rem;
+    object-fit: cover;
+    background: url("https://animego.org/media/cache/thumbs_200x200/upload/avatar/6294db1666f75353368830.jpg");
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    cursor: pointer;
+}
+
+.SideBarHeader div:nth-child(2){
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+    cursor: pointer;
+
+}
+
+.SideBarHeader div:nth-child(2):hover{
+    color: #dc3545;
+}
+
+.SideBarNav{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.SideBarNav li{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 1rem 1.5rem;
+    height: 57px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    display: flex;
+    cursor: pointer;
+}
+
+.SideBarNav li:last-child{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 1rem 1.5rem;
+    height: 57px;
+    width: 100%;
+    border-bottom: none;
+    display: flex;
+    cursor: pointer;
+}
+
+
+.SideBarNav span{
+    display: block;
+    margin-right: auto;
+}
+
+
+.SideBarNav li:hover{
+    color: #dc3545;
+}
+
+/*////////////////////////////Break Points 992///////////////////////*/
+@media (min-width: 768px) and (max-width: 992px) {
+
+    .HeaderContainer{
+        border-bottom: none;
+        width: 100%;
+        padding: .5rem 1rem;
+        position: fixed;
+        height: 60px;
+        background-color: #343a40;
+        transition: 0.2s ease;
+        z-index: 5;
+    }
+
+    .HeaderContainerScrollPosition{
+        border-bottom: none;
+        width: 100%;
+        padding: .5rem 1rem;
+        position: fixed;
+        height: 60px;
+        background-color: #343a40;
+        animation: ScrollAnimation 1s ease;
+        transition: 0.2s ease;
+    }
+
+    .container{
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+
+
+}
+
+
+
+
+
+/*////////////////////////////Break Points 768 Mobile Version///////////////////////*/
+@media (min-width: 576px) and (max-width: 768px) {
+    .HeaderContainer{
+        border-bottom: none;
+        width: 100%;
+        padding: .5rem 1rem;
+        position: fixed;
+        height: 60px;
+        display: flex;
+        background-color: #343a40;
+        transition: 0.2s ease;
+        z-index: 5;
+    }
+
+    .HeaderContainerScrollPosition{
+        border-bottom: none;
+        width: 100%;
+        padding: .5rem 1rem;
+        position: fixed;
+        height: 60px;
+        background-color: #343a40;
+        animation: ScrollAnimation 1s ease;
+        transition: 0.2s ease;
+    }
+
+    .container{
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+
+    .AdditionalNavigation__container{
+        width: 540px;
+        height: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        position: relative;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/*////////////////////////////Break Points 576 Mobile Version///////////////////////*/
+@media (min-width: 0px) and (max-width: 576px) {
+    .HeaderContainer{
+        border-bottom: none;
+        width: 100%;
+        padding: .5rem 1rem;
+        position: fixed;
+        height: 60px;
+        background-color: #343a40;
+        transition: 0.2s ease;
+        z-index: 5;
+    }
+
+    .HeaderContainerScrollPosition{
+        border-bottom: none;
+        width: 100%;
+        padding: .5rem 1rem;
+        position: fixed;
+        height: 60px;
+        background-color: #343a40;
+        animation: ScrollAnimation 1s ease;
+        transition: 0.2s ease;
+    }
+
+    .container{
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+
+    .AdditionalNavigation__container{
+        width: 100%;
+        height: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        position: relative;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+
+
+
+
+
