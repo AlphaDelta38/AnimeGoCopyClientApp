@@ -5,6 +5,7 @@ import WithLoginBar from "./WithLoginBar";
 import MobileHeader from "./MobileHeader";
 import AdditionalNavigationMobile from "./AdditionalNavigationMobile";
 import SideNavMenu from "./SideNavMenu";
+import PopatUniversal from "./popatUniversal";
 
 
 interface HeaderInterface{
@@ -76,6 +77,7 @@ const Header = ({setMobileBarActive, MobileNavBarActive}:HeaderInterface) => {
 
     return (
       <div >
+
           <SideNavMenu mobileActive={MobileNavBarActive}/>
           <div  onClick={()=>{CloserFildSideBar()}} className={ MobileNavBarActive ? cl.CLoseFieldForSideNavBarActive : cl.CLoseFieldForSideNavBar}></div>
             <div  className={ scrollPosition < 2 ? cl.HeaderContainer : cl.HeaderContainerScrollPosition}>
