@@ -898,14 +898,13 @@
 
 
 .ContentPopat{
-    justify-content: center;
-    align-items: center;
+
     width: 100%;
     min-height: 48px;
     display: flex;
     flex-direction: column;
     max-height: 284px;
-    overflow: auto;
+    overflow-y: auto;
     font-weight: 400;
     line-height: 1.5;
     font-size: 1rem;
@@ -949,12 +948,6 @@
 .btnContainerPopat  button:hover{
     background-color: #9d0e0e;
 }
-
-
-
-
-
-
 
 
 

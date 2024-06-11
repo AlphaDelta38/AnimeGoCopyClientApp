@@ -29,6 +29,62 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
     const [messegeas, setMessegeas] = useState("");
     const [distansePopat, setDistancePopat] = useState(0);
     const [tempTypePopat, setTempTypePopat] = useState("none");
+    const [meseggesObjects, setMessegesObjects] = useState([
+        {
+            AnimeName: "Кайдзю номер восемь",
+            NofSeries: 9,
+            VoiceOver: "StudioBand",
+            isSaw: false,
+            when: "5 часов назад",
+        },
+        {
+            AnimeName: "Подземелье вкусностей",
+            NofSeries: 24,
+            VoiceOver: "StudioBand",
+            isSaw: false,
+            when: "11 часов назад",
+
+        },
+        {
+            AnimeName: "Враташ штейна",
+            NofSeries: 5,
+            VoiceOver: "StudioBand",
+            isSaw: false,
+            when: "5 дней назад",
+        },
+        {
+            AnimeName: "Семь смертных грехов",
+            NofSeries: 4,
+            VoiceOver: "StudioBand",
+            isSaw: false,
+            when: "16 дней назад",
+        },
+        {
+            AnimeName: "Семь смертных грехов",
+            NofSeries: 3,
+            VoiceOver: "StudioBand",
+            isSaw: false,
+            when: "месяц назад",
+        },
+
+    ]);
+    const [friendrequestObj, setfriendRequestObj] = useState([
+        {
+            friendName: "Кайдзю номер восемь",
+        },
+        {
+            friendName: "AlphaDelta38",
+        },
+        {
+            friendName: "AlphaDelta38",
+        },
+        {
+            friendName: "AlphaDelta38",
+        },
+
+
+
+    ]);
 
     function ActivateUpdatePopat(type:string):void{
         if(type === ObjectsType.friends){
@@ -78,7 +134,7 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
                     <li>AlphaDelta38</li>
                     <li onClick={()=>{ActivateUpdatePopat(ObjectsType.friends)}}><img width="20" height="20" src='/friendsIconWhite.png' alt={"sorry"}/></li>
                     <li onClick={()=>{ActivateUpdatePopat(ObjectsType.messeges)}}><img width="20" height="20" src='/messegeBellWhite.png' alt={"sorry"}/></li>
-                    <PopatUniversal distanse ={distansePopat} active={PopatActive} type={TypeDataPopat} Title={PopatTitle} message={messegeas}/>
+                    <PopatUniversal objects2={friendrequestObj} objects={undefined} distanse ={distansePopat} active={PopatActive} type={TypeDataPopat} Title={PopatTitle} message={messegeas}/>
                 </ul>
             }
             {searching ?
