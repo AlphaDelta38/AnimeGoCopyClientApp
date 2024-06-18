@@ -47,7 +47,7 @@ const SortingContent = ({SetkaGridActive, setSetkaGridActive}: SortingContentInt
         <div className={cl.container}>
             <div className={cl.content}>
                 <div className={cl.chooseContent}>
-                    <div>
+                    <div style={{textWrap: "nowrap"}}>
                         Сортировать по:
                     </div>
                     <div onClick={()=>{dropDownCheck()}} className={cl.btnContainer}>
