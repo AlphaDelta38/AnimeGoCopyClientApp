@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
+import AnimeContent from "./components/AnimeChooseContent/AnimeContent";
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
   return (
     <div className={ MobileNavBarActive ? "AppTranslate" : "App"}>
          <Header  MobileNavBarActive={MobileNavBarActive} setMobileBarActive = {setMobileNavBarActive}></Header>
-
+         <AnimeContent header={"Список аниме"}/>
     </div>
   );
 }

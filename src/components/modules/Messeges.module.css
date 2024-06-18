@@ -5,9 +5,9 @@
     width: 388px;
     padding: .75rem 1.25rem;
     position: relative;
-    min-height: 96px;
     display: flex;
     box-sizing: content-box;
+
 }
 
 .MessegeContainer:nth-child(1){

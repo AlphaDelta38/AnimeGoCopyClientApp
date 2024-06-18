@@ -14,7 +14,7 @@ const MessegesComponent = (obj : MessegesInterface) => {
                     {"Аниме"} <span style={{fontWeight: "600"}}>{obj.AnimeName}</span>
                     {` - добавлена ${obj.NofSeries}-я серия с русской озвучкой ${obj.VoiceOver}`}
                 </div>
-                <div>
+                <div style={{position:"relative", display: "flex"}} >
                     {obj.when}
                 </div>
             </div>

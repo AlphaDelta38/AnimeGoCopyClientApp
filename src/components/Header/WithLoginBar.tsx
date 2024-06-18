@@ -38,7 +38,7 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
             when: "5 часов назад",
         },
         {
-            AnimeName: "Подземелье вкусностей",
+            AnimeName: "Злодейка наслаждается своей седьмой жизнью в качестве свободолюбивой невесты во вражеской стране",
             NofSeries: 24,
             VoiceOver: "StudioBand",
             isSaw: false,
@@ -46,14 +46,14 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
 
         },
         {
-            AnimeName: "Враташ штейна",
+            AnimeName: "Злодейка наслаждается своей седьмой жизнью в качестве свободолюбивой невесты во вражеской стране",
             NofSeries: 5,
             VoiceOver: "StudioBand",
             isSaw: false,
             when: "5 дней назад",
         },
         {
-            AnimeName: "Семь смертных грехов",
+            AnimeName: "История покорения знаменитого горячего источника в другом мире: Реинкарнация сорокалетнего любителя горячих источников в умиротворяющем курортном раю",
             NofSeries: 4,
             VoiceOver: "StudioBand",
             isSaw: false,
@@ -81,8 +81,6 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
         {
             friendName: "AlphaDelta38",
         },
-
-
 
     ]);
 
@@ -134,7 +132,7 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
                     <li>AlphaDelta38</li>
                     <li onClick={()=>{ActivateUpdatePopat(ObjectsType.friends)}}><img width="20" height="20" src='/friendsIconWhite.png' alt={"sorry"}/></li>
                     <li onClick={()=>{ActivateUpdatePopat(ObjectsType.messeges)}}><img width="20" height="20" src='/messegeBellWhite.png' alt={"sorry"}/></li>
-                    <PopatUniversal objects2={friendrequestObj} objects={undefined} distanse ={distansePopat} active={PopatActive} type={TypeDataPopat} Title={PopatTitle} message={messegeas}/>
+                    <PopatUniversal objects2={friendrequestObj} objects={meseggesObjects} distanse ={distansePopat} active={PopatActive} type={TypeDataPopat} Title={PopatTitle} message={messegeas}/>
                 </ul>
             }
             {searching ?

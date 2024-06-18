@@ -1,0 +1,254 @@
+
+
+.container{
+    max-width: 1340px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 74px 10px 0 10px;
+}
+
+.content_container{
+    width: 1340px;
+    display: flex;
+    height: 100%;
+    padding-right: 5px;
+    padding-left: 5px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+
+.content{
+    background-color: #fff;
+    width: 975px;
+    height: 100%;
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+
+}
+
+.Header{
+
+    color: #343a40;
+    padding-bottom: 10px;
+    font-size: 1.25rem;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+
+}
+
+
+.AnimeWContent2x3{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.AnimeWContent2x2{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.AnimeWContent3x3{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 0;
+}
+
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .container{
+        max-width: 1140px;
+    }
+
+    .content_container{
+        width: 100%;
+        display: flex;
+        height: 100%;
+        padding-right: 5px;
+        padding-left: 5px;
+        position: relative;
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .content{
+        background-color: #fff;
+        width: 825px;
+        height: 100%;
+        position: relative;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+    .container{
+        max-width: 960px;
+        justify-content: center;
+    }
+
+    .content_container{
+        width: 960px;
+        display: flex;
+        height: 100%;
+        padding-right: 5px;
+        padding-left: 5px;
+        position: relative;
+        box-sizing: border-box;
+        flex-direction: column;
+    }
+
+
+    .content{
+        background-color: #fff;
+        width: 930px;
+        height: 100%;
+        position: relative;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+}
+
+@media (min-width: 769px) and (max-width: 1000px) {
+    .container{
+        max-width: 720px;
+        padding-top: 160px;
+    }
+
+    .content_container{
+        width: 720px;
+        display: flex;
+        height: 100%;
+        padding-right: 5px;
+        padding-left: 5px;
+        position: relative;
+        box-sizing: border-box;
+        flex-direction: column;
+    }
+
+
+    .content{
+        background-color: #fff;
+        width: 690px;
+        height: 100%;
+        position: relative;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .AnimeWContent3x3{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        column-gap: 10px;
+    }
+
+}
+
+@media (min-width: 578px) and (max-width: 769px) {
+
+
+    .container{
+        max-width: 540px;
+        padding-top: 160px;
+    }
+
+    .content_container{
+        width: 540px;
+        display: flex;
+        height: 100%;
+        padding-right: 0;
+        padding-left: 0;
+        position: relative;
+        box-sizing: border-box;
+        flex-direction: column;
+    }
+
+
+    .content{
+        background-color: #fff;
+        width: 540px;
+        height: 100%;
+        position: relative;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .AnimeWContent3x3{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        column-gap: 22px;
+    }
+
+
+}
+
+@media (min-width: 0px) and (max-width: 578px) {
+
+
+    .container{
+        max-width: 100%;
+        padding: 120px 0 0 0;
+    }
+
+    .content_container{
+        width: 100%;
+        display: flex;
+        height: 100%;
+        padding-right: 0;
+        padding-left: 0;
+        position: relative;
+        box-sizing: border-box;
+        flex-direction: column;
+    }
+
+
+    .content{
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .AnimeWContent3x3{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 20px;
+    }
+
+
+}

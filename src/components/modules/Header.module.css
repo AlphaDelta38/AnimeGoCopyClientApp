@@ -4,12 +4,12 @@
 
 .HeaderContainer{
     width: 100%;
-    padding: 0 10px 0 10px;
+    padding: 0 15px 0 15px;
     height: 46px;
     background: #343a40;
     border-bottom: 3px solid #ff5c57;
     transition: 1s ease;
-    position: static;
+    position: fixed;
     z-index: 5;
 }
 
@@ -46,7 +46,7 @@
     margin-left: auto;
     margin-right: auto;
     height: 43px;
-    padding: 0 10px 0 10px;
+    padding: 0 15px 0 15px;
     display: flex;
     align-items: center;
 
@@ -905,6 +905,7 @@
     flex-direction: column;
     max-height: 284px;
     overflow-y: auto;
+    overflow-x: hidden;
     font-weight: 400;
     line-height: 1.5;
     font-size: 1rem;

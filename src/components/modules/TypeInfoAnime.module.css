@@ -1,0 +1,30 @@
+
+
+
+.container{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container span{
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: default;
+}
+
+
+
+.container div{
+    text-decoration: underline 1px solid black;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container div span{
+    padding-left: 0;
+    padding-right: 5px;
+    cursor: pointer;
+}

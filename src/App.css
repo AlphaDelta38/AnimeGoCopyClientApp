@@ -12,6 +12,7 @@
 
 
 .AppTranslate{
+    position: relative;
     z-index: 4;
     min-height: 4000px;
     transition: 0.3s ease;
