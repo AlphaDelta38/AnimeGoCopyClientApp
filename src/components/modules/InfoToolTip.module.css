@@ -1,0 +1,38 @@
+
+
+
+
+
+.ToolTipContainer{
+    width: 20px;
+    height: 20px;
+}
+
+.Info{
+    max-width: 220px;
+    padding: 2px;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #123;
+    border-radius: 2px;
+    position: absolute;
+    font-size: .7rem;
+    opacity: 0.8;
+    left: 53%;
+    top: -114px;
+    z-index: 4;
+}
+
+.Info::before{
+    content: "";
+    height: 12px;
+    width: 12px;
+    rotate: 45deg;
+    background: linear-gradient(to bottom, transparent 10%, #123 50%);
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 50%;
+    top: 93%;
+}

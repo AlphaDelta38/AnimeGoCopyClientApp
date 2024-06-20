@@ -6,7 +6,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
+
 }
+
 
 
 .header{
@@ -31,5 +33,24 @@
     flex-direction: column;
     background-color: #fff !important;
     border: 1px solid rgba(0, 0, 0, .1);
-    padding-top: 44px;
+    padding-top: 64px;
+    row-gap: 20px;
+}
+
+
+@media (min-width: 0px) and (max-width: 1200px) {
+
+    .container{
+        width: 100%;
+        margin-left: 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+    }
+
+    .header{
+        display: none;
+    }
 }

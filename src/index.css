@@ -13,6 +13,7 @@
     --breakpoint-ul: 1400px;
     --translate-value: 80%;
     --translateHigh-value: 0;
+    --GLobalOverFlow: visible;
 }
 
 
@@ -23,4 +24,10 @@ body{
     line-height: 1.5;
     color: #212529;
     background-color:  #e9ebee;;
+
+}
+
+
+html, body{
+    overflow: var(--GLobalOverFlow);
 }

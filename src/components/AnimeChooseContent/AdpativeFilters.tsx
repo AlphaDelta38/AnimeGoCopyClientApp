@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import cl from '../modules/AdaptiveFilters.module.css'
 import RangeFilter from "./RangeFilter";
+import DropDownFilters from "./DropDownFilters";
 
 
 
@@ -8,6 +9,14 @@ import RangeFilter from "./RangeFilter";
 
 
 const AdpativeFilters = () => {
+
+    const [filters, setFilters] = useState([
+        { SingleName: "Жанр", Titlejanr: "Жанры", janrs: ["Исекай", "Басикай", "Сенён","Басикай", "Сенён","Басикай", "Сенён",]},
+        { SingleName: "Рейтинг", Titlejanr: "Рейтинг", janrs: ["5.0", "10.0", "20.0","30", "Сенён","Басикай", "Сенён",]},
+
+        ]);
+
+
     return (
         <div className={cl.container}>
             <div className={cl.header}>
@@ -18,6 +27,7 @@ const AdpativeFilters = () => {
             </div>
             <div className={cl.content}>
                  <RangeFilter/>
+                 <DropDownFilters filters={filters}/>
             </div>
         </div>
     );

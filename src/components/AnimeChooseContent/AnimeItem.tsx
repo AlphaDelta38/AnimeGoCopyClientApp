@@ -33,8 +33,10 @@ const AnimeItem = ({name, secondName, SetkaGridActive}: AnimeItemInterface) => {
                         {secondName}
                     </div>
                     <TypeInfoAnime SetkaGridActive={SetkaGridActive} type={"Тв сериал"} year={"2024"} ganres={["Романтика","Комедия","Сенён", "Эстетика"]}/>
-                    <div style={SetkaGridActive === "3x3" || SetkaGridActive === "2x2" ? {display: "none"} : {marginTop: "10px", overflow: "hidden", maxHeight: "96px"}}>
-                         редстоит участие в конкурсе малых ансамблей «Анкон». Участвовать в конкурсе могут ансамбли от пяти до восьми человек. Однако оркестр...
+                    <div style={SetkaGridActive === "3x3" || SetkaGridActive === "2x2" ? {display: "none"} : {marginTop: "10px", overflow: "hidden", maxHeight: "96px", textOverflow: "ellipsis", }}>
+                         редстоит участие в конкурсе малых ансамблей «Анкон». Участвовать в конкурсе могут ансамбли от пяти до восьми человек. Однако оркест
+                        редстоит участие в конкурсе малых ансамблей «Анкон». Участвовать в конкурсе могут ансамбли от пяти до восьми человек. Однако оркест
+
                     </div>
                 </div>
             </div>

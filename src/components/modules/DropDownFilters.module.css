@@ -1,0 +1,147 @@
+
+
+.container{
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    row-gap: 20px;
+}
+
+.MainFilter{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+    position: relative;
+
+}
+
+.MainFilter__Header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 22px;
+    font-weight: 500;
+}
+
+.AdditionalFunctions{
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+
+.DrowDownBtn{
+    width: 100%;
+    height: 38px;
+    position: relative;
+}
+
+.DrowDownBtn button{
+    width: 100%;
+    height: 100%;
+    padding: .375rem 1.75rem .375rem .75rem;
+    position: relative;
+    text-align: start;
+    text-overflow: ellipsis;
+    color: #495057;
+    border-radius: 2px;
+    border: 1px solid #e6e6e6;
+    font-size: 1rem;
+    background: none;
+    transition:  .2s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.DrowDownBtn button:before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    z-index: 2;
+    position: absolute;
+    right: 4px;
+    margin-right: 10px;
+    rotate: 45deg;
+    top: 14px;
+}
+
+.DrowDownBtn button:after{
+    content: "";
+    width: 14px;
+    height: 2px;
+    background-color: white;
+    z-index: 3;
+    position: absolute;
+    right: 2px;
+    margin-right: 10px;
+    top: 17px;
+}
+
+.DrowDownBtn button:focus{
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .085), 0 0 5px rgba(255, 215, 214, .5);
+}
+
+
+.DropMenuForBtn{
+    width: 100%;
+    position: absolute;
+    z-index: 4;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 2px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .175);
+    max-height: 278px;
+    overflow-y: auto;
+}
+
+.DropDownItem{
+    width: 100%;
+    padding: .25rem 1.5rem;
+    display: flex;
+    gap: 6px;
+    color: #212529;
+    font-size: 1rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.DropDownItem:hover{
+   background-color: rgba(134, 142, 150, 0.1);
+}
+
+.CheckBox{
+    width: 16px;
+    height: 16px;
+    box-shadow: inset 0 .25rem .25rem rgba(0, 0, 0, .1);
+    user-select: none;
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+
+.CheckBoxActive{
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    background-color: #ff5c57;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 2px;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+    background-size: 50% 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}

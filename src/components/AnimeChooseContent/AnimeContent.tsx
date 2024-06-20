@@ -7,10 +7,11 @@ import AdpativeFilters from "./AdpativeFilters";
 
  interface AnimeContentInterface{
      header: string
+     setFilterBarActive: (e:boolean)=>void
  }
 
 
-const AnimeContent = ({header}:AnimeContentInterface ) => {
+const AnimeContent = ({header, setFilterBarActive}:AnimeContentInterface ) => {
     const [SetkaGridActive, setSetkaGridActive] = useState("2x3");
 
     return (
@@ -20,7 +21,7 @@ const AnimeContent = ({header}:AnimeContentInterface ) => {
                     <div className={cl.Header}>
                         <h1>{header}</h1>
                     </div>
-                    <SortingContent SetkaGridActive={SetkaGridActive} setSetkaGridActive={setSetkaGridActive} />
+                    <SortingContent setFilterBarActive={setFilterBarActive} SetkaGridActive={SetkaGridActive} setSetkaGridActive={setSetkaGridActive} />
                     <div className= {SetkaGridActive === "2x3" ? cl.AnimeWContent2x3 : SetkaGridActive === "3x3" ? cl.AnimeWContent3x3 : cl.AnimeWContent2x2}>
                         <AnimeItem SetkaGridActive={SetkaGridActive} name={"Этот не совершенный мир"} secondName={"Kono Sekai wa Fukanzen Sugiru"}/>
                         <AnimeItem SetkaGridActive={SetkaGridActive} name={"Этот не совершенный мир"} secondName={"Kono Sekai wa Fukanzen Sugiru"}/>
@@ -38,7 +39,9 @@ const AnimeContent = ({header}:AnimeContentInterface ) => {
                         <AnimeItem SetkaGridActive={SetkaGridActive} name={"Этот не совершенный мир"} secondName={"Kono Sekai wa Fukanzen Sugiru"}/>
                     </div>
                 </div>
+                <div className={cl.FilterContainer}>
                     <AdpativeFilters/>
+                </div>
             </div>
         </div>
     );

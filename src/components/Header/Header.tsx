@@ -11,10 +11,12 @@ import PopatUniversal from "./popatUniversal";
 interface HeaderInterface{
     setMobileBarActive: (e:boolean)=>void;
     MobileNavBarActive: boolean;
+    FilterBarActive: boolean;
+    setFilterBarActive: (e:boolean)=>void
 }
 
 
-const Header = ({setMobileBarActive, MobileNavBarActive}:HeaderInterface) => {
+const Header = ({setMobileBarActive, MobileNavBarActive, FilterBarActive, setFilterBarActive}:HeaderInterface) => {
     const [WidthState, setWidthState] = useState(false);
     const [IsLogin, setIsLogin] = useState(false);
     const [searching, setSerching] = useState(false);
@@ -50,6 +52,8 @@ const Header = ({setMobileBarActive, MobileNavBarActive}:HeaderInterface) => {
            setWidthState(false);
            if(!WidthState){
                setMobileBarActive(false)
+               setFilterBarActive(false)
+               document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
            }
 
         }else{
@@ -64,6 +68,8 @@ const Header = ({setMobileBarActive, MobileNavBarActive}:HeaderInterface) => {
 
     function  CloserFildSideBar(){
         setMobileBarActive(false);
+        setFilterBarActive(false)
+        document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
     }
 
     window.addEventListener('resize', updateWidth);
@@ -78,11 +84,11 @@ const Header = ({setMobileBarActive, MobileNavBarActive}:HeaderInterface) => {
     return (
       <div >
 
-          <SideNavMenu mobileActive={MobileNavBarActive}/>
-          <div  onClick={()=>{CloserFildSideBar()}} className={ MobileNavBarActive ? cl.CLoseFieldForSideNavBarActive : cl.CLoseFieldForSideNavBar}></div>
+          <SideNavMenu setFilterBarActive={setFilterBarActive}  FilterBarActive={FilterBarActive} mobileActive={MobileNavBarActive}/>
+          <div  onClick={()=>{CloserFildSideBar()}} className={ MobileNavBarActive ? cl.CLoseFieldForSideNavBarActive : FilterBarActive ? cl.CLoseFieldForSideNavBarActive :cl.CLoseFieldForSideNavBar }></div>
             <div  className={ scrollPosition < 2 ? cl.HeaderContainer : cl.HeaderContainerScrollPosition}>
                 {
-                    WidthState ?< MobileHeader mobileActive={MobileNavBarActive} setMobileBarActive={setMobileBarActive}/>
+                    WidthState ?< MobileHeader setFilterBarActive={setFilterBarActive} mobileActive={MobileNavBarActive} setMobileBarActive={setMobileBarActive}/>
                     :
                 <div className={cl.container}>
                     <div className={cl.Logo}>

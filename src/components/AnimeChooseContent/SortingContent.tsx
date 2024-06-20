@@ -5,11 +5,12 @@ import cl from '../modules/SortingContent.module.css'
 interface SortingContentInterface{
     SetkaGridActive:string
     setSetkaGridActive: (e:string)=>void
+    setFilterBarActive: (e:boolean)=>void
 }
 
 
 
-const SortingContent = ({SetkaGridActive, setSetkaGridActive}: SortingContentInterface) => {
+const SortingContent = ({SetkaGridActive, setSetkaGridActive, setFilterBarActive}: SortingContentInterface) => {
     const [choseVariant, setChoseVariant] = useState("Дате выхода");
     const [SortUp, setSortUp] = useState(false);
     const [dropDownActive, setDropDownActive] = useState(false);
@@ -43,13 +44,25 @@ const SortingContent = ({SetkaGridActive, setSetkaGridActive}: SortingContentInt
         }
     }
 
+    function setFilterBar(){
+        setFilterBarActive(true)
+        document.documentElement.style.setProperty('--GLobalOverFlow', `hidden`);
+    }
+
+
     return (
         <div className={cl.container}>
             <div className={cl.content}>
                 <div className={cl.chooseContent}>
-                    <div style={{textWrap: "nowrap"}}>
+                    <div  className={cl.sortInfo} style={{textWrap: "nowrap"}}>
                         Сортировать по:
                     </div>
+
+                    <div  onClick={()=>{setFilterBar()}} className={cl.MobileFilterBtn}>
+                        <button>Фильтр</button>
+                        <div className={cl.FilterIcon}><img width="16" height="16" src={"./BlackFilter.png"} alt={""}/></div>
+                    </div>
+
                     <div onClick={()=>{dropDownCheck()}} className={cl.btnContainer}>
                         <button>{choseVariant}</button>
                         <div className={cl.sortUpDown}>

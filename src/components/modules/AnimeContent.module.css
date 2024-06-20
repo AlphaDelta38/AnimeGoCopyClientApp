@@ -252,3 +252,14 @@
 
 
 }
+
+.FilterContainer{
+    display: block;
+}
+
+
+@media (min-width: 0px) and (max-width: 1200px) {
+    .FilterContainer{
+        display: none;
+    }
+}

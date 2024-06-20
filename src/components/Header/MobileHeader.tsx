@@ -4,11 +4,12 @@ import cl from "../modules/Header.module.css";
 interface MobileHeaderInterface{
     setMobileBarActive: (e:boolean) => void;
     mobileActive:boolean
+    setFilterBarActive: (e:boolean) => void;
 }
 
 
 
-const MobileHeader = ({setMobileBarActive, mobileActive}:MobileHeaderInterface) => {
+const MobileHeader = ({setMobileBarActive, mobileActive, setFilterBarActive}:MobileHeaderInterface) => {
 
     const [activeBtn, setActiveBtn] = useState(false);
 
@@ -16,9 +17,11 @@ const MobileHeader = ({setMobileBarActive, mobileActive}:MobileHeaderInterface) 
             if(activeBtn){
                 setActiveBtn(false);
                 setMobileBarActive(false);
+                document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
             }else{
                 setActiveBtn(true);
                 setMobileBarActive(true);
+                document.documentElement.style.setProperty('--GLobalOverFlow', `hidden`);
             }
 
     }
@@ -26,6 +29,8 @@ const MobileHeader = ({setMobileBarActive, mobileActive}:MobileHeaderInterface) 
     useEffect(() => {
         if(!mobileActive){
             setActiveBtn(false);
+            setFilterBarActive(false)
+            document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
         }
     }, [mobileActive]);
 

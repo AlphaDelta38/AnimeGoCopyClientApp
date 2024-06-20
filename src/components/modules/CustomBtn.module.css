@@ -1,0 +1,55 @@
+
+
+.btn{
+    width: 26px;
+    background-color: #999;
+    border-radius: 10px;
+    height: 14px;
+    z-index: 1;
+    position: relative;
+    transition: 0.3s ease;
+    user-select: none;
+}
+
+.btn__circle{
+    width: 20px;
+    height: 20px;
+    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .6);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .6);
+    background-color: #fafafa;
+    border: 0;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    z-index: 2;
+    left: -10px;
+    transition: 0.3s ease;
+    user-select: none;
+}
+
+.btn__circleActive{
+    width: 20px;
+    height: 20px;
+    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .6);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .6);
+    border: 0;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    z-index: 2;
+    left: 16px;
+    background-color: #2693e6;
+    transition: 0.3s ease;
+    user-select: none;
+}
+
+.btnActive{
+    width: 26px;
+    background-color: rgba(38, 147, 230, 0.6);
+    border-radius: 10px;
+    height: 14px;
+    z-index: 1;
+    position: relative;
+    transition: 0.3s ease;
+    user-select: none;
+}
