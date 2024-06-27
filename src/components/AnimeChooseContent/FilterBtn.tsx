@@ -17,6 +17,25 @@ interface FilterbtnInterface {
 const FilterBtn = ({ Titlejanr, SingleName,  janrs, chosenFilter, AddToChose }:FilterbtnInterface) => {
 
     const [activeBtn, setActiveBtn] = useState(false);
+    const [ForOutJarns, setForOutJarns] = useState<string[]>([]);
+
+
+    function AddToGlobalAndOwn(value:string){
+
+        AddToChose(value)
+
+        if(ForOutJarns){
+            let newMassvie = [...ForOutJarns, value]
+            if(!ForOutJarns.includes(value)){
+                setForOutJarns(newMassvie)
+            }else{
+                let withOut = [...ForOutJarns].filter((e)=> e !== value);
+                setForOutJarns(withOut)
+            }
+        }
+    }
+
+
 
 
     function activateBtn(){
@@ -36,11 +55,16 @@ const FilterBtn = ({ Titlejanr, SingleName,  janrs, chosenFilter, AddToChose }:F
             </div>
             <div className={cl.DrowDownBtn}>
                 <button onClick={() => activateBtn()}>
-                    Выберите {SingleName}
+                    {ForOutJarns?.length !== 0 ?
+                    ForOutJarns.map((value)=>`${value},`)
+
+                        :
+                        `Выберите ${SingleName}`
+                    }
                 </button>
                 <div style={activeBtn ? {visibility: "visible"} : {visibility: "hidden"}} className={cl.DropMenuForBtn}>
                     {janrs.map((value, index, array) =>
-                        <div key={index + array.length} onClick={() => AddToChose(value)} className={cl.DropDownItem}>
+                        <div key={index + array.length} onClick={() =>AddToGlobalAndOwn(value) } className={cl.DropDownItem}>
                             <div className={chosenFilter.includes(value) ? cl.CheckBoxActive : cl.CheckBox}>
 
                             </div>

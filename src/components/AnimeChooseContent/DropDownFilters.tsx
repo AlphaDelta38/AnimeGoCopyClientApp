@@ -13,15 +13,19 @@ interface DropDownFiltersInterface{
 interface DropDownFilterProps {
     filters: DropDownFiltersInterface[]
 
-
 }
 
 
 const DropDownFilters: React.FC<DropDownFilterProps> = ({filters}) => {
 
+
+
+
     const [activeBtn, setActiveBtn] = useState(false);
     const [chosenFilter, setChosenFilter] = useState<string[]>([]);
     let ForOtherRender = filters.filter((value, index, array)=> index !== 0)
+    const [ForOutJarns, setForOutJarns] = useState<string[]>([]);
+
 
     function AddToChose(e:string){
         let newChose = [...chosenFilter, e];
@@ -33,6 +37,20 @@ const DropDownFilters: React.FC<DropDownFilterProps> = ({filters}) => {
         }
     }
 
+    function AddToGlobalAndOwn(value:string){
+
+        AddToChose(value)
+
+        if(ForOutJarns){
+            let newMassvie = [...ForOutJarns, value]
+            if(!ForOutJarns.includes(value)){
+                setForOutJarns(newMassvie)
+            }else{
+                let withOut = [...ForOutJarns].filter((e)=> e !== value);
+                setForOutJarns(withOut)
+            }
+        }
+    }
 
     function activateBtn(){
         if(activeBtn){
@@ -48,6 +66,7 @@ const DropDownFilters: React.FC<DropDownFilterProps> = ({filters}) => {
                 <div className={cl.MainFilter__Header}>
                     <div>
                         {filters[0].Titlejanr}
+
                     </div>
                     <div className={cl.AdditionalFunctions}>
                         <div>
@@ -60,11 +79,17 @@ const DropDownFilters: React.FC<DropDownFilterProps> = ({filters}) => {
                 </div>
                 <div className={cl.DrowDownBtn}>
                     <button onClick={()=>activateBtn()}>
-                        Выберите {filters[0].SingleName}
+                        {ForOutJarns?.length !== 0 ?
+                            ForOutJarns.map((value)=>`${value},`)
+
+                            :
+
+                            ` Выберите ${filters[0].SingleName}`
+                        }
                     </button>
                     <div style={ activeBtn ? {visibility:"visible"} : {visibility:"hidden"}} className={cl.DropMenuForBtn}>
                         {filters[0].janrs.map((value, index, array)=>
-                                <div key={index + array.length} onClick={()=>AddToChose(value)} className={cl.DropDownItem}>
+                                <div key={index + array.length} onClick={()=>AddToGlobalAndOwn(value)} className={cl.DropDownItem}>
                                     <div  className={chosenFilter.includes(value) ? cl.CheckBoxActive : cl.CheckBox}>
 
                                     </div>

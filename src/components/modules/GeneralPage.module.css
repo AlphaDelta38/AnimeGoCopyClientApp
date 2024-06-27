@@ -1,0 +1,545 @@
+
+
+.container{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-top: 46px;
+    overflow: hidden;
+}
+
+
+
+.additionalBlock{
+    width: 100%;
+    height: 36px;
+    background-color: #e9ebee;
+    position: relative;
+}
+
+.additionalBlock__containerContent{
+    max-width: 1340px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+    justify-content: flex-start;
+    box-sizing: content-box;
+}
+
+.ListWithAddFunc{
+    list-style: none;
+    display: flex;
+}
+
+.ListWithAddFunc li{
+    font-size: .85rem;
+    padding: .5rem 1rem;
+    color: #212529;
+    cursor: pointer;
+}
+
+.ListWithAddFunc li:hover{
+    color: #ff5c57;
+}
+
+
+
+.SliderBlock{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.135);
+    border-top: 1px solid rgba(0, 0, 0, 0.135);
+    height: 378px;
+    position: relative;
+    display: none;
+}
+
+.SliderContentContainer{
+    width: 100%;
+    height: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+
+.Sliderow{
+    max-width: 1340px;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+    box-sizing: content-box;
+    display: flex;
+    justify-content: center;
+}
+
+.CarouselHorizontalContainer{
+    width: 100%;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+
+
+.CarouselHeader {
+    width: 100%;
+    display: flex;
+    text-align: start;
+    height: 38px;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    font-family: inherit;
+    padding-left: 6px;
+}
+
+
+.CarouselHeader div{
+    cursor: pointer;
+}
+
+
+
+.Carousel{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.CarouselTape{
+    width: 286%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    transform: translate3d(var(--sliderTranslate),0,0);
+
+}
+
+
+.AnimeCardContainer{
+    width: 5%;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.ImageContainer{
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    cursor: pointer;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+
+.titleName{
+    font-size: 1.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #ff5c57;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+.titleName:hover{
+ text-decoration: underline 2px solid #ff5c57; ;
+}
+
+
+
+
+.WeeklyContent{
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+}
+
+
+.WeeklyContent__container{
+    max-width: 1340px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.WeeklyContainer__row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    align-items: start;
+}
+
+
+
+
+
+
+
+
+
+
+.footer{
+    width: 100%;
+    margin-top: 100px;
+    position: relative;
+    background-color: #343a40;;
+}
+
+.footerContainer{
+    max-width: 1310px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+
+.footerContent{
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.PolicyInfoList{
+    list-style: none;
+    display: flex;
+    max-width: 515px;
+    width: 100%;
+    margin-right: auto;
+    position: relative;
+}
+
+.PolicyInfoList li{
+    color: #999;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+}
+
+.CopyRight{
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: #999;
+}
+
+
+
+
+
+
+
+
+@media (min-width: 1200px) and (max-width: 1400px){
+
+    .WeeklyContent__container{
+        max-width: 1140px;
+    }
+
+    .additionalBlock__containerContent{
+        max-width: 1140px;
+    }
+
+    .footerContainer{
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 997px) and (max-width: 1200px){
+
+    .WeeklyContent__container{
+        max-width: 960px;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .additionalBlock__containerContent{
+        max-width: 960px;
+    }
+    .footerContainer{
+        max-width: 930px;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 992px){
+
+
+
+
+    .container{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding-top: 146px;
+    }
+
+
+
+}
+
+
+
+
+@media (min-width: 0px) and (max-width: 576px){
+
+    .WeeklyContent__container{
+        width: 100%;
+        flex-direction: column;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .footerContainer{
+        max-width: 100%;
+        display: flex;
+        justify-content: start;
+    }
+
+    .PolicyInfoList{
+        display: none;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px){
+
+    .WeeklyContent__container{
+        max-width: 540px;
+        flex-direction: column;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .footerContainer{
+        max-width: 510px;
+    }
+    .PolicyInfoList {
+        flex-wrap: wrap;
+    }
+    .PolicyInfoList li {
+        flex: 1 1 33%;
+        height: 20px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+
+    .WeeklyContent__container{
+        max-width: 540px;
+        flex-direction: column;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .WeeklyContent__container{
+        max-width: 720px;
+        flex-direction: column;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .footerContainer{
+        max-width: 690px;
+    }
+    .PolicyInfoList {
+        flex-wrap: wrap;
+    }
+    .PolicyInfoList li {
+        flex: 1 1 33%;
+        height: 20px;
+    }
+}
+
+
+
+
+
+
+@media (max-width: 997px){
+
+    .additionalBlock{
+        display: none;
+
+    }
+    .additionalBlock__containerContent{
+        max-width: 1340px;
+    }
+}
+
+
+
+@media (min-width: 36em) {
+    .CarouselTape{
+        width: calc(1000%);
+    }
+}
+
+
+
+
+
+@media (min-width: 48em) {
+    .CarouselTape{
+        width: calc(666.667%);
+    }
+}
+
+
+
+@media (min-width: 62em) {
+    .CarouselTape{
+        width: calc(500%);
+    }
+}
+
+
+
+
+@media (min-width: 75em) {
+    .CarouselTape{
+        width: calc(333.333%);
+    }
+
+}
+
+
+
+@media (min-width: 87.5em) {
+    .CarouselTape{
+        width: calc(285.714%);
+    }
+}
+
+
+
+
+
+
+
+@media (min-width: 576px) {
+    .CarouselHorizontalContainer {
+        max-width: 540px;
+    }
+    .ImageContainer{
+        width: 100%;
+        height: 336px;
+    }
+    .SliderBlock{
+        height: 489px;
+        text-align: center;
+        display: block;
+    }
+    .Sliderow{
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .CarouselHorizontalContainer {
+        max-width: 720px;
+    }
+    .ImageContainer{
+        width: 100%;
+        height: 294px;
+    }
+    .SliderBlock{
+        height: 446px;
+        text-align: center;
+        display: block;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .CarouselHorizontalContainer {
+        max-width: 960px;
+    }
+
+    .ImageContainer{
+        width: 100%;
+        height: 294px;
+    }
+    .SliderBlock{
+        height: 446px;
+        text-align: center;
+        display: block;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .CarouselHorizontalContainer {
+        max-width: 1140px;
+    }
+    .ImageContainer{
+        width: 100%;
+        height: 225px;
+    }
+    .SliderBlock{
+        height: 378px;
+        text-align: center;
+        display: block;
+    }
+}
+
+
+
+@media (min-width: 1400px) {
+    .CarouselHorizontalContainer {
+        max-width: 1340px;
+    }
+    .ImageContainer{
+        width: 100%;
+        height: 225px;
+    }
+    .SliderBlock{
+        height: 378px;
+        text-align: center;
+        display: block;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

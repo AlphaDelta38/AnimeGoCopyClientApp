@@ -1,5 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import cl from '../modules/RangeFilter.module.css'
+import {DateContext} from "../../context/context";
 
 
 
@@ -23,10 +24,11 @@ const RangeFilter = () => {
     const RedLineRef =  useRef<HTMLDivElement | null>(null);
 
     const [dd, setdd] = useState(0);
-    const CurrentYear = new Date().getFullYear();
     const [YearMoveOne, setYearMoveOne] = useState(0);
     const [YearMoveTwo, setYearMoveTwo] = useState(0);
     const [RedLineWidth, setRedLineWidth] = useState(0);
+
+    const CurrentYear = useContext(DateContext)?.CurrentYear || 0;
 
     useEffect(()=>{
         window.addEventListener("touchend", end)
@@ -90,8 +92,6 @@ const RangeFilter = () => {
                 stopperForFirst = (RedLineWidth-10) - parseFloat(elementRefSecond.current.style.right || '0');
                 setYearMoveOne(Math.ceil(parseFloat(elementRef.current.style.left)/((RedLineWidth-10)/65)))
                 setYearMoveTwo(Math.ceil(parseFloat(elementRefSecond.current.style.right)/((RedLineWidth-10)/65)))
-                console.log((RedLineWidth/65))
-                console.log(Math.round(parseFloat(elementRefSecond.current.style.right)/((RedLineWidth-10)/65)))
             }
 
 

@@ -1,0 +1,115 @@
+
+
+.container{
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    position: relative;
+
+
+}
+
+.HeaderContainer{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: .75rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, .15);
+    position: relative;
+}
+
+.title{
+    width: 100%;
+    font-size: 1rem;
+    color: #212529;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+
+.btnContainer button{
+    font-size: 1rem;
+    color: #ff5c57;
+    background: none;
+    border: none;
+    border-bottom: 1px dotted  #ff5c57;;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btnContainer button:hover{
+    border-bottom: none;
+}
+
+
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+
+.AnimeWeeklyItemContainer{
+    width: 100%;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .125);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgContainer{
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+.ItemInfoContainer{
+    width: 318px;
+    display: flex;
+    min-height: 42px;
+    position: relative;
+    border-radius: 50%;
+    justify-content: space-between;
+}
+
+.name{
+    word-wrap: break-word;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    text-align: start;
+    max-width: 230px;
+    font-weight: 500;
+
+}
+
+.AdditionalInfo{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    width: 100%;
+    max-width: 100px;
+}
+
+
+.Episode{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+.AdaptiveInfo{
+
+    color: rgba(0, 0, 0, .6);
+    font-size: 1rem;
+}

@@ -6,11 +6,12 @@ interface SortingContentInterface{
     SetkaGridActive:string
     setSetkaGridActive: (e:string)=>void
     setFilterBarActive: (e:boolean)=>void
+    SortingContentDisable?: boolean
 }
 
 
 
-const SortingContent = ({SetkaGridActive, setSetkaGridActive, setFilterBarActive}: SortingContentInterface) => {
+const SortingContent = ({SetkaGridActive, setSetkaGridActive, setFilterBarActive, SortingContentDisable}: SortingContentInterface) => {
     const [choseVariant, setChoseVariant] = useState("Дате выхода");
     const [SortUp, setSortUp] = useState(false);
     const [dropDownActive, setDropDownActive] = useState(false);
@@ -51,7 +52,7 @@ const SortingContent = ({SetkaGridActive, setSetkaGridActive, setFilterBarActive
 
 
     return (
-        <div className={cl.container}>
+        <div  style={SortingContentDisable ? {display: "none"} : {}} className={cl.container}>
             <div className={cl.content}>
                 <div className={cl.chooseContent}>
                     <div  className={cl.sortInfo} style={{textWrap: "nowrap"}}>
