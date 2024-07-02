@@ -14,7 +14,8 @@
     --translate-value: 80%;
     --translateHigh-value: 0;
     --GLobalOverFlow: visible;
-    --sliderTranslate: 0.1%
+    --sliderTranslate: 0.1%;
+    --ModalWindowCalc: 0;
 }
 
 

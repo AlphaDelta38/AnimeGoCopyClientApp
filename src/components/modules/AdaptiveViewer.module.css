@@ -1,0 +1,40 @@
+
+
+.ModalWindow{
+    position: absolute;
+    top: var(--ModalWindowCalc);
+    z-index: 5;
+}
+
+.TriangleDecorativeLeft{
+
+    width: 24px;
+    height: 24px;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, .04);
+    border-bottom:  1px solid rgba(0, 0, 0, .2);
+    border-right:  1px solid rgba(0, 0, 0, .2);
+    background: #ffffff;
+    rotate: 135deg;
+    position: absolute;
+    z-index: 6;
+    left: -12px;
+    top: calc(50% - 24px);
+
+}
+
+
+.TriangleDecorativeBottom{
+
+    width: 24px;
+    height: 24px;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, .04);
+    border-bottom:  1px solid rgba(0, 0, 0, .2);
+    border-right:  1px solid rgba(0, 0, 0, .2);
+    background: #ffffff;
+    rotate: 45deg;
+    position: absolute;
+    z-index: 6;
+    left: calc(50% - 24px);
+    top: calc(100% - 12px);
+
+}
