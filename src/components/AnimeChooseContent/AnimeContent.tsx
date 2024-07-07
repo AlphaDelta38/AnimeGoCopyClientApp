@@ -1,5 +1,5 @@
 import React, {CSSProperties, useState} from 'react';
-import cl from '../modules/AnimeContent.module.css'
+import cl from '../modules/AnimeChooseContentModules/AnimeContent.module.css'
 import SortingContent from "./SortingContent";
 import AnimeItem from "./AnimeItem";
 import AdpativeFilters from "./AdpativeFilters";
@@ -58,7 +58,7 @@ const AnimeContent = ({header, setFilterBarActive, SortingContentDisable, Search
                         <AnimeItem SetkaGridActive={SetkaGridActive} name={"Этот не совершенный мир"}
                                    secondName={"Kono Sekai wa Fukanzen Sugiru"}/>
                     </div>
-                    <div style={SearchButtonAvaible ? {} : {display: "none'"}} className={cl.ButtonANimeContent}>
+                    <div style={SearchButtonAvaible ? {} : {display: "none"}} className={cl.ButtonANimeContent}>
                         <button>Весь список аниме</button>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {FriendsRequestInterface} from "../../types";
-import cl from '../modules/Messeges.module.css'
+import cl from '../modules/HeaderModules/Messeges.module.css'
 
 
 const FriendRequest = (obj : FriendsRequestInterface) => {

@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import cl from "../modules/Header.module.css";
+import cl from "../modules/HeaderModules/Header.module.css";
 import PopatUniversal from "./popatUniversal";
+import {Link} from "react-router-dom";
+import {routes} from "../../routes";
 
 
 interface WithLogin {
@@ -129,10 +131,19 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
                         </div>
                 :
                 <ul className={cl.navigationUser}>
-                    <li>AlphaDelta38</li>
-                    <li onClick={()=>{ActivateUpdatePopat(ObjectsType.friends)}}><img width="20" height="20" src='/friendsIconWhite.png' alt={"sorry"}/></li>
-                    <li onClick={()=>{ActivateUpdatePopat(ObjectsType.messeges)}}><img width="20" height="20" src='/messegeBellWhite.png' alt={"sorry"}/></li>
-                    <PopatUniversal objects2={friendrequestObj} objects={meseggesObjects} distanse ={distansePopat} active={PopatActive} type={TypeDataPopat} Title={PopatTitle} message={messegeas}/>
+                    <li>
+                        <Link style={{textDecoration: "none", color: "inherit"}} to={routes.Profile}>
+                            AlphaDelta38
+                        </Link>
+                    </li>
+                    <li onClick={() => {
+                        ActivateUpdatePopat(ObjectsType.friends)
+                    }}><img width="20" height="20" src='/friendsIconWhite.png' alt={"sorry"}/></li>
+                    <li onClick={() => {
+                        ActivateUpdatePopat(ObjectsType.messeges)
+                    }}><img width="20" height="20" src='/messegeBellWhite.png' alt={"sorry"}/></li>
+                    <PopatUniversal objects2={friendrequestObj} objects={meseggesObjects} distanse={distansePopat}
+                                    active={PopatActive} type={TypeDataPopat} Title={PopatTitle} message={messegeas}/>
                 </ul>
             }
             {searching ?

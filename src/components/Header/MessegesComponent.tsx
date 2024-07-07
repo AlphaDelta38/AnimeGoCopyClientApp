@@ -1,6 +1,6 @@
 import React from 'react';
 import {MessegesInterface} from "../../types";
-import cl from '../modules/Messeges.module.css'
+import cl from '../modules/HeaderModules/Messeges.module.css'
 
 
 const MessegesComponent = (obj : MessegesInterface) => {

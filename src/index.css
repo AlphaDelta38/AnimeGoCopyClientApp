@@ -11,7 +11,7 @@
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
     --breakpoint-ul: 1400px;
-    --translate-value: 80%;
+    --translate-value: 0;
     --translateHigh-value: 0;
     --GLobalOverFlow: visible;
     --sliderTranslate: 0.1%;
@@ -30,6 +30,17 @@ body{
 }
 
 
+
+#root{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+
+}
+
 html, body{
+    min-height: 100% ;
     overflow: var(--GLobalOverFlow);
+
 }

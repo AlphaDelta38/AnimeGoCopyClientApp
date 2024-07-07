@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from '../modules/TypeInfoAnime.module.css'
+import cl from '../modules/AnimeChooseContentModules/TypeInfoAnime.module.css'
 
 
 interface TypeInfoAnimeInterface{

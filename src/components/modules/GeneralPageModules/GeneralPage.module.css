@@ -210,12 +210,13 @@
 
 .footer{
     width: 100%;
-    margin-top: 100px;
+    margin-top: auto;
     position: relative;
     background-color: #343a40;;
 }
 
 .footerContainer{
+
     max-width: 1310px;
     width: 100%;
     margin-left: auto;

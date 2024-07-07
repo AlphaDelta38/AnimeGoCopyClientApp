@@ -27,3 +27,13 @@ export interface  RecentlyItemOjbectsInterface{
     episode: number
 
 }
+
+
+export interface RoutesInterface {
+    HomePage: string;
+    AnimeList: string;
+    MangaList: string;
+    Characters: string;
+    Profile: string;
+    Friends: string;
+}

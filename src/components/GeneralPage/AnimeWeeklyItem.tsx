@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from "../modules/WeeklyItem.module.css"
+import cl from "../modules/GeneralPageModules/WeeklyItem.module.css"
 import {WeeklyOjbectInterface} from "../../types";
 
 

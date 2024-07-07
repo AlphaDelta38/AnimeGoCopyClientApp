@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import cl from '../modules/AdaptiveFilters.module.css'
+import cl from '../modules/AnimeChooseContentModules/AdaptiveFilters.module.css'
 import RangeFilter from "./RangeFilter";
 import DropDownFilters from "./DropDownFilters";
 

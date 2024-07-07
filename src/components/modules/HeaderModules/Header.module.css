@@ -11,7 +11,10 @@
     transition: 1s ease;
     position: fixed;
     z-index: 5;
-    overflow: hidden;
+
+
+
+
 }
 
 .HeaderContainerScrollPosition{
@@ -24,6 +27,8 @@
     transition: 0.2s ease;
     position: fixed;
     z-index: 5;
+    top: 0;
+
 }
 
 @keyframes ScrollAnimation {

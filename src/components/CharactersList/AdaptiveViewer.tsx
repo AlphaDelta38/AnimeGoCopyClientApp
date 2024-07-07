@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useEffect, useRef, useState} from 'react';
-import cl from '../modules/AdaptiveViewer.module.css'
+import cl from '../modules/CharactersListModules/AdaptiveViewer.module.css'
 
 interface  AdaptiveViewerInterface{
     children: ReactNode;
@@ -50,14 +50,14 @@ const AdaptiveViewer: FC<AdaptiveViewerInterface> = ({children,right,top, setFun
         let position;
         let moveLeft
 
-        console.log(stopper)
+
 
 
         if( right && ImgDated.height && ImgDated.x && ImgDated.width){
             position = (e.height - ImgDated.height)/2;
             moveLeft = ImgDated.x + ImgDated.width;
 
-            console.log(moveLeft, window.innerWidth)
+
             if(moveLeft > window.innerWidth ){
 
                 setstopper(false)
@@ -65,7 +65,7 @@ const AdaptiveViewer: FC<AdaptiveViewerInterface> = ({children,right,top, setFun
 
                     setStyles({right: `${-20}%`, left: "unset", ...foreignStyles})
                 }else{
-                    console.log(1)
+
                     setStyles({right: `${110}%`, left: "unset", ...foreignStyles})
                 }
 
@@ -78,7 +78,7 @@ const AdaptiveViewer: FC<AdaptiveViewerInterface> = ({children,right,top, setFun
                     setStyles({right: `${-20}%`, left: "unset", ...foreignStyles})
 
                 }else{
-                    console.log(2)
+
                     setStyles({left: `${110}%`, ...foreignStyles})
 
                 }

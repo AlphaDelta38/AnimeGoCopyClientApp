@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from "../modules/Header.module.css"
+import cl from "../modules/HeaderModules/Header.module.css"
 import {ObjectsType} from "./WithLoginBar";
 import {FriendsRequestInterface, MessegesInterface} from "../../types";
 import MessegesComponent from "./MessegesComponent";

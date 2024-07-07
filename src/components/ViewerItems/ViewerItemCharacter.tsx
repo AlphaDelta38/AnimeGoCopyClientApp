@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import cl from '../modules/ViewerItemCharacter.module.css'
+import cl from '../modules/ViewerItemsModules/ViewerItemCharacter.module.css'
 
 
 

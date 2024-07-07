@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from  '../modules/RecentlyOutAnime.module.css'
+import cl from '../modules/GeneralPageModules/RecentlyOutAnime.module.css'
 import {RecentlyItemOjbectsInterface} from "../../types";
 
 

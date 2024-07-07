@@ -1,0 +1,250 @@
+
+
+.container{
+    width: 100%;
+    max-width: 1340px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    padding-top: 74px;
+    position: relative;
+}
+
+
+.row{
+    width: 100%;
+    display: flex;
+    position: relative;
+    height: 100%;
+}
+
+.FriendsContainer{
+    background-color: #FFFFFF;
+    padding: 1rem;
+    padding-top: 0;
+    border: 1px solid rgba(0, 0 ,0 , 0.125);
+    flex: 0 0 75%;
+    max-width: 75%;
+
+}
+
+.FriendsHeaderContainer{
+    display: flex;
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;
+    border-bottom: 1px solid rgba(0, 0 ,0 , 0.125);
+    margin-bottom: 1rem;
+}
+
+
+.FriendsHeader{
+    width: 100%;
+    padding: 1rem 15px 1rem 15px;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+
+}
+
+.FriendsHeader h5{
+    font-size: 2rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.returnButtonContainer{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.2;
+    font-weight: 400;
+    color: #ff5c57;
+    user-select: none;
+    margin-right: 1rem;
+    cursor: pointer;
+
+}
+
+.ReturnArrowContainer{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+.FriendsContentContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+
+.FriendsCardContainer{
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 33.3333%;
+    flex: 0 0 33.333%;
+    position: relative;
+    display: flex;
+    margin-bottom: 1rem;
+
+}
+
+.media{
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+
+.FriendImageContainer{
+    height: 82px;
+    width: 82px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    margin-right: 1rem;
+}
+
+.InfoContainerAboutFriend{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.InfoContainerAboutFriend h5{
+    color: #ff5c57;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+.InfoContainerAboutFriend span{
+    font-size: 0.85rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .6);
+}
+
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .container{
+        max-width: 1140px;
+    }
+
+
+
+}
+
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .container{
+        max-width: 960px;
+        padding-top: 54px;
+    }
+
+    .FriendsContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .row{
+        flex-direction: column;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .container{
+        max-width: 720px;
+        padding-top: 140px;
+
+    }
+
+    .FriendsContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .row{
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .container{
+        max-width: 540px;
+        padding-top: 140px;
+
+    }
+
+    .FriendsContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .row{
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 576px) {
+    .container{
+        max-width: 100%;
+        padding-top: 140px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .FriendsContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .row{
+        flex-direction: column;
+    }
+
+    .FriendsCardContainer{
+        padding-left: 15px;
+        padding-right: 15px;
+        max-width: 50%;
+        flex: 0 0 50%;
+        position: relative;
+        display: flex;
+        margin-bottom: 1rem;
+
+    }
+}
+
+
+
+@media (min-width: 0px) and (max-width: 350px) {
+    .container{
+        max-width: 100%;
+        padding-top: 140px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .FriendsContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .row{
+        flex-direction: column;
+    }
+
+    .FriendsCardContainer{
+        padding-left: 15px;
+        padding-right: 15px;
+        max-width: 100%;
+        flex: 0 0 100%;
+        position: relative;
+        display: flex;
+        margin-bottom: 1rem;
+
+    }
+}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import cl from '../modules/DropDownFilters.module.css'
+import cl from '../modules/AnimeChooseContentModules/DropDownFilters.module.css'
 import CustomButton from "../AdditionalComponents/CustomButton";
 import InfoToolTip from "../AdditionalComponents/InfoToolTip";
 import FilterBtn from "./FilterBtn";

@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from '../modules/AnimeItem.module.css'
+import cl from '../modules/AnimeChooseContentModules/AnimeItem.module.css'
 import TypeInfoAnime from "./TypeInfoAnime";
 
 

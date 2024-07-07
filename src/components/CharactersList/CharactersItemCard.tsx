@@ -1,5 +1,5 @@
 import React, {MouseEventHandler, useEffect, useRef, useState} from 'react';
-import cl from "../modules/CharactersList.module.css";
+import cl from "../modules/CharactersListModules/CharactersList.module.css";
 import AdaptiveViewer from "./AdaptiveViewer";
 import AnimeItem from "../AnimeChooseContent/AnimeItem";
 import ViewerItemCharacter from "../ViewerItems/ViewerItemCharacter";

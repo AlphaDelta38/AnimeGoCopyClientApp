@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import cl from "../modules/Header.module.css";
+import cl from "../modules/HeaderModules/Header.module.css";
 
 interface MobileHeaderInterface{
     setMobileBarActive: (e:boolean) => void;

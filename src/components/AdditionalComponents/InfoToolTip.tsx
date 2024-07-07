@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import cl from '../modules/InfoToolTip.module.css'
+import cl from '../modules/AdditionalComponentsModules/InfoToolTip.module.css'
 
 
 

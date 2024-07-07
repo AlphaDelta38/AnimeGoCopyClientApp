@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import cl from '../modules/RangeFilter.module.css'
+import cl from '../modules/AnimeChooseContentModules/RangeFilter.module.css'
 import {DateContext} from "../../context/context";
 
 

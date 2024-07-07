@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import cl from '../modules/SortingContent.module.css'
+import cl from '../modules/AnimeChooseContentModules/SortingContent.module.css'
 
 
 interface SortingContentInterface{

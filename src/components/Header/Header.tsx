@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import cl from '../modules/Header.module.css'
+import cl from '../modules/HeaderModules/Header.module.css'
 import WithOutLoginBar from "./WithOutLoginBar";
 import WithLoginBar from "./WithLoginBar";
 import MobileHeader from "./MobileHeader";
 import AdditionalNavigationMobile from "./AdditionalNavigationMobile";
 import SideNavMenu from "./SideNavMenu";
 import PopatUniversal from "./popatUniversal";
+import {Link} from "react-router-dom";
+import {routes} from "../../routes";
 
 
 interface HeaderInterface{
@@ -118,10 +120,30 @@ const Header = ({setMobileBarActive, MobileNavBarActive, FilterBarActive, setFil
                     </div>
                     <div className={cl.navigation}>
                         <ul className={cl.firstNavigation}>
-                            <li className={cl.firstLi}>Аниме</li>
-                            <li className={cl.firstLi}>Манга</li>
-                            <li className={cl.firstLi}>Персонажи</li>
-                            <li className={cl.firstLi}>Случайное аниме</li>
+
+                            <li className={cl.firstLi}>
+                                <Link style={{textDecoration: "none", color:"inherit"}} to={routes.AnimeList}>
+                                    Аниме
+                                </Link>
+                            </li>
+
+                            <li className={cl.firstLi}>
+                                <Link style={{textDecoration: "none", color:"inherit"}} to={routes.MangaList}>
+                                    Манга
+                                </Link>
+                            </li>
+                            <li className={cl.firstLi}>
+                                <Link style={{textDecoration: "none", color:"inherit"}} to={routes.Characters}>
+                                    Персонажи
+                                </Link>
+                            </li>
+                            <li className={cl.firstLi}>
+                                <Link style={{textDecoration: "none", color:"inherit"}} to={routes.HomePage}>
+                                    Случайное аниме
+                                </Link>
+                            </li>
+
+
                         </ul>
                         <ul className={cl.SecondNavigation}>
                             {IsLogin

@@ -1,10 +1,11 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import cl from '../modules/GeneralPage.module.css'
+import cl from '../modules/GeneralPageModules/GeneralPage.module.css'
 import UpDownWeeklyContent from "./UpDownWeeklyContent";
 import {RecentlyItemOjbectsInterface} from "../../types";
 import RecentlyOutAnime from "./RecentlyOutAnime";
 import AnimeContent from "../AnimeChooseContent/AnimeContent";
 import {DateContext} from "../../context/context";
+import Footer from "../AdditionalComponents/Footer";
 
 interface GeneralPageInterfaceP {
     setFilterBarActive: (e:boolean)=>void
@@ -309,26 +310,6 @@ const GeneralPage = ({setFilterBarActive}:GeneralPageInterfaceP) => {
                 </div>
             </div>
             <AnimeContent styles={{paddingTop: "20px", gap:"20px"}} SearchButtonAvaible={true} SortingContentDisable={true} header={"Новые аниме на сайте"} setFilterBarActive={setFilterBarActive}/>
-            <footer className={cl.footer}>
-                    <div className={cl.footerContainer}>
-                        <div className={cl.footerContent}>
-                            <ul className={cl.PolicyInfoList}>
-                                <li>
-                                    Соглашение
-                                </li>
-                                <li>
-                                    Конфиденциальность
-                                </li>
-                                <li>
-                                    Для правообладателей
-                                </li>
-                            </ul>
-                            <div className={cl.CopyRight}>
-                                {` © animego.org 2017-${CurrentYear}`}
-                            </div>
-                        </div>
-                    </div>
-            </footer>
         </div>
     );
 };

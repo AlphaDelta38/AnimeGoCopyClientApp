@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from "../modules/CharactersList.module.css"
+import cl from "../modules/CharactersListModules/CharactersList.module.css"
 import CharactersItemCard from "./CharactersItemCard";
 
 
