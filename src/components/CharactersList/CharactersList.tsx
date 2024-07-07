@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import cl from "../modules/CharactersListModules/CharactersList.module.css"
 import CharactersItemCard from "./CharactersItemCard";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 
 
@@ -8,6 +9,7 @@ import CharactersItemCard from "./CharactersItemCard";
 
 const CharactersList = () => {
 
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
 
     const TestMassive = [
@@ -36,7 +38,7 @@ const CharactersList = () => {
 
 
     return (
-        <div className={cl.container}>
+        <div style={MobileNavBarActive ? { transform:"translate3d(var(--translate-value), 0, 0)"} : {}} className={cl.container}>
             <div className={cl.row}>
                 <div className={cl.contentBlock}>
                     <div className={cl.contentContainer}>

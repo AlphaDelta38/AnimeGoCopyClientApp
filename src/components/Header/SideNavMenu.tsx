@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import cl from "../modules/HeaderModules/Header.module.css"
 import AdpativeFilters from "../AnimeChooseContent/AdpativeFilters";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 
 
 interface SideNavMenuInterface {
-    mobileActive: boolean
+
     FilterBarActive:boolean
     setFilterBarActive: (e:boolean) => void
 }
 
 
 
-const SideNavMenu = ({mobileActive, FilterBarActive,setFilterBarActive}: SideNavMenuInterface) => {
+const SideNavMenu = ({ FilterBarActive,setFilterBarActive}: SideNavMenuInterface) => {
+
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+
+
 
     function FilterSideBarDisable(){
             setFilterBarActive(false)
@@ -20,8 +25,8 @@ const SideNavMenu = ({mobileActive, FilterBarActive,setFilterBarActive}: SideNav
     }
 
     return (
-        <div  className={mobileActive ? cl.SideBarMenuActive : FilterBarActive ? cl.SideBarMenuActive : cl.SideBarMenu  }>
-            {mobileActive &&
+        <div  className={MobileNavBarActive ? cl.SideBarMenuActive : FilterBarActive ? cl.SideBarMenuActive : cl.SideBarMenu  }>
+            {MobileNavBarActive &&
                 <div>
                     <div className={cl.SideBarHeader}>
                         <div>

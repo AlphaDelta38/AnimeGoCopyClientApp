@@ -8,6 +8,7 @@
     flex-direction: column;
     padding-top: 46px;
     overflow: hidden;
+    transition: 0.3s ease;
 }
 
 
@@ -213,6 +214,7 @@
     margin-top: auto;
     position: relative;
     background-color: #343a40;;
+    transition: 0.3s ease;
 }
 
 .footerContainer{

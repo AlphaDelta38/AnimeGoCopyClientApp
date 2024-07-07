@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import cl from "../modules/ProfilePageModules/ProfilePage.module.css"
 import SideNavigationProfile from "./SideNavigationProfile";
 import Footer from "../AdditionalComponents/Footer";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 
 const ProfilePage = () => {
 
     const [btnMoreInfoActive, setBtnMoreInfoActive] = useState(false);
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
     function changeBtnActive(){
         if(btnMoreInfoActive){
@@ -23,7 +25,7 @@ const ProfilePage = () => {
 
 
     return (
-        <div className={cl.container}>
+        <div style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}} className={cl.container}>
             <div className={cl.row}>
                 <div className={cl.MainContentContainer}>
                     <div className={cl.MainContent}>

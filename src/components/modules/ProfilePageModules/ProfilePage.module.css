@@ -10,6 +10,7 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    transition: transform 0.3s ease;
 }
 
 .row{
@@ -45,8 +46,8 @@
     justify-content: start;
     min-height: 400px;
     max-width: 979px;
-    width: 104%;
     margin-left: -15px;
+    margin-right: -15px;
     padding-left: 15px;
     padding-right: 15px;
     background-repeat: no-repeat;
@@ -97,12 +98,14 @@
     line-height: 1.5;
     position: relative;
     display: flex;
+
 }
 
 .LabelBtn span{
     display: flex;
     align-items: center;
     margin-right: 10px;
+
 }
 
 .LabelBtn input{
@@ -366,7 +369,7 @@
     cursor: pointer;
     white-space: nowrap;
     text-overflow: ellipsis;
-
+    overflow: hidden;
 }
 
 
@@ -460,8 +463,13 @@
         padding-top: 54px;
     }
 
-
-
+    .row{
+        flex-direction: column;
+    }
+    .MainContentContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 
 }
 
@@ -471,8 +479,13 @@
         padding-top: 140px;
 
     }
-
-
+    .row{
+        flex-direction: column;
+    }
+    .MainContentContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
@@ -481,8 +494,16 @@
         padding-top: 140px;
 
     }
-
-
+    .row{
+        flex-direction: column;
+    }
+    .MainContentContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .BackgroundImage{
+        justify-content: center;
+    }
 }
 
 @media (min-width: 0px) and (max-width: 576px) {
@@ -492,8 +513,19 @@
         padding-left: 0;
         padding-right: 0;
     }
-
-
+    .row{
+        flex-direction: column;
+    }
+    .MainContentContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .WatchStatistics{
+        gap: 40px;
+    }
+    .BackgroundImage{
+        justify-content: center;
+    }
 }
 
 

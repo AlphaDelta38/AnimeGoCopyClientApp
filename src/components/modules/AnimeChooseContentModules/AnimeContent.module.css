@@ -9,6 +9,7 @@
     margin-right: auto;
     padding: 74px 10px 0 10px;
     margin-bottom: 60px;
+    transition: 0.3s ease;
 }
 
 .content_container{

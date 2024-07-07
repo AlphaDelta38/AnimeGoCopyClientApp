@@ -1,43 +1,44 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import cl from "../modules/HeaderModules/Header.module.css";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 interface MobileHeaderInterface{
-    setMobileBarActive: (e:boolean) => void;
-    mobileActive:boolean
+
     setFilterBarActive: (e:boolean) => void;
 }
 
 
 
-const MobileHeader = ({setMobileBarActive, mobileActive, setFilterBarActive}:MobileHeaderInterface) => {
+const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
 
     const [activeBtn, setActiveBtn] = useState(false);
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
     function checkActive(){
             if(activeBtn){
                 setActiveBtn(false);
-                setMobileBarActive(false);
+                setMobileNavBarActive(false);
                 document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
             }else{
                 setActiveBtn(true);
-                setMobileBarActive(true);
+                setMobileNavBarActive(true);
                 document.documentElement.style.setProperty('--GLobalOverFlow', `hidden`);
             }
 
     }
 
     useEffect(() => {
-        if(!mobileActive){
+        if(!MobileNavBarActive){
             setActiveBtn(false);
             setFilterBarActive(false)
             document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
         }
-    }, [mobileActive]);
+    }, [MobileNavBarActive]);
 
 
 
     return (
-            <div   className={cl.container}>
+            <div    className={cl.container}>
                 <div  onClick={() => {
                     checkActive()
                 }} style={{height: "24px", width: "30px", display: "flex", alignItems: "flex-end"}}>

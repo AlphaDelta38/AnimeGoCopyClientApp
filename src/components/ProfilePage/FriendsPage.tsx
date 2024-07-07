@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import cl from '../modules/ProfilePageModules/FriendsPage.module.css'
 import SideNavigationProfile from "./SideNavigationProfile";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 
 
 
 const FriendsPage = () => {
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
     const testMassive = [
         {ImgUrl: "https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg", name: "Andrei"},
@@ -26,7 +28,7 @@ const FriendsPage = () => {
     return (
 
 
-        <div className={cl.container}>
+        <div style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}} className={cl.container}>
             <div className={cl.row}>
                 <div className={cl.FriendsContainer}>
                     <div className={cl.FriendsHeaderContainer}>

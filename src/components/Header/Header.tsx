@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import cl from '../modules/HeaderModules/Header.module.css'
 import WithOutLoginBar from "./WithOutLoginBar";
 import WithLoginBar from "./WithLoginBar";
@@ -8,22 +8,22 @@ import SideNavMenu from "./SideNavMenu";
 import PopatUniversal from "./popatUniversal";
 import {Link} from "react-router-dom";
 import {routes} from "../../routes";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 
 interface HeaderInterface{
-    setMobileBarActive: (e:boolean)=>void;
-    MobileNavBarActive: boolean;
+
     FilterBarActive: boolean;
     setFilterBarActive: (e:boolean)=>void
 }
 
 
-const Header = ({setMobileBarActive, MobileNavBarActive, FilterBarActive, setFilterBarActive}:HeaderInterface) => {
+const Header = ({ FilterBarActive, setFilterBarActive}:HeaderInterface) => {
     const [WidthState, setWidthState] = useState(false);
     const [IsLogin, setIsLogin] = useState(false);
     const [searching, setSerching] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
-
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
 
     const handleScroll = () => {
@@ -53,7 +53,7 @@ const Header = ({setMobileBarActive, MobileNavBarActive, FilterBarActive, setFil
        if(width > 992 ){
            setWidthState(false);
            if(!WidthState){
-               setMobileBarActive(false)
+               setMobileNavBarActive(false)
                setFilterBarActive(false)
                document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
            }
@@ -69,7 +69,7 @@ const Header = ({setMobileBarActive, MobileNavBarActive, FilterBarActive, setFil
 
 
     function  CloserFildSideBar(){
-        setMobileBarActive(false);
+        setMobileNavBarActive(false);
         setFilterBarActive(false)
         document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
     }
@@ -86,11 +86,11 @@ const Header = ({setMobileBarActive, MobileNavBarActive, FilterBarActive, setFil
     return (
       <div >
 
-          <SideNavMenu setFilterBarActive={setFilterBarActive}  FilterBarActive={FilterBarActive} mobileActive={MobileNavBarActive}/>
+          <SideNavMenu setFilterBarActive={setFilterBarActive}  FilterBarActive={FilterBarActive} />
           <div  onClick={()=>{CloserFildSideBar()}} className={ MobileNavBarActive ? cl.CLoseFieldForSideNavBarActive : FilterBarActive ? cl.CLoseFieldForSideNavBarActive :cl.CLoseFieldForSideNavBar }></div>
-            <div  className={ scrollPosition < 2 ? cl.HeaderContainer : cl.HeaderContainerScrollPosition}>
+            <div  style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}} className={ scrollPosition < 2 ? cl.HeaderContainer : cl.HeaderContainerScrollPosition}>
                 {
-                    WidthState ?< MobileHeader setFilterBarActive={setFilterBarActive} mobileActive={MobileNavBarActive} setMobileBarActive={setMobileBarActive}/>
+                    WidthState ?< MobileHeader setFilterBarActive={setFilterBarActive} />
                     :
                 <div className={cl.container}>
                     <div className={cl.Logo}>
@@ -157,7 +157,7 @@ const Header = ({setMobileBarActive, MobileNavBarActive, FilterBarActive, setFil
                 </div>
                 }
             </div>
-          { WidthState && <AdditionalNavigationMobile mobActiva={MobileNavBarActive}  scrollPosition={scrollPosition} />}
+          { WidthState && <AdditionalNavigationMobile scrollPosition={scrollPosition} />}
       </div>
     );
 };

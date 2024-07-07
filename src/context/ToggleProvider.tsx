@@ -6,7 +6,14 @@ interface ToggleProviderProps {
     children: ReactNode;
 }
 
-const ToggleContext = createContext<{ MobileNavBarActive: boolean; setMobileNavBarActive: React.Dispatch<React.SetStateAction<boolean>> } | undefined>(undefined);
+export interface ToggleContextProps {
+    MobileNavBarActive: boolean;
+    setMobileNavBarActive: (e:boolean)=> void;
+}
+
+const ToggleContext = createContext<ToggleContextProps | undefined>(undefined);
+
+
 
 const ToggleProvider: FC<ToggleProviderProps> = ({ children }) => {
 

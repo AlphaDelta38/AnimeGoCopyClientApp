@@ -1,8 +1,9 @@
-import React, {CSSProperties, useState} from 'react';
+import React, {CSSProperties, useContext, useState} from 'react';
 import cl from '../modules/AnimeChooseContentModules/AnimeContent.module.css'
 import SortingContent from "./SortingContent";
 import AnimeItem from "./AnimeItem";
 import AdpativeFilters from "./AdpativeFilters";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 
  interface AnimeContentInterface{
@@ -16,9 +17,10 @@ import AdpativeFilters from "./AdpativeFilters";
 
 const AnimeContent = ({header, setFilterBarActive, SortingContentDisable, SearchButtonAvaible, styles}:AnimeContentInterface ) => {
     const [SetkaGridActive, setSetkaGridActive] = useState("2x3");
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
     return (
-        <div style={styles} className={cl.container}>
+        <div style={MobileNavBarActive ? { transform:"translate3d(var(--translate-value), 0, 0)", ...styles,} : {...styles}} className={cl.container}>
             <div className={cl.content_container}>
                 <div className={cl.content}>
                     <div className={cl.Header}>

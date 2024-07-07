@@ -1,22 +1,11 @@
 
 
-.App{
-    position: relative;
-    transition: 0.3s ease;
-    z-index: 4;
-}
 
 
 
 
 
-.AppTranslate{
-    position: relative;
-    z-index: 4;
-    transition: 0.3s ease;
 
-
-}
 
 
 

@@ -14,7 +14,6 @@ import FriendsPage from "./components/ProfilePage/FriendsPage";
 
 function App() {
 
-    const [MobileNavBarActive, setMobileNavBarActive] = useState(false);
     const [FilterBarActive, setFilterBarActive] = useState(false);
 
 
@@ -22,7 +21,7 @@ function App() {
 
   return (
       <BrowserRouter>
-          <Header setFilterBarActive={setFilterBarActive}  FilterBarActive={FilterBarActive} MobileNavBarActive={MobileNavBarActive} setMobileBarActive = {setMobileNavBarActive}></Header>
+          <Header setFilterBarActive={setFilterBarActive}  FilterBarActive={FilterBarActive} ></Header>
           <Routes>
               <Route path={routes.HomePage} element={<GeneralPage setFilterBarActive={setFilterBarActive} />} />
               <Route path={routes.AnimeList} element={<AnimeContent SearchButtonAvaible={false}  setFilterBarActive={setFilterBarActive} header={"Список Аниме"} />} />

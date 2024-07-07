@@ -1,16 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import cl from "../modules/HeaderModules/Header.module.css";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 
 
 interface AdditionalNavigationMobileProps {
     scrollPosition:number,
-    mobActiva: boolean
+
 }
 
-const AdditionalNavigationMobile = ({scrollPosition, mobActiva}:AdditionalNavigationMobileProps) => {
+const AdditionalNavigationMobile = ({scrollPosition}:AdditionalNavigationMobileProps) => {
     const [temp, setTemp] = useState(0);
     const [visible, setVIsible] = useState(false);
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+
+
 
     function  visibleCheck(e:number):void{
         if(temp < scrollPosition){
@@ -24,12 +28,11 @@ const AdditionalNavigationMobile = ({scrollPosition, mobActiva}:AdditionalNaviga
 
     useEffect(()=>{
         visibleCheck(scrollPosition)
-
     }, [scrollPosition])
 
 
     return (
-        <div  className={ visible ? cl.AdditionalNavigationActive :  cl.AdditionalNavigation }>
+        <div style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}}  className={ visible ? cl.AdditionalNavigationActive :  cl.AdditionalNavigation }>
             <div className={cl.AdditionalNavigation__container}>
                 <div>
                     <img width="28"  alt="sorry" height="28" src="/friendsIconWhite28x28.png"/>
