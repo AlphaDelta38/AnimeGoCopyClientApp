@@ -9,6 +9,9 @@ import ProfilePage from "./components/ProfilePage/ProfilePage";
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import Footer from "./components/AdditionalComponents/Footer";
 import FriendsPage from "./components/ProfilePage/FriendsPage";
+import AnimeListPage from "./components/ProfilePage/AnimeListPage";
+import MangaListPage from "./components/ProfilePage/MangaListPage";
+import SettingsPage from "./components/ProfilePage/SettingsPage";
 
 
 
@@ -29,6 +32,9 @@ function App() {
               <Route path={routes.Characters} element={<CharactersList/>} />
               <Route path={routes.Profile} element={<ProfilePage/>} />
               <Route path={routes.Friends} element={<FriendsPage/>} />
+              <Route path={routes.OwnAnimeList} element={<AnimeListPage/>} />
+              <Route path={routes.OwnMangaList} element={<MangaListPage/>} />
+              <Route path={routes.MyProfileSettings} element={<SettingsPage/>} />
               <Route path={"/*"} element={<GeneralPage setFilterBarActive={setFilterBarActive} />} />
           </Routes>
           <Footer/>

@@ -1,0 +1,65 @@
+
+
+.container{
+    width: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    gap: 10px;
+    justify-content: start;
+    transition: 0.3s ease;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.DateSelect{
+    width: 25%;
+    flex: 0 0 25%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    position: relative;
+}
+
+.DateSelect:focus{
+     outline: 3px solid rgb(255, 204, 204);
+     box-shadow: 0 0 5px 2px #ffcccc;
+ }
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+.DateSelect{
+    width: 50%;
+    flex: 0 0 50%;
+}
+
+.row{
+    row-gap: 2px;
+}
+
+}
+
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .DateSelect{
+        width: 25%;
+        flex: 0 0 25%;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 576px) {
+    .DateSelect{
+        width: 100%;
+        flex: 0 0 100%;
+    }
+}

@@ -8,5 +8,9 @@ export const routes: RoutesInterface = {
     Characters: "/character",
     Profile: "/profile",
     Friends: "/profile/friends",
+    OwnAnimeList: "/profile/animeList",
+    OwnMangaList: "/profile/mangaList",
+    MyProfileSettings: "/profile/settings",
+
 }
 

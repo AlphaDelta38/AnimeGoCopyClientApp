@@ -36,4 +36,7 @@ export interface RoutesInterface {
     Characters: string;
     Profile: string;
     Friends: string;
+    OwnAnimeList: string
+    OwnMangaList: string
+    MyProfileSettings:string
 }

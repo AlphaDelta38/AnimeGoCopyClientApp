@@ -1,0 +1,576 @@
+
+
+
+.container{
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1340px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    transition: 0.3s ease;
+    padding-top: 64px;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.OwnAnimeListContainer{
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex:  0 0 75%;
+    max-width: 75%;
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.ListHeaderContainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    background-color: #FFFFFF;
+
+}
+
+.returnButtonContainer{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+
+
+.returnButtonContainer h5{
+    font-size: 2rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 500;
+}
+
+.BtnContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    margin-right: 1rem;
+}
+
+.returnArrowImgContainer{
+    width: 16px;
+    height: 16px;
+}
+
+
+.returnButton{
+    font-size: 0.85rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.2;
+    font-weight: 400;
+    color: #ff5c57;
+}
+
+.filterWatchStatusContainer{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+
+.btn_filterStatusContainer{
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+
+.btn_filterStatusContainer span{
+    margin-left: 2px;
+    color: rgba(0, 0, 0, .6);
+}
+
+
+.filterStatus{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 500;
+    color: #ff5c57;
+    text-decoration: none;
+}
+
+
+.ContentContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+
+.TableOfAnime{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.HeaderOfTable{
+    display: flex;
+    position: relative;
+
+    background-color: #FFFFFF;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.HeaderOfTable tr{
+    width: 100%;
+    border-bottom: 2px solid #e9ecef;
+    position: relative;
+}
+
+.HeaderOfTable tr th{
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #212529;
+    text-align: start;
+    vertical-align: bottom;
+}
+
+.HeaderOfTable tr th:nth-child(1){
+    font-weight: 400;
+    min-width: 42px;
+    max-width: 42px;
+}
+
+
+.HeaderOfTable tr th:nth-child(2){
+    min-width: 74px;
+    max-width: 74px;
+}
+
+.HeaderOfTable tr th:nth-child(3){
+    width: 380px;
+}
+
+.HeaderOfTable tr th:nth-child(4){
+    width: 171px;
+}
+
+.HeaderOfTable tr th:nth-child(7){
+    width: 87px;
+    text-align: center;
+}
+
+.BodyOfTable{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+
+.BodyOfTable tr{
+    width: 100%;
+    border-bottom: 2px solid #e9ecef;
+    position: relative;
+
+}
+
+.BodyOfTable tr th{
+    padding: 0.75rem;
+    vertical-align: top;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    width: 42px;
+    text-align: left;
+}
+
+.BodyOfTable tr td{
+    padding: 0.75rem;
+    vertical-align: top;
+}
+
+
+
+
+.BodyOfTable tr td:nth-child(2){
+    padding: 0.75rem;
+    vertical-align: top;
+    min-width: 50px;
+    height: 70px;
+    object-fit: cover;
+    box-sizing: content-box;
+
+}
+
+.BodyOfTable tr td:nth-child(3){
+    display: flex;
+    flex-direction: column;
+    width: 389px;
+}
+
+.BodyOfTable tr td:nth-child(3) span{
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, .6);
+}
+
+.BodyOfTable tr td:nth-child(4){
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 171px;
+}
+
+.BodyOfTable tr td:nth-child(5){
+    width: 83px;
+    vertical-align: top;
+    font-weight: 300;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 0.8;
+}
+
+.BodyOfTable tr td:nth-child(6){
+    vertical-align: top;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    width: 94px;
+    text-align: center;
+}
+
+.BodyOfTable tr td:nth-child(7){
+    display: flex;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+
+
+.TbodyNameOfAnime{
+    color: #ff5c57;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    cursor: pointer;
+}
+
+
+.CircleStatus{
+    margin-right: 1rem;
+    margin-top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.Animestatus{
+    display: block;
+}
+
+
+.AdaptiveHorizontalInfo{
+
+    flex-direction: column;
+    justify-content: start;
+    display: none;
+}
+
+.Horizontal_AnimeName{
+    margin-bottom: 10px;
+}
+
+.AdaptiveHorizontalListStatus{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+
+.AdaptiveHorizontalListStatus span{
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+}
+
+.AdaptiveHorizontalAppraisal{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+}
+
+.AdaptiveHorizontalAppraisal span:nth-child(1){
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+}
+
+.AdaptiveHorizontalAppraisal span:nth-child(2){
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: block;
+    line-height: 0.9;
+}
+
+.AdaptiveHorizontalEpisodes{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.AdaptiveHorizontalEpisodes span:nth-child(1){
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+}
+
+.AdaptiveHorizontalType{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.AdaptiveHorizontalType span:nth-child(1){
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+}
+
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .container{
+        max-width: 1140px;
+    }
+
+    .BodyOfTable tr td:nth-child(3){
+        display: flex;
+        flex-direction: column;
+        width: 244px;
+    }
+
+    .HeaderOfTable tr th:nth-child(3){
+        width: 244px;
+    }
+
+}
+
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .container{
+        max-width: 960px;
+    }
+
+    .BodyOfTable tr td:nth-child(3){
+        display: flex;
+        flex-direction: column;
+        width: 346px;
+    }
+
+    .HeaderOfTable tr th:nth-child(3){
+        width: 346px;
+    }
+
+    .row{
+        flex-direction: column;
+    }
+
+    .OwnAnimeListContainer{
+        flex:  0 0 100%;
+        max-width: 100%;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .container{
+        max-width: 720px;
+        padding-top: 140px;
+    }
+
+    .BodyOfTable tr td:nth-child(3){
+        display: flex;
+        flex-direction: column;
+        min-width: 195px;
+        max-width: 195px;
+    }
+
+    .BodyOfTable tr td:nth-child(4){
+
+        min-width: 119px;
+        max-width: 119px;
+    }
+
+    .HeaderOfTable tr th:nth-child(3){
+        min-width: 186px;
+        max-width: 186px;
+    }
+
+    .HeaderOfTable tr th:nth-child(4){
+        max-width: 100px;
+        min-width: 100px;
+    }
+
+
+    .row{
+        flex-direction: column;
+    }
+
+    .OwnAnimeListContainer{
+        flex:  0 0 100%;
+        max-width: 100%;
+    }
+
+    .Animestatus{
+        display: none;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .container{
+        max-width: 540px;
+        padding-top: 140px;
+    }
+    .BodyOfTable tr td:nth-child(3){
+        display: none;
+    }
+
+    .BodyOfTable tr td:nth-child(4){
+        display: none;
+    }
+    .BodyOfTable tr td:nth-child(5){
+        display: none;
+    }
+    .BodyOfTable tr td:nth-child(6){
+        display: none;
+    }
+    .BodyOfTable tr td:nth-child(7){
+        display: none;
+    }
+
+    .HeaderOfTable tr th:nth-child(3){
+        min-width: 186px;
+        max-width: 186px;
+    }
+
+    .HeaderOfTable tr th:nth-child(4){
+        max-width: 100px;
+        min-width: 100px;
+    }
+
+
+    .row{
+        flex-direction: column;
+    }
+
+    .OwnAnimeListContainer{
+        flex:  0 0 100%;
+        max-width: 100%;
+    }
+
+    .Animestatus{
+        display: none;
+    }
+    .HeaderOfTable{
+        display: none;
+    }
+
+    .AdaptiveHorizontalInfo{
+        display: flex;
+    }
+
+}
+
+
+
+
+
+@media (min-width: 0px) and (max-width: 576px) {
+    .container{
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 120px;
+    }
+    .BodyOfTable tr td:nth-child(3){
+        display: none;
+    }
+
+    .BodyOfTable tr td:nth-child(4){
+        display: none;
+    }
+    .BodyOfTable tr td:nth-child(5){
+        display: none;
+    }
+    .BodyOfTable tr td:nth-child(6){
+        display: none;
+    }
+    .BodyOfTable tr td:nth-child(7){
+        display: none;
+    }
+
+    .HeaderOfTable tr th:nth-child(3){
+        min-width: 186px;
+        max-width: 186px;
+    }
+
+    .HeaderOfTable tr th:nth-child(4){
+        max-width: 100px;
+        min-width: 100px;
+    }
+
+
+    .row{
+        flex-direction: column;
+    }
+
+    .OwnAnimeListContainer{
+        flex:  0 0 100%;
+        max-width: 100%;
+    }
+
+    .Animestatus{
+        display: none;
+    }
+    .HeaderOfTable{
+        display: none;
+    }
+
+    .AdaptiveHorizontalInfo{
+        display: flex;
+    }
+}
+
+

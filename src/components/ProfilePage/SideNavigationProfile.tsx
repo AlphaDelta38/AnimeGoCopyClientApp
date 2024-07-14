@@ -25,26 +25,41 @@ const SideNavigationProfile = () => {
                     Меню
                 </div>
                 <div className={cl.navigationList}>
-                    <div className={cl.navigation__item}>
-                        <span><img width="14px" height="14px" src={"/HomePageBlack_16x16.png"} alt={""}/></span>
-                        <h5><Link style={{textDecoration: "none", color: "inherit"}} to={routes.Profile}>Главная</Link></h5>
-                    </div>
-                    <div className={cl.navigation__item}>
-                        <span><img width="16px" height="16px" src={"/friends_black16x16.png"} alt={""}/></span>
-                        <h5><Link style={{textDecoration: "none", color: "inherit"}} to={routes.Friends}>Друзья</Link></h5>
-                    </div>
-                    <div className={cl.navigation__item}>
-                        <span><img width="16px" height="16px" src={"/NoteBookBlack_16x16.png"} alt={""}/></span>
-                        <h5>Список Аниме</h5>
-                    </div>
-                    <div className={cl.navigation__item}>
-                        <span><img width="16px" height="16px" src={"/NoteBookBlack_16x16.png"} alt={""}/></span>
-                        <h5>Список Манги</h5>
-                    </div>
-                    <div className={cl.navigation__item}>
-                        <span><img width="16px" height="16px" src={"/Settings.png"} alt={""}/></span>
-                        <h5>Настройки</h5>
-                    </div>
+
+                    <Link style={{textDecoration: "none", color: "inherit"}} to={routes.Profile}>
+                        <div className={cl.navigation__item}>
+                            <span><img width="14px" height="14px" src={"/HomePageBlack_16x16.png"} alt={""}/></span>
+                            <h5>Главная</h5>
+                        </div>
+                    </Link>
+                    <Link style={{textDecoration: "none", color: "inherit"}} to={routes.Friends}>
+                        <div className={cl.navigation__item}>
+                            <span><img width="16px" height="16px" src={"/friends_black16x16.png"} alt={""}/></span>
+                            <h5>Друзья</h5>
+                        </div>
+                    </Link>
+                    <Link style={{textDecoration: "none", color: "inherit"}} to={routes.OwnAnimeList}>
+                        <div className={cl.navigation__item}>
+                            <span><img width="16px" height="16px" src={"/NoteBookBlack_16x16.png"} alt={""}/></span>
+                            <h5>Список аниме</h5>
+                        </div>
+                    </Link>
+
+
+                    <Link style={{textDecoration: "none", color: "inherit"}} to={routes.OwnMangaList}>
+                        <div className={cl.navigation__item}>
+                            <span><img width="16px" height="16px" src={"/NoteBookBlack_16x16.png"} alt={""}/></span>
+                            <h5>Список Манги</h5>
+                        </div>
+                    </Link>
+                    <Link style={{textDecoration: "none", color: "inherit"}} to={routes.MyProfileSettings}>
+                        <div className={cl.navigation__item}>
+                            <span><img width="16px" height="16px" src={"/Settings.png"} alt={""}/></span>
+                            <h5>Настройки</h5>
+                        </div>
+                    </Link>
+
+
                 </div>
             </div>
             <div className={cl.friendlist}>

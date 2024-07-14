@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
 import cl from "../modules/ProfilePageModules/ProfilePage.module.css"
 import SideNavigationProfile from "./SideNavigationProfile";
-import Footer from "../AdditionalComponents/Footer";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 

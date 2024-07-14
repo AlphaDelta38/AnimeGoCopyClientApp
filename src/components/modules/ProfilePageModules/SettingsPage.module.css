@@ -1,0 +1,207 @@
+
+
+.container{
+    max-width: 1340px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    padding-top: 64px;
+    margin-bottom: 4rem;
+    transition: 0.3s ease;
+}
+
+.row{
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .125);
+    padding: 1rem;
+    position: relative;
+}
+
+.contentContainer{
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.LeftColumSettingsContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: 15px;
+    position: relative;
+}
+
+.RightColumSettingsContainer{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 15px;
+    position: relative;
+}
+
+.aboutContainer{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.textAreaAbout{
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 60px;
+    height: 200px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    outline: none;
+    position: relative;
+    border-radius: 4px;
+
+}
+
+.textAreaAbout:focus{
+    outline: 3px solid rgb(255, 204, 204);
+    box-shadow: 0 0 5px 2px #ffcccc;
+}
+
+.RefreshBtn{
+    color: #fff;
+    background-color: #ff5c57;
+    border-color: #ff5c57;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+
+.RefreshBtn:hover{
+    background-color: #fa4642;
+}
+
+.RefreshBtnRightSide{
+    color: #fff;
+    background-color: #ff5c57;
+    border-color: #ff5c57;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: auto;
+    display: none;
+}
+
+.RefreshBtnRightSide:hover{
+    background-color: #fa4642;
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .container{
+        max-width: 1140px;
+    }
+
+}
+
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .container{
+        max-width: 960px;
+        padding-top: 54px;
+    }
+
+
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .container{
+        max-width: 720px;
+        padding-top: 140px;
+
+    }
+
+
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .container{
+        max-width: 540px;
+        padding-top: 140px;
+
+    }
+    .contentContainer{
+        flex-direction: column;
+    }
+
+    .LeftColumSettingsContainer {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-right: 0;
+
+    }
+
+    .RightColumSettingsContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 0;
+    }
+
+    .RefreshBtnRightSide{
+        display: block;
+    }
+    .RefreshBtn{
+        display: none;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 576px) {
+    .container{
+        max-width: 100%;
+        padding-top: 140px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .contentContainer{
+        flex-direction: column;
+    }
+
+    .LeftColumSettingsContainer {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-right: 0;
+
+    }
+
+    .RightColumSettingsContainer{
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 0;
+    }
+
+    .RefreshBtnRightSide{
+        display: block;
+    }
+    .RefreshBtn{
+        display: none;
+    }
+}
+
