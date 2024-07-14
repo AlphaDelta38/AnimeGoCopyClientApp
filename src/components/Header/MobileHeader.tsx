@@ -13,6 +13,8 @@ const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
 
     const [activeBtn, setActiveBtn] = useState(false);
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const [searchActive, setSearchActive] = useState(false);
+
 
     function checkActive(){
             if(activeBtn){
@@ -35,6 +37,15 @@ const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
         }
     }, [MobileNavBarActive]);
 
+    function checkSearchActive(){
+        if(searchActive){
+            setSearchActive(false)
+            document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
+        }else{
+            setSearchActive(true)
+            document.documentElement.style.setProperty('--GLobalOverFlow', `hidden`);
+        }
+    }
 
 
     return (
@@ -77,8 +88,24 @@ const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
                             transform="translate(-2.31 -9.9)"></path>
                     </svg>
                 </div>
-                <div>
-                    <img width="28" height="28" src="/White28x28Search.png"/>
+                <div onClick={()=>{checkSearchActive()}}>
+                    <img width="28" height="28" src="/White28x28Search.png" alt={""}/>
+                </div>
+                <div className={ searchActive ? cl.searchFieldAboveScreenActive : cl.searchFieldAboveScreen}>
+                    <div className={searchActive ? cl.searchFieldAboveScreen__contentContainerActive : cl.searchFieldAboveScreen__contentContainer}>
+                        <div  className={cl.searchInputAboveScreenContainer}>
+                            <div className={cl.imageContainer}>
+                            </div>
+                            <input className={cl.searchBtnAboveScreen} placeholder={"Поиск аниме,манги, людей и персонажей"}/>
+                            <div  onClick={()=>{checkSearchActive()}} className={cl.searchBtnAboveScreen__closeBtn}>
+                                <img width={"100%"} height={"100%"} src={"/closeBtnBlack.png"} alt={""}/>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
                 </div>
             </div>
     );

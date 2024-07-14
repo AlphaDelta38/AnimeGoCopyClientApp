@@ -369,7 +369,7 @@
     cursor: pointer;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+
 }
 
 
@@ -397,6 +397,7 @@
     position: absolute;
     left: -28px;
     top: 5px;
+    z-index: 6;
 }
 
 .StatisticsTable:nth-child(1) dt:nth-child(3):before{
