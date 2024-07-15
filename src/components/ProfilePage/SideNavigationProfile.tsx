@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import cl from '../modules/ProfilePageModules/SideNavigationProfile.module.css'
 import {Link} from "react-router-dom";
 import {routes} from "../../routes";
 
+interface SideNavigationProfileInterface {
+    styles?: CSSProperties
+}
 
-
-const SideNavigationProfile = () => {
+const SideNavigationProfile = ({styles}:SideNavigationProfileInterface) => {
 
 
     const testMassive = [
@@ -19,7 +21,7 @@ const SideNavigationProfile = () => {
     ]
 
     return (
-        <div className={cl.container}>
+        <div style={{...styles}} className={cl.container}>
             <div className={cl.navigationContainer}>
                 <div className={cl.navigationHeader}>
                     Меню

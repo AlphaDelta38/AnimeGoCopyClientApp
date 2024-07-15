@@ -11,6 +11,8 @@ export const routes: RoutesInterface = {
     OwnAnimeList: "/profile/animeList",
     OwnMangaList: "/profile/mangaList",
     MyProfileSettings: "/profile/settings",
+    Notification: "/notification",
+    FriendRequests: "/friend/requests",
 
 }
 

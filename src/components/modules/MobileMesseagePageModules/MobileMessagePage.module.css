@@ -1,0 +1,130 @@
+
+
+.container{
+    max-width: 1340px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding-top: 64px;
+    transition: 0.3s ease;
+}
+
+.row{
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.contentContainer{
+    width: 75%;
+    flex: 0 0 75%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 1rem;
+    background-color: #FFFFFF;
+
+}
+
+.content__header{
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-align: start;
+    border-bottom: 1px rgba(0, 0, 0 ,0.125) solid;
+
+
+}
+
+.content__header h2{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 2rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.messegeas__container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .container{
+        max-width: 1140px;
+    }
+
+}
+
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .container{
+        max-width: 960px;
+        padding-top: 64px;
+    }
+
+    .contentContainer{
+        flex:  0 0 66%;
+        width: 66%;
+    }
+
+    .sideMenu{
+        margin-left: 2rem;
+    }
+
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .container{
+        max-width: 720px;
+        padding-top: 140px;
+
+    }
+    .contentContainer{
+        width: 100%;
+        flex:  0 0 100%;
+    }
+    .sideMenu{
+        display: none;
+    }
+
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .container{
+        max-width: 540px;
+        padding-top: 140px;
+
+    }
+    .contentContainer{
+        width: 100%;
+        flex:  0 0 100%;
+    }
+    .sideMenu{
+        display: none;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 576px) {
+    .container{
+        max-width: 100%;
+        padding-top: 140px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .contentContainer{
+        width: 100%;
+        flex:  0 0 100%;
+    }
+    .sideMenu{
+        display: none;
+    }
+}

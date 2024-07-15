@@ -1,14 +1,18 @@
+import {CSSProperties} from "react";
+
 export interface MessegesInterface {
     AnimeName: string,
     NofSeries: number,
     VoiceOver: string,
     isSaw: boolean,
     when: string,
+    styles?: CSSProperties
 }
 
 
 export interface FriendsRequestInterface {
     friendName: string,
+    styles?: CSSProperties
 }
 
 
@@ -39,4 +43,6 @@ export interface RoutesInterface {
     OwnAnimeList: string
     OwnMangaList: string
     MyProfileSettings:string
+    Notification:string
+    FriendRequests:string
 }

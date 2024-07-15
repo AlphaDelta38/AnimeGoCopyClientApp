@@ -1,6 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
 import cl from "../modules/HeaderModules/Header.module.css";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import {Link} from "react-router-dom";
+import {routes} from "../../routes";
 
 
 
@@ -34,12 +36,16 @@ const AdditionalNavigationMobile = ({scrollPosition}:AdditionalNavigationMobileP
     return (
         <div style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}}  className={ visible ? cl.AdditionalNavigationActive :  cl.AdditionalNavigation }>
             <div className={cl.AdditionalNavigation__container}>
-                <div>
-                    <img width="28"  alt="sorry" height="28" src="/friendsIconWhite28x28.png"/>
-                </div>
-                <div>
-                    <img width="28" alt="sorry"  height="28" src="/bellMesage28x28.png"/>
-                </div>
+                <Link style={{width: "100%"}} to={routes.FriendRequests}>
+                    <div className={cl.additionalImageContainer} style={{cursor: "pointer"}}>
+                        <img width="28" alt="sorry" height="28" src="/friendsIconWhite28x28.png"/>
+                    </div>
+                </Link>
+                <Link style={{width: "100%"}} to={routes.Notification}>
+                    <div className={cl.additionalImageContainerTwo} style={{cursor: "pointer"}}>
+                        <img width="28" alt="sorry" height="28" src="/bellMesage28x28.png"/>
+                    </div>
+                </Link>
             </div>
         </div>
     );

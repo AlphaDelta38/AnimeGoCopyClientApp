@@ -2,11 +2,12 @@
 
 
 .MessegeContainer{
-    width: 388px;
+    min-width: 100px;
     padding: .75rem 1.25rem;
     position: relative;
     display: flex;
     box-sizing: content-box;
+    border-bottom: 1px solid rgba(0,0,0,.125);
 
 }
 
@@ -17,7 +18,8 @@
 .ImageContainer{
     display: flex;
     align-items: start;
-    width: 62px;
+    min-width: 62px;
+    max-width: 62px;
     height: 62px;
     margin-right: .5rem;
     object-fit: cover;
@@ -27,7 +29,7 @@
 .InfoContainer{
     display: flex;
     flex-direction: column;
-    width: 318px;
+    min-width: 100px;
     padding-right: 1.5rem;
     font-size: 0.95rem;
     font-weight: 400;
@@ -46,8 +48,8 @@
 .friendsBtnContainer{
     display: flex;
     gap: 20px;
-
-    justify-content: center;
+    justify-content: start;
+    flex-wrap: wrap;
 }
 
 .friendsBtnContainer button{
