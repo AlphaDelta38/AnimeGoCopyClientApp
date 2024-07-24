@@ -21,12 +21,13 @@ const SideNavMenu = ({ FilterBarActive,setFilterBarActive}: SideNavMenuInterface
 
     function FilterSideBarDisable(){
             setFilterBarActive(false)
+            setMobileNavBarActive(false)
             document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
     }
 
     return (
         <div  className={MobileNavBarActive ? cl.SideBarMenuActive : FilterBarActive ? cl.SideBarMenuActive : cl.SideBarMenu  }>
-            {MobileNavBarActive &&
+            {MobileNavBarActive && !FilterBarActive &&
                 <div>
                     <div className={cl.SideBarHeader}>
                         <div>
@@ -39,11 +40,19 @@ const SideNavMenu = ({ FilterBarActive,setFilterBarActive}: SideNavMenuInterface
                     <ul className={cl.SideBarNav}>
                         <li>
                             <span>Аниме</span>
-                            <div><img width="20px" height="20px" src='/shevron.png' alt={"sorry"}/></div>
+                            <div>
+                                <svg width={"14"} height={"14"} fill={"black"}>
+                                    <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
+                                </svg>
+                            </div>
                         </li>
                         <li>
                             <span>Манга</span>
-                            <div><img width="20" height="20" src='/shevron.png' alt={"sorry"}/></div>
+                            <div>
+                                <svg width={"14"} height={"14"} fill={"black"}>
+                                    <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
+                                </svg>
+                            </div>
                         </li>
                         <li>
                             <span>Случайное Аниме</span>

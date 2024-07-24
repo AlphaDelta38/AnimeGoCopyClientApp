@@ -40,13 +40,17 @@ const ViewerItemCharacter = () => {
                                 {description}
                             </div>
                             <div  style={description.length < 200 ? {display: "none"} : {}} className={cl.BtnMoreDescriptionContainer}>
-                                <button  onClick={()=>BtnClick()}>{activeBtn ? "Скрыть" : "Подробнее"} <img width="12px" height="12px" src={activeBtn ? "/sortUp.png": "/sortDown.png"}/></button>
+                                <button  onClick={()=>BtnClick()}>{activeBtn ? "Скрыть" : "Подробнее"}
+                                    <svg width={"12px"} height={"12px"} style={ activeBtn ? {transform:"rotate(-90deg)", marginLeft:"4px" } : {transform:"rotate(90deg)", marginLeft:"4px"}}  fill={"black"}>
+                                        <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
 
-                        <div  className={cl.CharacterOfAnime}>
+                        <div className={cl.CharacterOfAnime}>
                             <div className={cl.nameInfo}>
-                                Аниме
+                            Аниме
                             </div>
                             <div className={cl.TapeOfAnime}>
                                 <div className={cl.SmallImgContainer}>

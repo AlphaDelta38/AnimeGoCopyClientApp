@@ -15,6 +15,7 @@ import SettingsPage from "./components/ProfilePage/SettingsPage";
 import MobileMessagePage from "./components/MobileMassegePage/MobileMessagePage";
 import FriendRequest from "./components/Header/FriendRequest";
 import MobileFriendsRequestMesseages from "./components/MobileMassegePage/MobileFriendsRequestMesseages";
+import AnimePage from "./components/AnimePage/AnimePage";
 
 
 
@@ -40,6 +41,7 @@ function App() {
               <Route path={routes.MyProfileSettings} element={<SettingsPage/>} />
               <Route path={routes.Notification} element={<MobileMessagePage/>} />
               <Route path={routes.FriendRequests} element={<MobileFriendsRequestMesseages/>} />
+              <Route path={routes.Anime} element={<AnimePage/>} />
               <Route path={"/*"} element={<GeneralPage setFilterBarActive={setFilterBarActive} />} />
           </Routes>
           <Footer/>

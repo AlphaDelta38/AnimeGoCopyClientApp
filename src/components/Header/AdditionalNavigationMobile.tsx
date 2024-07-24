@@ -38,12 +38,16 @@ const AdditionalNavigationMobile = ({scrollPosition}:AdditionalNavigationMobileP
             <div className={cl.AdditionalNavigation__container}>
                 <Link style={{width: "100%"}} to={routes.FriendRequests}>
                     <div className={cl.additionalImageContainer} style={{cursor: "pointer"}}>
-                        <img width="28" alt="sorry" height="28" src="/friendsIconWhite28x28.png"/>
+                        <svg width={"24"} height={"24"} fill={"white"}>
+                            <use xlinkHref={"/sprite.svg#friendsIcon"}></use>
+                        </svg>
                     </div>
                 </Link>
                 <Link style={{width: "100%"}} to={routes.Notification}>
                     <div className={cl.additionalImageContainerTwo} style={{cursor: "pointer"}}>
-                        <img width="28" alt="sorry" height="28" src="/bellMesage28x28.png"/>
+                        <svg width={"22"} height={"22"} fill={"none"} stroke={"#FFF"} strokeWidth={"16px"} strokeMiterlimit={"10px"}>
+                            <use xlinkHref={"/sprite.svg#messegesBell"}></use>
+                        </svg>
                     </div>
                 </Link>
             </div>

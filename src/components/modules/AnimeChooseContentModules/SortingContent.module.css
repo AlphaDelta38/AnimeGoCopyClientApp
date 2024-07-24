@@ -125,6 +125,21 @@
 }
 
 
+.formatSetSvgIcon{
+    fill: gray;
+    opacity: 50%;
+}
+
+.formatSetSvgIcon:hover{
+    fill: black;
+    opacity: 80%;
+}
+
+.formatSetSvgIconActive{
+    fill: white;
+}
+
+
 @media (min-width: 0px) and (max-width: 578px) {
 
 

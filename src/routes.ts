@@ -13,6 +13,7 @@ export const routes: RoutesInterface = {
     MyProfileSettings: "/profile/settings",
     Notification: "/notification",
     FriendRequests: "/friend/requests",
+    Anime: "/anime/:id",
 
 }
 

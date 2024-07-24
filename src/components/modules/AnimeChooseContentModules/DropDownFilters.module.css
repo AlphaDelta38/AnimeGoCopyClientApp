@@ -105,6 +105,14 @@
     overflow-y: auto;
 }
 
+
+@media (min-height: 0) and (max-height: 976px){
+    .DropMenuForBtn{
+        max-height: 140px;
+    }
+}
+
+
 .DropDownItem{
     width: 100%;
     padding: .25rem 1.5rem;

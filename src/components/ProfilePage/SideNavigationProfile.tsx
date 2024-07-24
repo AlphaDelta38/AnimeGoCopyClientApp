@@ -30,33 +30,51 @@ const SideNavigationProfile = ({styles}:SideNavigationProfileInterface) => {
 
                     <Link style={{textDecoration: "none", color: "inherit"}} to={routes.Profile}>
                         <div className={cl.navigation__item}>
-                            <span><img width="14px" height="14px" src={"/HomePageBlack_16x16.png"} alt={""}/></span>
+                            <span>
+                                <svg width={"16px"} height={"16px"} fill={"black"}>
+                                    <use xlinkHref={"/sprite.svg#HomePageIcon"}></use>
+                                </svg>
+                            </span>
                             <h5>Главная</h5>
                         </div>
                     </Link>
                     <Link style={{textDecoration: "none", color: "inherit"}} to={routes.Friends}>
-                        <div className={cl.navigation__item}>
-                            <span><img width="16px" height="16px" src={"/friends_black16x16.png"} alt={""}/></span>
-                            <h5>Друзья</h5>
-                        </div>
+                    <div className={cl.navigation__item}>
+                        <span>
+                            <svg width={"16px"} height={"16px"} fill={"black"}>
+                                <use xlinkHref={"/sprite.svg#friendsIcon"}></use>
+                            </svg>
+                        </span>
+                        <h5>Друзья</h5>
+                    </div>
                     </Link>
                     <Link style={{textDecoration: "none", color: "inherit"}} to={routes.OwnAnimeList}>
-                        <div className={cl.navigation__item}>
-                            <span><img width="16px" height="16px" src={"/NoteBookBlack_16x16.png"} alt={""}/></span>
-                            <h5>Список аниме</h5>
-                        </div>
+                    <div className={cl.navigation__item}>
+                        <span>
+                            <svg width={"16px"} height={"16px"} fill={"black"}>
+                                <use xlinkHref={"/sprite.svg#ListIcon"}></use>
+                            </svg>
+                        </span>
+                        <h5>Список аниме</h5>
+                    </div>
                     </Link>
-
-
                     <Link style={{textDecoration: "none", color: "inherit"}} to={routes.OwnMangaList}>
                         <div className={cl.navigation__item}>
-                            <span><img width="16px" height="16px" src={"/NoteBookBlack_16x16.png"} alt={""}/></span>
+                            <span>
+                                <svg width={"16px"} height={"16px"} fill={"black"}>
+                                    <use xlinkHref={"/sprite.svg#ListIcon"}></use>
+                                </svg>
+                            </span>
                             <h5>Список Манги</h5>
                         </div>
                     </Link>
                     <Link style={{textDecoration: "none", color: "inherit"}} to={routes.MyProfileSettings}>
                         <div className={cl.navigation__item}>
-                            <span><img width="16px" height="16px" src={"/Settings.png"} alt={""}/></span>
+                            <span>
+                                 <svg width={"16px"} height={"16px"} fill={"black"}>
+                                    <use xlinkHref={"/sprite.svg#SettingsIcon"}></use>
+                                </svg>
+                            </span>
                             <h5>Настройки</h5>
                         </div>
                     </Link>
@@ -66,7 +84,11 @@ const SideNavigationProfile = ({styles}:SideNavigationProfileInterface) => {
             </div>
             <div className={cl.friendlist}>
                 <div className={cl.friendListHeader}>
-                    <span><img width="16px" height="16px" src={"/friendsIconWhite28x28.png"} alt={""}/></span>
+                    <span>
+                        <svg width={"14px"} height={"14px"} fill={"white"}>
+                            <use xlinkHref={"/sprite.svg#friendsIcon"}></use>
+                        </svg>
+                    </span>
                     <h5>Друзья</h5>
                     2
                 </div>

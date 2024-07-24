@@ -23,7 +23,9 @@ const AdpativeFilters = ({SearchButtonAvaible} : AdpativeFiltersFilter) => {
         <div className={cl.container}>
             <div className={cl.header}>
                 <div>
-                    <img width="20" height="20" src={"./ForFilter.png"} alt=""/>
+                    <svg width={"18"} height={"18"} fill={"white"} style={{marginTop: "6px"}}>
+                        <use xlinkHref={"/sprite.svg#OptionsIcon"}></use>
+                    </svg>
                 </div>
                 <div>Фильтр</div>
             </div>

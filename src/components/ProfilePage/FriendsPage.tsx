@@ -35,7 +35,9 @@ const FriendsPage = () => {
                         <div className={cl.FriendsHeader}>
                             <div className={cl.returnButtonContainer}>
                                 <span className={cl.ReturnArrowContainer}>
-                                    <img width="16px" height="16px" src={"/LongArrowLeftBlack.png"} alt={""}/>
+                                    <svg width={"16px"} height={"16px"} fill={"black"} >
+                                        <use xlinkHref={"/sprite.svg#LongShevronIcon"}></use>
+                                    </svg>
                                 </span>
                                 <span>
                                     назад

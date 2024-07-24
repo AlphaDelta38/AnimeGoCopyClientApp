@@ -2,10 +2,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import cl from "../modules/HeaderModules/Header.module.css";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
+
 interface MobileHeaderInterface{
 
     setFilterBarActive: (e:boolean) => void;
 }
+
 
 
 
@@ -22,6 +24,7 @@ const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
                 setMobileNavBarActive(false);
                 document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
             }else{
+                setFilterBarActive(false)
                 setActiveBtn(true);
                 setMobileNavBarActive(true);
                 document.documentElement.style.setProperty('--GLobalOverFlow', `hidden`);
@@ -50,9 +53,7 @@ const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
 
     return (
             <div    className={cl.container}>
-                <div  onClick={() => {
-                    checkActive()
-                }} style={{height: "24px", width: "30px", display: "flex", alignItems: "flex-end"}}>
+                <div  onClick={() => {checkActive()}} style={{height: "24px", width: "30px", display: "flex", alignItems: "flex-end"}}>
                     <button  style={{
                         background: "none",
                         border: "none",
@@ -88,21 +89,27 @@ const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
                             transform="translate(-2.31 -9.9)"></path>
                     </svg>
                 </div>
-                <div onClick={()=>{checkSearchActive()}}>
-                    <img width="28" height="28" src="/White28x28Search.png" alt={""}/>
+                <div onClick={() => {checkSearchActive()}}>
+                    <svg fill={"red"} className={cl.searchIconSvg}>
+                        <use xlinkHref={"/sprite.svg#SearchIcon"}></use>
+                    </svg>
                 </div>
-                <div className={ searchActive ? cl.searchFieldAboveScreenActive : cl.searchFieldAboveScreen}>
+                <div className={searchActive ? cl.searchFieldAboveScreenActive : cl.searchFieldAboveScreen}>
                     <div className={searchActive ? cl.searchFieldAboveScreen__contentContainerActive : cl.searchFieldAboveScreen__contentContainer}>
                         <div  className={cl.searchInputAboveScreenContainer}>
                             <div className={cl.imageContainer}>
+                                <svg width={"24px"} height={"24px"} strokeWidth={0.5} stroke={"black"} fill={"none"}>
+                                    <use xlinkHref={"/sprite.svg#SearchIconPCVersion"}></use>
+                                </svg>
                             </div>
-                            <input className={cl.searchBtnAboveScreen} placeholder={"Поиск аниме,манги, людей и персонажей"}/>
-                            <div  onClick={()=>{checkSearchActive()}} className={cl.searchBtnAboveScreen__closeBtn}>
-                                <img width={"100%"} height={"100%"} src={"/closeBtnBlack.png"} alt={""}/>
+                            <input className={cl.searchBtnAboveScreen}
+                                   placeholder={"Поиск аниме,манги, людей и персонажей"}/>
+                            <div onClick={() => {checkSearchActive()}} className={cl.searchBtnAboveScreen__closeBtn}>
+                                <svg width={"16px"} height={"16px"} strokeWidth={"2px"} stroke={"black"} fill={"none"}>
+                                    <use xlinkHref={"/sprite.svg#CloseBtnIcon"}></use>
+                                </svg>
                             </div>
                         </div>
-
-
 
 
                     </div>

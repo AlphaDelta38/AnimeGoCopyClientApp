@@ -18,22 +18,32 @@ const WithOutLoginBar = ({searching, setIsLogin, setSerching}:LoginFalse) => {
                     <div>
                         <input placeholder="Поиск людей,манги,аниме,и персонажей"/>
                         <div className={cl.SearchIconInput}>
-                            <img width="20" height="20" src="/SearIconBlack.png" alt={"err"}/>
+                            <svg width={"16px"} height={"16px"} stroke={"black"} fill={"none"}>
+                                <use xlinkHref={"/sprite.svg#SearchIconPCVersion"}></use>
+                            </svg>
                         </div>
                     </div>
                 </li>
                 :
-                <li  onClick={()=>{setIsLogin(true)}} className={cl.SecondLi}>
+                <li onClick={() => {
+                    setIsLogin(true)
+                }} className={cl.SecondLi}>
                     Войти
                 </li>
             }
             {searching ?
                 <li onClick={()=>{setSerching(false)}} className={cl.SecondLi}>
-                    <img width="20" height="20" src='/CloseIconWhite.png' alt={"sorry"}/>
+                    <svg width={"16px"} height={"16px"} stroke={"white"} fill={"white"} strokeWidth={"2"}>
+                        <use xlinkHref={"/sprite.svg#CloseBtnIcon"}></use>
+                    </svg>
                 </li>
                 :
-                <li onClick={()=>{setSerching(true)}} className={cl.SecondLi}>
-                    <img width="20" height="20" src='/SearchIconWhite.png' alt={"sorry"}/>
+                <li onClick={() => {
+                    setSerching(true)
+                }} className={cl.SecondLi}>
+                    <svg width={"16px"} height={"16px"} stroke={"white"} fill={"none"}>
+                        <use xlinkHref={"/sprite.svg#SearchIconPCVersion"}></use>
+                    </svg>
                 </li>
             }
         </ul>

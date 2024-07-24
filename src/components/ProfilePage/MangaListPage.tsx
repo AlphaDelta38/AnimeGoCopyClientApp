@@ -28,7 +28,9 @@ const MangaListPage = () => {
                         <div className={cl.returnButtonContainer}>
                             <div className={cl.BtnContainer}>
                                  <span className={cl.returnArrowImgContainer}>
-                                     <img width="16px" height="16px" src={"/LongArrowLeftBlack.png"} alt={""}/>
+                                     <svg width={"16px"} height={"16px"} fill={"black"}>
+                                        <use xlinkHref={"/sprite.svg#LongShevronIcon"}></use>
+                                     </svg>
                                  </span>
                                 <span className={cl.returnButton}>
                                     назад

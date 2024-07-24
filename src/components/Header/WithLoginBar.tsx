@@ -126,7 +126,9 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
                         <div className={cl.WithLoginSearch}>
                             <input placeholder="Поиск аниме, манги, людей и персонажей"/>
                             <div className={cl.WithLoginSearchIconInput}>
-                                <img width="20" height="20" src="/SearIconBlack.png" alt={"err"}/>
+                                <svg width={"16px"} height={"16px"} stroke={"black"} fill={"none"}>
+                                    <use xlinkHref={"/sprite.svg#SearchIconPCVersion"}></use>
+                                </svg>
                             </div>
                         </div>
                 :
@@ -136,30 +138,47 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
                             AlphaDelta38
                         </Link>
                     </li>
-                    <li onClick={() => {
-                        ActivateUpdatePopat(ObjectsType.friends)
-                    }}><img width="20" height="20" src='/friendsIconWhite.png' alt={"sorry"}/></li>
-                    <li onClick={() => {
-                        ActivateUpdatePopat(ObjectsType.messeges)
-                    }}><img width="20" height="20" src='/messegeBellWhite.png' alt={"sorry"}/></li>
-                    <PopatUniversal objects2={friendrequestObj} objects={meseggesObjects} distanse={distansePopat}
-                                    active={PopatActive} type={TypeDataPopat} Title={PopatTitle} message={messegeas}/>
+                    <li onClick={() => {ActivateUpdatePopat(ObjectsType.friends)}}>
+                       <svg width={"18"} height={"18"} fill={"white"} >
+                           <use xlinkHref={"/sprite.svg#friendsIcon"}></use>
+                       </svg>
+                    </li>
+                    <li onClick={() => {ActivateUpdatePopat(ObjectsType.messeges)}}>
+                        <svg width={"16"} height={"16"} fill={"none"} stroke={"#FFF"} strokeWidth={"16px"} strokeMiterlimit={"10px"} >
+                            <use xlinkHref={"/sprite.svg#messegesBell"}></use>
+                        </svg>
+                    </li>
+                    <PopatUniversal
+                        objects2={friendrequestObj}
+                        objects={meseggesObjects}
+                        distanse={distansePopat}
+                        active={PopatActive}
+                        type={TypeDataPopat}
+                        Title={PopatTitle}
+                        message={messegeas}
+                    />
+
                 </ul>
             }
             {searching ?
-                <li onClick={() => {
-                    setSerching(false)
-                }} className={cl.SecondLi}>
-                    <img width="20" height="20" src='/CloseIconWhite.png' alt={"sorry"}/>
+                <li onClick={() => {setSerching(false)}} className={cl.SecondLi}>
+                    <svg width={"16px"} height={"16px"} stroke={"white"} fill={"white"} strokeWidth={"2"}>
+                        <use xlinkHref={"/sprite.svg#CloseBtnIcon"}></use>
+                    </svg>
                 </li>
                 :
                 <li onClick={() => {
                     setSerching(true)
                 }} className={cl.SecondLi}>
-                    <img width="20" height="20" src='/SearchIconWhite.png' alt={"sorry"}/>
+                    <svg width={"16px"} height={"16px"} stroke={"white"} fill={"none"} >
+                        <use xlinkHref={"/sprite.svg#SearchIconPCVersion"}></use>
+                    </svg>
                 </li>
             }
-            <li onClick={()=>{setIsLogin(false)}}>Выйти</li>
+            <li onClick={() => {
+                setIsLogin(false)
+            }}>Выйти
+            </li>
         </ul>
     );
 };

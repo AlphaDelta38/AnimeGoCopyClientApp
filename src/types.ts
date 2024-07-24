@@ -45,4 +45,5 @@ export interface RoutesInterface {
     MyProfileSettings:string
     Notification:string
     FriendRequests:string
+    Anime:string
 }

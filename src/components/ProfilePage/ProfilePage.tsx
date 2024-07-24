@@ -32,12 +32,20 @@ const ProfilePage = () => {
                             <div className={cl.ProfileImgAndBtnContainer}>
                                 <div className={cl.changeBtns}>
                                     <label className={cl.LabelBtn}>
-                                        <span><img  width="16px" height="16px" src={"/Camera.png"} alt={""}/></span>
+                                        <span>
+                                            <svg width={"16px"} height={"16px"}>
+                                                <use xlinkHref={"/sprite.svg#CameraIcon"}></use>
+                                            </svg>
+                                        </span>
                                         Добавить обложку
                                         <input type="file" placeholder="Добавить обложку"/>
                                     </label>
                                     <label className={cl.LabelBtn}>
-                                        <span><img width="16px" height="16px" src={"/Camera.png"} alt={""}/></span>
+                                        <span>
+                                            <svg width={"16px"} height={"16px"}>
+                                                <use xlinkHref={"/sprite.svg#CameraIcon"}></use>
+                                            </svg>
+                                        </span>
                                         Добавить Аватарку
                                         <input type="file" placeholder="Добавить Аватарку"/>
                                     </label>

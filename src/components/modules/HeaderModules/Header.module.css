@@ -331,7 +331,7 @@
     position: absolute;
     left: 0;
     top: 10px;
-    margin-left: 4px;
+    margin-left: 8px;
 }
 
 
@@ -680,7 +680,15 @@
 
 }
 
-
+.searchIconSvg{
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-miterlimit: 10;
+    stroke-width: 3px;
+}
 
 
 @keyframes ScrollAnimationAdditionalBar {
@@ -1030,14 +1038,45 @@
 
 .searchFieldAboveScreenActive{
     width: 106%;
-    margin-left: -16px;
     height: 100vh;
+    margin-left: -16px;
     background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
     display:  block;
     top: -6px;
     transition: 0.3s ease;
 
+}
+
+
+@media (min-width:200px) and (max-width: 600px) {
+    .searchFieldAboveScreenActive {
+        width: 112%;
+        height: 100vh;
+        margin-left: -16px;
+        background-color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        display: block;
+        top: -6px;
+        transition: 0.3s ease;
+
+    }
+}
+
+
+
+@media (min-width:0px) and (max-width: 250px) {
+    .searchFieldAboveScreenActive {
+        width: 122%;
+        height: 100vh;
+        margin-left: -16px;
+        background-color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        display: block;
+        top: -6px;
+        transition: 0.3s ease;
+
+    }
 }
 
 .searchFieldAboveScreen__contentContainer{
@@ -1094,13 +1133,13 @@
     border: 1px solid rgba(0, 0, 0, .05);
     outline: none;
     position: relative;
+    overflow: hidden;
 }
 
 
 .imageContainer{
     width: 28px;
     height: 28px;
-    background-image: url("../../../../public/SearIconBlack.png");
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 10;
