@@ -1,10 +1,17 @@
-import React, {useState} from 'react';
+import React, {CSSProperties, useState} from 'react';
 import cl from '../modules/AdditionalComponentsModules/InfoToolTip.module.css'
 
 
 
+interface InfoToolTipInterface{
+    message: string
+    width?: number
+    height?: number
+    cssProperties?: CSSProperties
+}
 
-const InfoToolTip = () => {
+
+const InfoToolTip = ({message, height, width, cssProperties}:InfoToolTipInterface) => {
     const [active, setActive] = useState(false)
 
     function ActivateToltip(){
@@ -17,16 +24,13 @@ const InfoToolTip = () => {
 
 
     return (
-        <div  className={cl.ToolTipContainer}>
-            <div >
-                <svg  width={"20"} height={"20"}>
+        <div    style={cssProperties} className={cl.ToolTipContainer}>
+                <div style={active ? {visibility: "visible"} : {visibility: "hidden"}} className={cl.Info}>
+                    {message}
+                </div>
+                <svg width={`${width ? width : "20"}`} height={`${height ? height : "20"}`}>
                     <use onMouseLeave={() => {ActivateToltip()}} onMouseOver={() => {ActivateToltip()}} xlinkHref={"/sprite.svg#toolTipIcon"}></use>
                 </svg>
-                <div style={active ? {visibility: "visible"} : {visibility: "hidden"}} className={cl.Info}>
-                    В синем положении индикатора, выводятся те аниме в которых присутствуют все выбранные вами жанры. В
-                    сером положении, выводятся аниме в которых присутствует хотя бы один из выбранных вами жанров.
-                </div>
-            </div>
         </div>
     );
 };

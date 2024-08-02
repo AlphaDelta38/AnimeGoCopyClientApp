@@ -1,0 +1,162 @@
+
+
+
+.container{
+    display: inline-block;
+    flex-direction: column;
+    position: relative;
+}
+
+.container span {
+    color: #ff5c57;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.container span:hover{
+    text-decoration: 1px solid underline #ff5c57;
+    text-underline-offset: 2px;
+}
+
+
+.itemTop{
+    position: absolute;
+    z-index: 5;
+    width: 450px;
+    height: 426px;
+    background: black;
+    bottom: 0;
+    margin-bottom: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.itemTop::before{
+    content: "";
+    width: 22px;
+    height: 22px;
+    rotate: 45deg;
+    background: #000000;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -18px;
+    pointer-events: none;
+    background: red;
+
+}
+
+
+.itemBottom{
+    position: absolute;
+    z-index: 5;
+    width: 450px;
+    height: 426px;
+    background: black;
+    top: 0;
+    margin-top: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.itemBottom::before{
+    content: "";
+    width: 22px;
+    height: 22px;
+    rotate: 45deg;
+    background: #000000;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -3px;
+    pointer-events: none;
+    background: red;
+}
+
+
+.itemLeft{
+    position: absolute;
+    z-index: 5;
+    width: 450px;
+    height: 426px;
+    background: black;
+    right: 100%;
+    margin-right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.itemLeft::before{
+    content: "";
+    width: 22px;
+    height: 22px;
+    rotate: 135deg;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    background: red;
+}
+
+
+.itemRight{
+    position: absolute;
+    z-index: 5;
+    width: 450px;
+    height: 426px;
+    background: black;
+    left: 100%;
+    margin-left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.itemRight::before{
+    content: "";
+    width: 22px;
+    height: 22px;
+    rotate: 135deg;
+    /*background: #000000;*/
+    background: red;
+    position: absolute;
+    left: -3px;
+    top: 50%;
+    transform: translateY(50%);
+    pointer-events: none;
+}
+
+.AadaptiveTopBottom::before{
+    content: "";
+    width: 22px;
+    height: 22px;
+    rotate: 135deg;
+    /*background: #000000;*/
+    background: red;
+    position: absolute;
+    left: -3px;
+    top: 96% !important;
+    transform: translateY(50%);
+    pointer-events: none;
+}
+
+.adaptiveBeforeLeftRight::before{
+    position: absolute;
+    z-index: 5;
+    width: 450px;
+    height: 426px;
+    background: black;
+    bottom: 0;
+    margin-bottom: 34px;
+    left: 50%;
+    display: flex;
+    align-items: flex-end;
+    transform: translateX(-3%);
+}
+
+.none{
+}

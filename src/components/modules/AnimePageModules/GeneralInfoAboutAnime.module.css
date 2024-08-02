@@ -1,0 +1,38 @@
+
+
+
+.tableData{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+    row-gap: 6px;
+}
+
+.tableData  dt{
+    display: flex;
+    width: 33.3333%;
+    flex: 0 0 33.333%;
+    color: rgba(0, 0, 0, .6);
+    position: relative;
+}
+
+.tableData  dd{
+    display: flex;
+    width: 66.666%;
+    flex: 0 0 66.666%;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+
+.hr{
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    z-index: 2;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+}

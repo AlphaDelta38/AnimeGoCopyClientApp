@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import cl from '../modules/AnimePageModules/AnimePage.module.css'
 import InPeopleListAnime from "./InPeopleListAnime";
 import HeaderGeneralInfo from "./HeaderGeneralInfo";
+import GeneralInfoAboutAnime from "./GeneralInfoAboutAnime";
 
 
 
@@ -190,6 +191,8 @@ const AnimePage = () => {
                             </div>
                             <div className={cl.generalInfo}>
                                 <HeaderGeneralInfo/>
+                                <hr className={cl.hr}></hr>
+                                <GeneralInfoAboutAnime/>
                             </div>
 
 

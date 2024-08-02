@@ -73,7 +73,8 @@ const DropDownFilters: React.FC<DropDownFilterProps> = ({filters}) => {
                             <CustomButton/>
                         </div>
                         <div>
-                            <InfoToolTip/>
+                            <InfoToolTip message={"В синем положении индикатора, выводятся те аниме в которых присутствуют все выбранные вами жанры. В\n" +
+                                "сером положении, выводятся аниме в которых присутствует хотя бы один из выбранных вами жанров."}/>
                         </div>
                     </div>
                 </div>
