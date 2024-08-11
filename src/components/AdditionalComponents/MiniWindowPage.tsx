@@ -22,6 +22,8 @@ const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicStat
         bottom: cl.itemBottom,
         left: cl.itemLeft,
         right: cl.itemRight,
+        adaptiveBeforeTop: cl.adaptiveBeforeTop,
+        adaptiveBeforeBottom: cl.adaptiveBeforeBottom,
     }
 
     function windowActive(){
@@ -43,11 +45,7 @@ const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicStat
            left: miniWindowRef.current?.getBoundingClientRect().left,  // Расстояние от левого края окна до левой границы элемента
            right: window.innerWidth - miniWindowRef.current?.getBoundingClientRect().right!, // Расстояние от правого края окна до правой границы элемента
        }
-        console.log(howCloseDistanse.top);
-        console.log(howCloseDistanse.bottom);
-        console.log(howCloseDistanse.right);
-        console.log(howCloseDistanse.left);
-        console.log("----------------------");
+
        if(basicState === "top" || basicState === "bottom"){
 
            if((howCloseDistanse.top! - miniWindowRef.current?.clientHeight!) > 100){
@@ -104,12 +102,11 @@ const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicStat
 
            if(howCloseDistanse.bottom! <= 70 && howCloseDistanse.bottom! !== 0 ){
                miniWindowRef.current?.style.setProperty("transform", "translateY(-96%)")
-
            }
 
            if(howCloseDistanse.top! <= 70 && howCloseDistanse.top! !== 0 ){
                miniWindowRef.current?.style.setProperty("transform", "translateY(-3%)")
-
+               setState(fourStates.adaptiveBeforeTop)
            }
 
 
@@ -186,7 +183,7 @@ const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicStat
                 }
             }}
             >{title}</span>
-            <div  style={active ? {} : {opacity:"0", pointerEvents:"none"}} ref={miniWindowRef} className={`${stated}`}>
+            <div  style={active ? {} : {opacity:"0", pointerEvents:"none"}} ref={miniWindowRef} className={`${stated} ${cl.OverAllClass}`}>
                 {children}
             </div>
         </div>

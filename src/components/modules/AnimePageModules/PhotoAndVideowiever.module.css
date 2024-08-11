@@ -1,0 +1,303 @@
+
+.container{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    border: none;
+    top: 0;
+}
+
+.btn{
+    width: 50%;
+    height: 50%;
+    max-height: 80px;
+    max-width: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .8);
+    transition: 0.3s ease;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.btnActive{
+    width: 50%;
+    height: 50%;
+    max-height: 80px;
+    max-width: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .8);
+    transition: 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.ViewerContainer{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(0,0,0,.6);
+    left: 0;
+    top: 0;
+    z-index: 99;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: default;
+}
+
+
+.swiperActions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 0.75rem;
+    position: relative;
+}
+
+.forAnimation:before{
+    content: "";
+    width: 0;
+    height: 3px;
+    background: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: animateBorder 5s linear forwards infinite;
+}
+
+@keyframes animateBorder {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+
+
+
+
+.counter{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+    user-select: none;
+    cursor: default;
+}
+
+.actions{
+    display: flex;
+    flex-direction: row;
+}
+
+.actiosButton{
+    padding-left: 14px;
+    padding-right: 14px;
+    height: 44px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.actiosButton:last-child{
+    padding-left: 14px;
+    padding-right: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+
+.actionsIcon{
+    width: 17px;
+    height: 17px;
+    fill: #ccc;;
+}
+
+.actionsIcon:last-child{
+    width: 17px;
+    height: 17px;
+    stroke: #ccc;
+    stroke-width: 3px;
+    stroke-miterlimit: 10;
+}
+
+.actiosButton:hover .actionsIcon{
+    fill: white;
+}
+
+.actiosButton:last-child:hover .actionsIcon:last-child{
+    stroke: white;
+}
+
+.ViewerTapeContainer{
+    display: flex;
+    overflow: hidden;
+    margin-left: -15px;
+    margin-right: -15px;
+    height: 100%;
+    align-items: center;
+    position: relative;
+}
+
+.Tape{
+    max-height: 1080px;
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    transform: translate3d(0,0,0);
+}
+
+
+.photoItem{
+    flex: 0 0 100%;
+    max-width: 1920px;
+    height: 100%;
+    position: relative;
+    object-fit: contain;
+}
+
+
+.footerOfViewer{
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background: linear-gradient(to top, rgba(0, 0, 0, .85) 0, rgba(0, 0, 0, .3) 50%, rgba(0, 0, 0, .15) 65%, rgba(0, 0, 0, .075) 75.5%, rgba(0, 0, 0, .037) 82.85%, rgba(0, 0, 0, .019) 88%, rgba(0, 0, 0, 0) 100%);
+    padding: 75px max(44px, env(safe-area-inset-right)) max(25px, env(safe-area-inset-bottom)) max(44px, env(safe-area-inset-left));
+    text-align: center;
+    margin-right: -15px;
+    margin-left: -15px;
+    color: #eee;
+    user-select: none;
+    pointer-events: none;
+}
+
+
+.LeftSwipeButton{
+    padding: 7px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    left: 0;
+    top:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    z-index: 99;
+    height: 38px;
+    margin-left: 10px;
+}
+
+.RightSwipeButton{
+    padding: 7px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    right: 0;
+    top:50%;
+    transform: translateY(-50%);
+    align-items: end;
+    z-index: 99;
+    height: 38px;
+    margin-right: 10px;
+}
+
+
+.SwipeBtnLeft{
+    width: 20px;
+    height: 24px;
+    fill: #888;
+}
+
+.SwipeBtnRight{
+    width: 20px;
+    height: 24px;
+    fill: #888;
+    transform: scaleX(-1);
+}
+
+.SwipeBtnLeft:hover{
+    fill: white;
+}
+
+.SwipeBtnRight:hover{
+    fill: white;
+}
+
+.nonActiveSwipeBtn:hover{
+    fill: #888;
+}
+
+.containerForSideMenu{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sideMenu{
+    min-width: 208px;
+    max-width: 208px;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    align-items: start;
+    margin-right: -15px;
+    margin-left: 20px;
+    background-color: rgb(221, 221, 221);
+}
+
+
+
+.sideMenuItemContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.sideMenuItem{
+    flex: 0 0 50%;
+    height: 75px;
+    width: 50%;
+    padding: 2px;
+    cursor: pointer;
+}
+
+
+@media (min-width: 0) and (max-width: 575px){
+    .sideMenuItem{
+        flex: 0 0 100%;
+        height: 75px;
+        width: 100%;
+        padding: 2px;
+        cursor: pointer;
+    }
+    .sideMenu{
+        min-width: 108px;
+        max-width: 108px;
+    }
+
+
+}
+
+

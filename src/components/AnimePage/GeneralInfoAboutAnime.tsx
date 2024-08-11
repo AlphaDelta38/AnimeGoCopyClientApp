@@ -61,11 +61,30 @@ const GeneralInfoAboutAnime = () => {
                 Длительность
             </dt>
             <dd>24 мин. ~ серия</dd>
-            <dt>Снят по ранобэ</dt>
-            <dd>
-                <MiniWindowPage basicState={"top"} title={"Аля иногда кокетничает со мной по-русски"}>
-                    <MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}><MiniWindowPage title={"хуй"} basicState={"top"}>dadasdasdasdasdasd</MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage></MiniWindowPage>
+            <dt style={{marginTop:"10px"}}>Снят по ранобэ</dt>
+            <dd style={{marginTop:"10px"}}>
+                <MiniWindowPage basicState={"bottom"} title={"Аля иногда кокетничает со мной по-русски"}>
+                    dad
                 </MiniWindowPage>
+            </dd>
+            <dt>Главные герои</dt>
+            <dd style={{display: "flex", flexDirection: "column", alignItems: "start"}}>
+                <div className={cl.generalPerson}>
+                    <MiniWindowPage title={"Алиса Михайловна Кудзё"} basicState={"top"}>dad</MiniWindowPage>
+                    <span style={{marginLeft:"6px"}}>
+                        (озвучивает {" "}
+                        <MiniWindowPage title={"Сумирэ Уэсака"} basicState={"top"}>dada</MiniWindowPage>
+                        )
+                    </span>
+                </div>
+                <div className={cl.generalPerson}>
+                    <MiniWindowPage title={"Масатика Кудзэ"} basicState={"top"}>dad</MiniWindowPage>
+                    <span style={{marginLeft: "6px"}}>
+                        (озвучивает {" "}
+                        <MiniWindowPage title={"Кохэй Амасаки"} basicState={"top"}>dada</MiniWindowPage>
+                        )
+                    </span>
+                </div>
             </dd>
         </dl>
 

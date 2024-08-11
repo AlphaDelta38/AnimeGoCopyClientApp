@@ -16,6 +16,7 @@
     --GLobalOverFlow: visible;
     --sliderTranslate: 0.1%;
     --ModalWindowCalc: 0;
+    --UserSelect: auto;
 }
 
 
@@ -26,7 +27,7 @@ body{
     line-height: 1.5;
     color: #212529;
     background-color:  #e9ebee;;
-
+    user-select: var(--UserSelect);
 }
 
 
