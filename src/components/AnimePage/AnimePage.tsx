@@ -4,6 +4,7 @@ import InPeopleListAnime from "./InPeopleListAnime";
 import HeaderGeneralInfo from "./HeaderGeneralInfo";
 import GeneralInfoAboutAnime from "./GeneralInfoAboutAnime";
 import PhotoAndVideowiever from "./PhotoAndVideowiever";
+import Linked, { LinkedItemsProps} from "./Linked";
 
 
 
@@ -39,6 +40,10 @@ const AnimePage = () => {
         "https://www.youtube.com/embed/26WmZyhobzs?si=Re5T-nNV3QkEpIg4",
     ]
 
+    const LinkedTestMassive: LinkedItemsProps[] = [
+        {type:"Манхва",year:"2010"},
+        {type:"ТВ Сериал",year:"2010", timeline:"Предыстория", episodes: 12},
+    ]
 
 
     function CheckActiveStatusMenu(){
@@ -238,6 +243,7 @@ const AnimePage = () => {
                                 </div>
                             </div>
                         </div>
+                        <Linked Items={LinkedTestMassive}/>
                     </div>
 
 

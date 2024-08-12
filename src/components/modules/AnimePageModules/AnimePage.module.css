@@ -370,6 +370,7 @@
     position: relative;
     margin-top: 1rem;
     transition: 0.3s ease;
+    margin-bottom: 1rem;
 }
 
 
@@ -426,4 +427,8 @@
     height: 172px;
     border: none;
     position: relative;
+}
+
+.linked{
+
 }

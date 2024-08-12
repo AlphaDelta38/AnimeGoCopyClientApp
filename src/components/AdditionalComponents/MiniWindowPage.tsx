@@ -5,11 +5,12 @@ import cl from '../modules/AdditionalComponentsModules/MiniWindowPage.module.css
 
 interface MiniWindowPageInterface{
     children: ReactNode;
-    title: string;
+    title: string | ReactNode;
     basicState: string;
+    styles?: CSSProperties
 }
 
-const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicState}) => {
+const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicState, styles}) => {
     const [active, setActive] = useState<boolean>(false)
     const [stated, setState] = useState()
     const refForWidthContent = useRef<HTMLSpanElement | null>(null)
@@ -168,7 +169,7 @@ const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicStat
 
     return (
         <div className={cl.container}>
-            <span ref={refForWidthContent} onMouseOver={()=>
+            <span style={styles} ref={refForWidthContent} onMouseOver={()=>
                 {
                     if(!active){
                         timeOutRef.current = null;
