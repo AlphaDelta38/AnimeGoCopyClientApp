@@ -5,6 +5,7 @@ import HeaderGeneralInfo from "./HeaderGeneralInfo";
 import GeneralInfoAboutAnime from "./GeneralInfoAboutAnime";
 import PhotoAndVideowiever from "./PhotoAndVideowiever";
 import Linked, { LinkedItemsProps} from "./Linked";
+import VideoPlayer from "./VideoPlayer";
 
 
 
@@ -60,6 +61,10 @@ const AnimePage = () => {
             setOpenStatusMenu(false)
     }, [chosenWatchStatuses])
 
+
+
+
+
     return (
         <div className={cl.container}>
             <div className={cl.row}>
@@ -68,7 +73,9 @@ const AnimePage = () => {
                         <div className={cl.mainInfo}>
                             <div className={cl.sideImageAndActions}>
                                 <div className={cl.imageContainer}>
-                                    <img width="100%" height="100%" src={"https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"} alt={""}/>
+                                    <img width="100%" height="100%"
+                                         src={"https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"}
+                                         alt={""}/>
                                 </div>
                                 <div className={cl.actionsContainer}>
                                     <button className={cl.watchOnlineBtn}>
@@ -82,22 +89,28 @@ const AnimePage = () => {
                                         Написать отзыв
                                     </button>
                                     <div style={openStatusMenu ? {maxHeight: "400px",} : {}} className={cl.statusList}>
-                                        <button style={chosenWatchStatuses !== "none" ? {display: "none"} : {}} onClick={() => CheckActiveStatusMenu()} className={cl.statusList__openerBtn}>
+                                        <button style={chosenWatchStatuses !== "none" ? {display: "none"} : {}}
+                                                onClick={() => CheckActiveStatusMenu()}
+                                                className={cl.statusList__openerBtn}>
                                             <span>
-                                                <svg width={"10px"} height={"10px"} fill={"black"} style={{marginRight: "8px"}}>
+                                                <svg width={"10px"} height={"10px"} fill={"black"}
+                                                     style={{marginRight: "8px"}}>
                                                     <use xlinkHref={"/sprite.svg#PlusIcon"}></use>
                                                 </svg>
                                             </span>
                                             <span
                                                 onClick={() => setChosenWatchStatuses("Watching")}>Добавить в список</span>
                                             <span>
-                                                <svg width={"12px"} height={"12px"} fill={"black"} style={{transform: "rotate(90deg)", marginLeft: "8px"}}>
+                                                <svg width={"12px"} height={"12px"} fill={"black"}
+                                                     style={{transform: "rotate(90deg)", marginLeft: "8px"}}>
                                                     <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                                 </svg>
                                             </span>
                                         </button>
 
-                                        <button style={chosenWatchStatuses !== "Watching" ? {display: "none"} : {}} onClick={() => CheckActiveStatusMenu()} className={cl.statusList__openerBtn}>
+                                        <button style={chosenWatchStatuses !== "Watching" ? {display: "none"} : {}}
+                                                onClick={() => CheckActiveStatusMenu()}
+                                                className={cl.statusList__openerBtn}>
                                             <span>
                                                 <svg width={"20px"} height={"20px"} fill={"#0c5460"}
                                                      style={{marginRight: "4px", marginTop: "3px"}}>
@@ -106,77 +119,101 @@ const AnimePage = () => {
                                             </span>
                                             <span>Смотрю</span>
                                             <span>
-                                                <svg width={"10px"} height={"10px"} fill={"#0c5460"} style={{transform: "rotate(90deg)"}}>
+                                                <svg width={"10px"} height={"10px"} fill={"#0c5460"}
+                                                     style={{transform: "rotate(90deg)"}}>
                                                     <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                                 </svg>
                                             </span>
                                         </button>
 
-                                        <button style={chosenWatchStatuses !== "Watched" ? {display: "none"} : {}} onClick={() => CheckActiveStatusMenu()} className={cl.statusList__openerBtn}>
+                                        <button style={chosenWatchStatuses !== "Watched" ? {display: "none"} : {}}
+                                                onClick={() => CheckActiveStatusMenu()}
+                                                className={cl.statusList__openerBtn}>
                                             <span>
-                                                <svg width={"14px"} height={"14px"} fill={"#155724"} strokeWidth={"8px"} strokeMiterlimit={"10"} style={{marginRight: "10px", marginTop: "4px"}}>
+                                                <svg width={"14px"} height={"14px"} fill={"#155724"} strokeWidth={"8px"}
+                                                     strokeMiterlimit={"10"}
+                                                     style={{marginRight: "10px", marginTop: "4px"}}>
                                                     <use xlinkHref={"/sprite.svg#ReadyIcon"}></use>
                                                 </svg>
                                             </span>
                                             <span>Просмотрено</span>
                                             <span>
-                                                <svg width={"10px"} height={"10px"} fill={"#155724"} style={{transform: "rotate(90deg)"}}>
+                                                <svg width={"10px"} height={"10px"} fill={"#155724"}
+                                                     style={{transform: "rotate(90deg)"}}>
                                                     <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                                 </svg>
                                             </span>
                                         </button>
 
-                                        <button style={chosenWatchStatuses !== "Later" ? {display: "none"} : {}} onClick={() => CheckActiveStatusMenu()} className={cl.statusList__openerBtn}>
+                                        <button style={chosenWatchStatuses !== "Later" ? {display: "none"} : {}}
+                                                onClick={() => CheckActiveStatusMenu()}
+                                                className={cl.statusList__openerBtn}>
                                             <span>
-                                                <svg width={"14px"} height={"14px"} fill={"black"} strokeWidth={"8px"} strokeMiterlimit={"10"} style={{marginRight: "10px", marginTop: "4px"}}>
+                                                <svg width={"14px"} height={"14px"} fill={"black"} strokeWidth={"8px"}
+                                                     strokeMiterlimit={"10"}
+                                                     style={{marginRight: "10px", marginTop: "4px"}}>
                                                     <use xlinkHref={"/sprite.svg#ReadyIcon"}></use>
                                                 </svg>
                                             </span>
                                             <span>Отложено</span>
                                             <span>
-                                                <svg width={"10px"} height={"10px"} fill={"black"} style={{transform: "rotate(90deg)"}}>
+                                                <svg width={"10px"} height={"10px"} fill={"black"}
+                                                     style={{transform: "rotate(90deg)"}}>
                                                     <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                                 </svg>
                                             </span>
                                         </button>
 
-                                        <button style={chosenWatchStatuses !== "Throw" ? {display: "none"} : {}} onClick={() => CheckActiveStatusMenu()} className={cl.statusList__openerBtn}>
+                                        <button style={chosenWatchStatuses !== "Throw" ? {display: "none"} : {}}
+                                                onClick={() => CheckActiveStatusMenu()}
+                                                className={cl.statusList__openerBtn}>
                                             <span>
-                                                <svg width={"10px"} height={"10px"} stroke={"#721c24"} strokeWidth={"2px"} style={{marginRight: "10px", marginTop: "3px"}}>
+                                                <svg width={"10px"} height={"10px"} stroke={"#721c24"}
+                                                     strokeWidth={"2px"}
+                                                     style={{marginRight: "10px", marginTop: "3px"}}>
                                                     <use xlinkHref={"/sprite.svg#CloseBtnIcon"}></use>
                                                 </svg>
                                             </span>
                                             <span>Брошено</span>
                                             <span>
-                                                <svg width={"10px"} height={"10px"} fill={"#721c24"} style={{transform: "rotate(90deg)"}}>
+                                                <svg width={"10px"} height={"10px"} fill={"#721c24"}
+                                                     style={{transform: "rotate(90deg)"}}>
                                                     <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                                 </svg>
                                             </span>
                                         </button>
 
-                                        <button style={chosenWatchStatuses !== "Planned" ? {display: "none"} : {}} onClick={() => CheckActiveStatusMenu()} className={cl.statusList__openerBtn}>
+                                        <button style={chosenWatchStatuses !== "Planned" ? {display: "none"} : {}}
+                                                onClick={() => CheckActiveStatusMenu()}
+                                                className={cl.statusList__openerBtn}>
                                             <span>
-                                                <svg width={"14px"} height={"14px"} fill={"#856404"} style={{marginRight: "10px", marginTop: "3px"}}>
+                                                <svg width={"14px"} height={"14px"} fill={"#856404"}
+                                                     style={{marginRight: "10px", marginTop: "3px"}}>
                                                     <use xlinkHref={"/sprite.svg#ClockIcon"}></use>
                                                 </svg>
                                             </span>
                                             <span>Запланировано</span>
                                             <span>
-                                                <svg width={"10px"} height={"10px"} fill={"#856404"} style={{transform: "rotate(90deg)"}}>
+                                                <svg width={"10px"} height={"10px"} fill={"#856404"}
+                                                     style={{transform: "rotate(90deg)"}}>
                                                     <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                                 </svg>
                                             </span>
                                         </button>
 
-                                        <button style={chosenWatchStatuses !== "ReWatching" ? {display: "none"} : {}} onClick={() => CheckActiveStatusMenu()} className={cl.statusList__openerBtn}>
+                                        <button style={chosenWatchStatuses !== "ReWatching" ? {display: "none"} : {}}
+                                                onClick={() => CheckActiveStatusMenu()}
+                                                className={cl.statusList__openerBtn}>
                                             <span>
-                                                <svg width={"14px"} height={"14px"} fill={"#0c5460"} style={{marginRight: "10px", marginTop: "3px"}}>
+                                                <svg width={"14px"} height={"14px"} fill={"#0c5460"}
+                                                     style={{marginRight: "10px", marginTop: "3px"}}>
                                                     <use xlinkHref={"/sprite.svg#RefreshIcon"}></use>
                                                 </svg>
                                             </span>
                                             <span>Пересматриваю</span>
                                             <span>
-                                                <svg width={"10px"} height={"10px"} fill={"#0c5460"} style={{transform: "rotate(90deg)"}}>
+                                                <svg width={"10px"} height={"10px"} fill={"#0c5460"}
+                                                     style={{transform: "rotate(90deg)"}}>
                                                     <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                                 </svg>
                                             </span>
@@ -202,7 +239,8 @@ const AnimePage = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    <InPeopleListAnime UiSettings={temporaryForStatistic} children={"В списках у людей"}/>
+                                    <InPeopleListAnime UiSettings={temporaryForStatistic}
+                                                       children={"В списках у людей"}/>
                                     <span className={cl.readReviewText}>Читать все рецензии</span>
                                 </div>
                             </div>
@@ -225,13 +263,16 @@ const AnimePage = () => {
                                 <div className={cl.title}>Кадры</div>
                                 <div className={cl.containerForPtotoItem}>
                                     <div className={cl.imgContainerForViewer}>
-                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer} basePhotoPage={0}/>
+                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer}
+                                                             basePhotoPage={0}/>
                                     </div>
                                     <div className={cl.imgContainerForViewer}>
-                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer} basePhotoPage={1}/>
+                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer}
+                                                             basePhotoPage={1}/>
                                     </div>
                                     <div className={cl.imgContainerForViewer}>
-                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer} basePhotoPage={2}/>
+                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer}
+                                                             basePhotoPage={2}/>
                                     </div>
 
                                 </div>
@@ -245,7 +286,7 @@ const AnimePage = () => {
                         </div>
                         <Linked Items={LinkedTestMassive}/>
                     </div>
-
+                    <VideoPlayer/>
 
                 </div>
             </div>

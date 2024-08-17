@@ -8,9 +8,10 @@ interface MiniWindowPageInterface{
     title: string | ReactNode;
     basicState: string;
     styles?: CSSProperties
+    minWidth?: number
 }
 
-const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicState, styles}) => {
+const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicState, styles, minWidth}) => {
     const [active, setActive] = useState<boolean>(false)
     const [stated, setState] = useState()
     const refForWidthContent = useRef<HTMLSpanElement | null>(null)
@@ -184,7 +185,7 @@ const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicStat
                 }
             }}
             >{title}</span>
-            <div  style={active ? {} : {opacity:"0", pointerEvents:"none"}} ref={miniWindowRef} className={`${stated} ${cl.OverAllClass}`}>
+            <div style={active ? {minWidth:`${minWidth}px`} : {opacity:"0", pointerEvents:"none", minWidth:`${minWidth}`}} ref={miniWindowRef} className={`${stated} ${cl.OverAllClass}`}>
                 {children}
             </div>
         </div>
