@@ -77,8 +77,7 @@ const VideoPlayer = () => {
 
         setMaxEpisode(max_series[0])
         setCurrentTranslation(data.results[0].translation.title)
-
-
+        const checkdata = await fetch("https://api.anilibria.tv/v/v3/title/search?search=Башня Бога").then((e)=>e.json())
     }
 
 
@@ -288,6 +287,10 @@ const VideoPlayer = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className={cl.descriptionAboutSeries}>
+                <div>Название: <span className={cl.descriptionText}>{'A storm arrives'}</span></div>
+                <div>Дата выхода: <span className={cl.descriptionText}>{'14 августа 2024 '}</span></div>
             </div>
         </div>
     );

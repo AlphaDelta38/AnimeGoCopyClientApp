@@ -6,6 +6,8 @@ import GeneralInfoAboutAnime from "./GeneralInfoAboutAnime";
 import PhotoAndVideowiever from "./PhotoAndVideowiever";
 import Linked, { LinkedItemsProps} from "./Linked";
 import VideoPlayer from "./VideoPlayer";
+import ScheduleAnime from "./ScheduleAnime";
+import {ScheduleItemType} from "../../types";
 
 
 
@@ -44,6 +46,18 @@ const AnimePage = () => {
     const LinkedTestMassive: LinkedItemsProps[] = [
         {type:"Манхва",year:"2010"},
         {type:"ТВ Сериал",year:"2010", timeline:"Предыстория", episodes: 12},
+    ]
+
+    const ScheduleTestMassive: ScheduleItemType[] = [
+        {numberOfSeries:1, nameOfSeries:"Alya Hides Her Feelings in Russian" , dateOfOut:"3 июля 2024", status: true },
+        {numberOfSeries:2, nameOfSeries:"So Much for Childhood Friends" , dateOfOut:"10 июля 2024", status: false },
+        {numberOfSeries:3, nameOfSeries:"And So They Met" , dateOfOut:"17 июля 2024", status: false },
+        {numberOfSeries:4, nameOfSeries:"An Outpouring of Emotion" , dateOfOut:"24 июля 2024", status: false },
+        {numberOfSeries:5, nameOfSeries:"Different People, Common Undercurrent" , dateOfOut:"31 июля 2024", status: false },
+        {numberOfSeries:6, nameOfSeries:"A Kiss of the Indirect Variety" , dateOfOut:"7 августа 2024", status: false },
+        {numberOfSeries:7, nameOfSeries:"A Storm Arrives" , dateOfOut:"14 августа 2024", status: false },
+        {numberOfSeries:8, nameOfSeries:"Episode 8" , dateOfOut:"21 августа 2024", status: false },
+        {numberOfSeries:9, nameOfSeries:"Episode 9" , dateOfOut:"28 августа 2024", status: false },
     ]
 
 
@@ -287,7 +301,7 @@ const AnimePage = () => {
                         <Linked Items={LinkedTestMassive}/>
                     </div>
                     <VideoPlayer/>
-
+                    <ScheduleAnime item={ScheduleTestMassive.reverse()}/>
                 </div>
             </div>
         </div>

@@ -2,13 +2,14 @@
 
 .textWithInfo{
     display: flex;
+    max-width: fit-content;
     text-decoration: 1px underline dotted rgba(0, 0, 0, .4);
     text-underline-offset: 4px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     margin-right: 0.5rem;
     position: relative;
     cursor: default;
-    z-index: 2;
+
 }
 
 .Info{

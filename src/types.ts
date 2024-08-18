@@ -66,7 +66,7 @@ interface Translation {
     type: string; // Тип перевода, например, "voice"
 }
 
-// Основной интерфейс для объекта с информацией о сериале
+// Интерфейс для ответа от API Kodik, на поиск аниме
 export interface AnimePageType {
     blocked_countries: string[]; // Список стран с блокировкой
     blocked_seasons: Record<string, unknown>; // Блокированные сезоны
@@ -93,3 +93,11 @@ export interface AnimePageType {
     worldart_link: string; // Ссылка на World Art
 }
 
+
+export interface ScheduleItemType{
+    numberOfSeries: number,
+    nameOfSeries: string,
+    dateOfOut: string,
+    status: boolean
+
+}
