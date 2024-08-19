@@ -26,7 +26,7 @@ enum Months {
 const ScheduleAnime = ({item}:ScheduleAnimeInterface) => {
 
     const [itemMassive, setItemMassive] = useState<ScheduleItemType[]>(item);
-
+    const [activeOpenBtn, setActiveOpenBtn] = useState<boolean>(false)
 
     function getDayForm(days: number): string {
         const absDays = Math.abs(days)
@@ -61,13 +61,21 @@ const ScheduleAnime = ({item}:ScheduleAnimeInterface) => {
     }
 
 
+    function activeOpenBtnController(){
+        if(activeOpenBtn){
+            setActiveOpenBtn(false)
+        }else{
+            setActiveOpenBtn(true)
+        }
+    }
+
     return (
         <div className={cl.container}>
             <h1 className={cl.headerText}>График выхода серий</h1>
             <p className={cl.headerDescription}><span>Внимание!</span> В графике указаны даты выхода эпизодов на телеэкранах Японии.
                 Эпизоды у нас на сайте появляются в течение дня либо на следующий день, потому что для фандаб групп требуется время на их перевод и озвучивание.
             </p>
-            <div className={cl.scheduleTableContainer}>
+            <div style={activeOpenBtn ? {maxHeight:"100%"} : {}} className={cl.scheduleTableContainer}>
                 <div className={cl.scheduleHeader}>
                     <div style={{color:"#fff"}} className={cl.numberOfSeries}>Номер серии</div>
                     <div style={{color:"#fff"}} className={cl.nameOfSeries}>Название</div>
@@ -106,8 +114,15 @@ const ScheduleAnime = ({item}:ScheduleAnimeInterface) => {
                         </div>
                     </div>
                 )}
-
             </div>
+            <button onClick={()=>activeOpenBtnController()} className={cl.openMoreBtn}>
+                {activeOpenBtn ? "Скрыть" : "Показать ещё"}
+                <span>
+                    <svg className={activeOpenBtn ? cl.shevronOpenBtnActive : cl.shevronOpenBtn}>
+                        <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
+                    </svg>
+                </span>
+            </button>
         </div>
     );
 };
