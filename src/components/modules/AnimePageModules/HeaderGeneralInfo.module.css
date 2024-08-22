@@ -228,3 +228,37 @@
     position: relative;
     z-index: 1;
 }
+
+@media (min-width: 0 ) and (max-width: 500px) {
+    .rateStarTape{
+        width: 50px;
+        height: 48px;
+        position: absolute;
+        user-select: none;
+        background-color: rgb(175, 174, 174);
+        z-index: 3;
+        opacity: 0;
+        transition: 0.3s ease;
+        pointer-events: none;
+        display: flex;
+        transform: translateX(-200px);
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .rateStarTapeActive{
+        width: 274px;
+        height: 48px;
+        position: absolute;
+        user-select: none;
+        background-color: rgb(175, 174, 174);
+        z-index: 3;
+        opacity: 1;
+        transition: 0.3s ease;
+        cursor: pointer;
+        transform: translateX(-100px);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}

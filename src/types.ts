@@ -46,6 +46,7 @@ export interface RoutesInterface {
     Notification:string
     FriendRequests:string
     Anime:string
+    ReviewPage:string
 }
 
 

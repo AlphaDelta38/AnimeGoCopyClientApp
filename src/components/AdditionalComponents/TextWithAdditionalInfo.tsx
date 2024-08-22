@@ -1,26 +1,28 @@
-import React, {CSSProperties, useState} from 'react';
+import React, {CSSProperties, ReactNode, useState} from 'react';
 import cl from '../modules/AdditionalComponentsModules/TextWithAdditionalInfo.module.css'
 
 
 interface TextWithAdditionalInfoInterface{
     textAbove: string;
-    title:string
+    title?:string
     stylesAbove?: CSSProperties
     mainstyles?: CSSProperties
+    children?: ReactNode;
+    clickFunc?: (e:any)=>any
 }
 
-const TextWithAdditionalInfo = ({textAbove, title,mainstyles,stylesAbove}:TextWithAdditionalInfoInterface) => {
+const TextWithAdditionalInfo: React.FC<TextWithAdditionalInfoInterface> = ({textAbove, title,mainstyles,stylesAbove, children,clickFunc}) => {
 
 
     const [active, setActive] = useState(false)
 
 
     return (
-        <span style={mainstyles} onMouseLeave={() => { setActive(false)}} onMouseOver={() => {setActive(true)}}  className={cl.textWithInfo}>
+        <span onClick={clickFunc} style={mainstyles} onMouseLeave={() => { setActive(false)}} onMouseOver={() => {setActive(true)}}  className={cl.textWithInfo}>
             <div style={active ? {visibility: "visible", ...stylesAbove} : {visibility: "hidden"}} className={cl.Info}>
                 {textAbove}
             </div>
-            {title}
+            {title || children}
         </span>
     );
 };

@@ -14,6 +14,6 @@ export const routes: RoutesInterface = {
     Notification: "/notification",
     FriendRequests: "/friend/requests",
     Anime: "/anime/:id",
-
+    ReviewPage: "/review/:id/new",
 }
 

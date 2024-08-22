@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import cl from '../modules/AnimePageModules/AnimePage.module.css'
 import InPeopleListAnime from "./InPeopleListAnime";
 import HeaderGeneralInfo from "./HeaderGeneralInfo";
@@ -8,6 +8,8 @@ import Linked, { LinkedItemsProps} from "./Linked";
 import VideoPlayer from "./VideoPlayer";
 import ScheduleAnime from "./ScheduleAnime";
 import {ScheduleItemType} from "../../types";
+import Reviews from "./Reviews";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
 
 
@@ -18,6 +20,9 @@ const AnimePage = () => {
 
     const [chosenWatchStatuses, setChosenWatchStatuses] = useState<string>("none");
     const [openStatusMenu, setOpenStatusMenu] = useState<boolean>(false);
+    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+
+
     const temporaryForStatistic = [
         {title:"В списках у людей"},
         {ColumNameOne: "Пользователей", ColumNameTwo: "Процент" , ColumNameThree: "Список", styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},
@@ -80,7 +85,7 @@ const AnimePage = () => {
 
 
     return (
-        <div className={cl.container}>
+        <div style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}} className={cl.container}>
             <div className={cl.row}>
                 <div className={cl.contentContainer}>
                     <div className={cl.headerContainer}>
@@ -302,6 +307,7 @@ const AnimePage = () => {
                     </div>
                     <VideoPlayer/>
                     <ScheduleAnime item={ScheduleTestMassive.reverse()}/>
+                    <Reviews/>
                 </div>
             </div>
         </div>

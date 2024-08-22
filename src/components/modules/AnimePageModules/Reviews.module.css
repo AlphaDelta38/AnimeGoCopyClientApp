@@ -1,0 +1,61 @@
+
+
+.container{
+    display: flex;
+    margin-left: -15px;
+    margin-right: -15px;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    border-top: 2px solid rgba(0,0,0,0.1);
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.reViewsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    text-align: center;
+    text-wrap: wrap;
+}
+
+.reViewsBtnContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.reViewBtn{
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 2px;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+    color: #111;
+    background-color: #f0f0f0;
+    border-color: #ccc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+}
+
+.penIcon{
+    width: 12px;
+    height: 12px;
+    fill: black;
+    margin-right: 0.5rem;
+}
