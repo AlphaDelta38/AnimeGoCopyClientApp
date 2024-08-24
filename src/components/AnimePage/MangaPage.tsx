@@ -1,23 +1,24 @@
 import React, {useContext, useEffect, useState} from 'react';
-import cl from '../modules/AnimePageModules/AnimePage.module.css'
+import cl from "../modules/AnimePageModules/AnimePage.module.css";
 import InPeopleListAnime from "./InPeopleListAnime";
 import HeaderGeneralInfo from "./HeaderGeneralInfo";
 import GeneralInfoAboutAnime from "./GeneralInfoAboutAnime";
 import PhotoAndVideowiever from "./PhotoAndVideowiever";
-import Linked, { LinkedItemsProps} from "./Linked";
+import Linked, {LinkedItemsProps} from "./Linked";
 import VideoPlayer from "./VideoPlayer";
 import ScheduleAnime from "./ScheduleAnime";
-import {ScheduleItemType} from "../../types";
 import Reviews from "./Reviews";
-import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import Coments from "../Comments/Coments";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import {ScheduleItemType} from "../../types";
+import MangaGeneralInfo from "./MangaGeneralInfo";
 
 
 
 
 
 
-const AnimePage = () => {
+const MangaPage = () => {
 
     const [chosenWatchStatuses, setChosenWatchStatuses] = useState<string>("none");
     const [openStatusMenu, setOpenStatusMenu] = useState<boolean>(false);
@@ -44,7 +45,7 @@ const AnimePage = () => {
     ]
 
     const testVideoForViewer = [
-    "https://www.youtube.com/embed/gS8puFPc0F0",
+        "https://www.youtube.com/embed/gS8puFPc0F0",
         "https://www.youtube.com/embed/t9GqF-oeIl0?si=ISm2G5Xee55DdoUj",
         "https://www.youtube.com/embed/26WmZyhobzs?si=Re5T-nNV3QkEpIg4",
     ]
@@ -54,17 +55,6 @@ const AnimePage = () => {
         {type:"ТВ Сериал",year:"2010", timeline:"Предыстория", episodes: 12},
     ]
 
-    const ScheduleTestMassive: ScheduleItemType[] = [
-        {numberOfSeries:1, nameOfSeries:"Alya Hides Her Feelings in Russian" , dateOfOut:"3 июля 2024", status: true },
-        {numberOfSeries:2, nameOfSeries:"So Much for Childhood Friends" , dateOfOut:"10 июля 2024", status: false },
-        {numberOfSeries:3, nameOfSeries:"And So They Met" , dateOfOut:"17 июля 2024", status: false },
-        {numberOfSeries:4, nameOfSeries:"An Outpouring of Emotion" , dateOfOut:"24 июля 2024", status: false },
-        {numberOfSeries:5, nameOfSeries:"Different People, Common Undercurrent" , dateOfOut:"31 июля 2024", status: false },
-        {numberOfSeries:6, nameOfSeries:"A Kiss of the Indirect Variety" , dateOfOut:"7 августа 2024", status: false },
-        {numberOfSeries:7, nameOfSeries:"A Storm Arrives" , dateOfOut:"14 августа 2024", status: false },
-        {numberOfSeries:8, nameOfSeries:"Episode 8" , dateOfOut:"21 августа 2024", status: false },
-        {numberOfSeries:9, nameOfSeries:"Episode 9" , dateOfOut:"28 августа 2024", status: false },
-    ]
 
 
     function CheckActiveStatusMenu(){
@@ -78,15 +68,17 @@ const AnimePage = () => {
 
 
     useEffect(()=>{
-            setOpenStatusMenu(false)
+        setOpenStatusMenu(false)
     }, [chosenWatchStatuses])
 
 
 
 
 
+
     return (
-        <div style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}} className={cl.container}>
+        <div style={MobileNavBarActive ? {transform: "translate3d(var(--translate-value), 0, 0)"} : {}}
+             className={cl.container}>
             <div className={cl.row}>
                 <div className={cl.contentContainer}>
                     <div className={cl.headerContainer}>
@@ -267,7 +259,7 @@ const AnimePage = () => {
                             <div className={cl.generalInfo}>
                                 <HeaderGeneralInfo/>
                                 <hr className={cl.hr}></hr>
-                                <GeneralInfoAboutAnime/>
+                                <MangaGeneralInfo/>
                             </div>
                         </div>
                         <div className={cl.description}>
@@ -278,36 +270,8 @@ const AnimePage = () => {
                                 "им на русском языке, не подозревая, что на самом деле он понимает русский."
                             }
                         </div>
-                        <div className={cl.animeMediaContentContainer}>
-                            <div className={cl.photoContainer}>
-                                <div className={cl.title}>Кадры</div>
-                                <div className={cl.containerForPtotoItem}>
-                                    <div className={cl.imgContainerForViewer}>
-                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer}
-                                                             basePhotoPage={0}/>
-                                    </div>
-                                    <div className={cl.imgContainerForViewer}>
-                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer}
-                                                             basePhotoPage={1}/>
-                                    </div>
-                                    <div className={cl.imgContainerForViewer}>
-                                        <PhotoAndVideowiever type={"img"} imgUrl={testImagesForViewer}
-                                                             basePhotoPage={2}/>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div className={cl.trailerContainer}>
-                                <div className={cl.title}>Трейлер</div>
-                                <div className={cl.videoContaineRForViewer}>
-                                    <PhotoAndVideowiever type={"video"} imgUrl={testVideoForViewer} basePhotoPage={0}/>
-                                </div>
-                            </div>
-                        </div>
                         <Linked Items={LinkedTestMassive}/>
                     </div>
-                    <VideoPlayer/>
-                    <ScheduleAnime item={ScheduleTestMassive.reverse()}/>
                     <Reviews/>
                     <Coments/>
                 </div>
@@ -316,4 +280,4 @@ const AnimePage = () => {
     );
 };
 
-export default AnimePage;
+export default MangaPage;

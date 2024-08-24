@@ -1,0 +1,200 @@
+
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-content: start;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+
+.userImageContainer{
+    width: 80px;
+    height: 80px;
+    position: relative;
+    justify-content: center;
+    align-content: start;
+}
+
+.userImageContainer img{
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bodyCommentContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    position: relative;
+}
+
+.bodyHeader{
+    display: flex;
+    width: 100%;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userName{
+    color: #ff5c57;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    cursor: pointer;
+}
+
+.infoAboutComment{
+    display: flex;
+}
+
+.userName:hover{
+    text-decoration: 1px solid underline;
+}
+
+.circleSpan{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.timeInfo{
+    margin-top: 2px;
+    color: rgba(0, 0, 0, .4);
+    font-size: 0.85rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    white-space: nowrap;
+}
+
+.threeDotBtn{
+    margin-top: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.threeDotBtn svg{
+    width: 16px;
+    height: 16px;
+    fill: black;
+}
+
+.textOfCommentContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    position: relative;
+}
+
+
+.text{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    text-wrap: wrap;
+    word-wrap: break-word;
+    justify-content: start;
+    align-items: start;
+    overflow: hidden;
+    max-height: 72px;
+}
+
+.hideBtn{
+    cursor: pointer;
+    color: #ff5c57;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    user-select: none;
+}
+
+.hideBtn:hover{
+    text-decoration: 1px solid underline;
+}
+
+.actionsWithComment{
+    display: flex;
+    justify-content: start;
+    margin-top: 0.5rem;
+}
+
+.answerBtn{
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: rgba(0, 0, 0, .4);
+    user-select: none;
+    cursor: pointer;
+}
+
+.answerBtn:hover{
+    color: #212529;
+}
+
+.countLikes{
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.likeAndDislikeContainer{
+    display: flex;
+    align-items: end;
+    gap: 6px;
+}
+
+
+.likeIcon{
+    margin-top: 1px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.likeIcon svg{
+    width: 22px;
+    height: 22px;
+    fill: rgba(0, 0, 0, .4);
+}
+
+.likeIcon:hover svg{
+    fill: black;
+}
+
+.disLikeIcon{
+    margin-top: 1px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.disLikeIcon svg{
+    width: 22px;
+    height: 22px;
+    fill: rgba(0, 0, 0, .4);
+}
+
+.disLikeIcon:hover svg{
+     fill: black;
+ }
+
+.divForCommentAnswerArea{
+    width: 100%;
+    display: none;
+    position: relative;
+
+}
+
+.childrenComments{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}

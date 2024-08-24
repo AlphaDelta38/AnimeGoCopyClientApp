@@ -17,6 +17,7 @@ import FriendRequest from "./components/Header/FriendRequest";
 import MobileFriendsRequestMesseages from "./components/MobileMassegePage/MobileFriendsRequestMesseages";
 import AnimePage from "./components/AnimePage/AnimePage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
+import MangaPage from "./components/AnimePage/MangaPage";
 
 
 
@@ -45,6 +46,7 @@ function App() {
               <Route path={routes.Anime} element={<AnimePage/>} />
               <Route path={"/*"} element={<GeneralPage setFilterBarActive={setFilterBarActive} />} />
               <Route path={routes.ReviewPage} element={<ReviewPage/>}/>
+              <Route path={routes.Manga} element={<MangaPage/>}/>
           </Routes>
           <Footer/>
       </BrowserRouter>
