@@ -23,7 +23,6 @@ const AnimePage = () => {
     const [openStatusMenu, setOpenStatusMenu] = useState<boolean>(false);
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
-
     const temporaryForStatistic = [
         {title:"В списках у людей"},
         {ColumNameOne: "Пользователей", ColumNameTwo: "Процент" , ColumNameThree: "Список", styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},

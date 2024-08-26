@@ -96,3 +96,19 @@
     justify-content: start;
 
 }
+
+@media (min-width: 576px) and (max-width: 768px ){
+
+    .linkedItem{
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+
+}
+
+@media (min-width: 0px) and (max-width: 576px ){
+    .linkedItem{
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}

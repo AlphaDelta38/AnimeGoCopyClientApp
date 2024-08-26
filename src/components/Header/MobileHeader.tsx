@@ -14,7 +14,7 @@ interface MobileHeaderInterface{
 const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
 
     const [activeBtn, setActiveBtn] = useState(false);
-    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const {MobileNavBarActive, setMobileNavBarActive,setTranslationsSideBarActive}:ToggleContextProps = useContext(ToggleContext)!
     const [searchActive, setSearchActive] = useState(false);
 
 
@@ -22,11 +22,13 @@ const MobileHeader = ({ setFilterBarActive}:MobileHeaderInterface) => {
             if(activeBtn){
                 setActiveBtn(false);
                 setMobileNavBarActive(false);
+                setTranslationsSideBarActive(false)
                 document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
             }else{
                 setFilterBarActive(false)
                 setActiveBtn(true);
                 setMobileNavBarActive(true);
+                setTranslationsSideBarActive(false)
                 document.documentElement.style.setProperty('--GLobalOverFlow', `hidden`);
             }
 

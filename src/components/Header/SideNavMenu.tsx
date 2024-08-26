@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import cl from "../modules/HeaderModules/Header.module.css"
 import AdpativeFilters from "../AnimeChooseContent/AdpativeFilters";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import TranslationsSideBar from "../AnimePage/TranslationsSideBar";
 
 
 
@@ -15,19 +16,21 @@ interface SideNavMenuInterface {
 
 const SideNavMenu = ({ FilterBarActive,setFilterBarActive}: SideNavMenuInterface) => {
 
-    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const {MobileNavBarActive, setMobileNavBarActive, TranslationsSideBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
 
 
     function FilterSideBarDisable(){
-            setFilterBarActive(false)
-            setMobileNavBarActive(false)
-            document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
+        setFilterBarActive(false)
+        setMobileNavBarActive(false)
+        document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
     }
 
     return (
-        <div  className={MobileNavBarActive ? cl.SideBarMenuActive : FilterBarActive ? cl.SideBarMenuActive : cl.SideBarMenu  }>
-            {MobileNavBarActive && !FilterBarActive &&
+        <div  className={MobileNavBarActive ? cl.SideBarMenuActive : FilterBarActive ? cl.SideBarMenuActive : TranslationsSideBarActive ? cl.SideBarMenuActive :  cl.SideBarMenu  }>
+            {MobileNavBarActive &&
+                !FilterBarActive &&
+                !TranslationsSideBarActive &&
                 <div>
                     <div className={cl.SideBarHeader}>
                         <div>
@@ -66,6 +69,10 @@ const SideNavMenu = ({ FilterBarActive,setFilterBarActive}: SideNavMenuInterface
             {
                 FilterBarActive &&
                 <AdpativeFilters/>
+            }
+            {
+                TranslationsSideBarActive &&
+                <TranslationsSideBar/>
             }
         </div>
     );

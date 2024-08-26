@@ -1,7 +1,10 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import cl from '../modules/AnimePageModules/VideoPlayer.module.css'
 import MiniWindowPage from "../AdditionalComponents/MiniWindowPage";
 import {AnimePageType} from "../../types";
+import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import {unstable_renderSubtreeIntoContainer} from "react-dom";
+
 
 
 
@@ -17,6 +20,10 @@ const VideoPlayer = () => {
     const [maxEpisode, setMaxEpisode] = useState<number>(0)
     const [startX, setStartX] = useState<number>(0)
     const [phantomSeriesChosen, setPhantomSeriesChosen] = useState<number>(0)
+    const [accessToSwapActios, setAccessToSwapActios] = useState<boolean>(false)
+
+    const {TranslationsSideBarActive, setTranslationsSideBarActive, setMobileNavBarActive,setFunmassive,setTranslationsStateMassive }:ToggleContextProps = useContext(ToggleContext)!
+
 
 
     const refSeriesTape = useRef<HTMLDivElement | null>(null)
@@ -26,6 +33,22 @@ const VideoPlayer = () => {
     const refTapeContainer = useRef<HTMLDivElement | null>(null)
 
     const haveAccessTranslation = ["JAM","AniLibria.TV","Crunchyroll.Subtitles","AniRise","AniBaza","AniDub Online","AnimeVost","SHIZA Project","Dream Cast","AniStar","Amazing Dubbing","AniDUB"]
+
+
+    function checkTranslationSideBarActive(){
+        if(TranslationsSideBarActive){
+            setTranslationsSideBarActive(false)
+            setMobileNavBarActive(false)
+            document.documentElement.style.setProperty("--GLobalOverFlow", "visible")
+        }else{
+            setTranslationsSideBarActive(true)
+            setMobileNavBarActive(true)
+            document.documentElement.style.setProperty("--GLobalOverFlow", "hidden")
+        }
+    }
+
+
+
 
     function changeSeries(NSeries:number, ){
 
@@ -77,7 +100,6 @@ const VideoPlayer = () => {
 
         setMaxEpisode(max_series[0])
         setCurrentTranslation(data.results[0].translation.title)
-        const checkdata = await fetch("https://api.anilibria.tv/v/v3/title/search?search=Башня Бога").then((e)=>e.json())
     }
 
 
@@ -91,7 +113,7 @@ const VideoPlayer = () => {
 
 
     function AutomaticallySwipe(Nseries?:number){
-        if(maxEpisode <= 7){
+        if(!accessToSwapActios){
             return ()=>{
                 setTimeout(() => {
                     refSeriesTape.current?.style.setProperty('transition', `none`)
@@ -182,6 +204,18 @@ const VideoPlayer = () => {
     }
 
 
+    function controllerStateSwapSeriesBtnActive(){
+        if(refTapeContainer.current && maxEpisode){
+            if(Math.ceil((refTapeContainer.current!.clientWidth/72)-1)<maxEpisode){
+                setAccessToSwapActios(true)
+            }else{
+                setAccessToSwapActios(false)
+            }
+        }
+        console.log(1)
+    }
+
+
     useEffect(() => {
 
         getAllDataAbaoutAnime()
@@ -191,7 +225,20 @@ const VideoPlayer = () => {
             window.removeEventListener("mouseup", stop)
         }
 
+
+
     }, []);
+
+    useEffect(()=>{
+        if(refTapeContainer.current && maxEpisode){
+            controllerStateSwapSeriesBtnActive()
+            window.addEventListener("resize", controllerStateSwapSeriesBtnActive)
+        }
+        return ()=>{
+            window.removeEventListener("resize", controllerStateSwapSeriesBtnActive)
+        }
+    },[refTapeContainer.current, maxEpisode, window.innerWidth])
+
 
     useEffect(() => {
         changeSeries(currentEpisode)
@@ -205,7 +252,12 @@ const VideoPlayer = () => {
         refCurrentPositionTape.current = currentPosition;
     },[startX])
 
-
+    useEffect(() => {
+        setFunmassive([setCurrentTranslation, currentTranslation])
+        if(RenderTranslationMassive){
+            setTranslationsStateMassive([...RenderTranslationMassive])
+        }
+    }, [currentEpisode,RenderTranslationMassive]);
 
     return (
         <div className={cl.container}>
@@ -240,21 +292,33 @@ const VideoPlayer = () => {
                                    placeholder={"0"} className={cl.forSearchSeries}/>
                         </div>
                         <div className={cl.seriesChoseeContainer}>
-                            <div className={cl.signOfseries}>Серия </div>
-                            <div ref={refTapeContainer} onMouseDown={(e)=>maxEpisode > 7 && start(e)} className={cl.seriesTapeContainer}>
+                            <div className={cl.signOfseries}>Серия</div>
+                            <div ref={refTapeContainer} onMouseDown={(e) => accessToSwapActios && start(e)}
+                                 className={cl.seriesTapeContainer}>
                                 <div ref={refSeriesTape} className={cl.seriesTape}>
-                                    {Array.from({length: maxEpisode}).map((value,index) => <div key={index} onClick={()=>changeSeries(index+1)} className={currentEpisode === index + 1 ? cl.seriesBtnACtive : cl.seriesBtn}>{index + 1}</div>)}
+                                    {Array.from({length: maxEpisode}).map((value, index) => <div key={index} onClick={() => changeSeries(index + 1)} className={currentEpisode === index + 1 ? cl.seriesBtnACtive : cl.seriesBtn}>{index + 1}</div>)}
                                 </div>
                             </div>
+                            <div className={cl.selectionOfSeries}>
+                                <select onChange={(e)=>changeSeries(Number(e.target.value.match(/\d+/)![0]))}>
+                                    {Array.from({length: maxEpisode}).map((value, index) => <option>{`${index+1} серия`}</option>)}
+                                </select>
+                            </div>
                             <div className={cl.tapeControlPanelContainer}>
-                                <div style={maxEpisode > 7 ? {} : {display:"none"}} className={cl.leftRightControlBtnContainer}>
-                                    <button  onClick={()=> phantomSeriesChosen !== 0 &&  leftRigtBtnSwipe("left")} className={cl.controlBtn}>
-                                        <svg className={phantomSeriesChosen=== 0 ? cl.nonActiveControlIcon : cl.controlcon}>
+                                <div style={accessToSwapActios ? {} : {display: "none"}}
+                                     className={cl.leftRightControlBtnContainer}>
+                                    <button onClick={() => phantomSeriesChosen !== 0 && leftRigtBtnSwipe("left")}
+                                            className={cl.controlBtn}>
+                                        <svg
+                                            className={phantomSeriesChosen === 0 ? cl.nonActiveControlIcon : cl.controlcon}>
                                             <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                         </svg>
                                     </button>
-                                    <button onClick={()=> phantomSeriesChosen !== maxEpisode &&  leftRigtBtnSwipe("right")} className={cl.controlBtn}>
-                                        <svg className={phantomSeriesChosen=== maxEpisode ? cl.nonActiveControlIcon : cl.controlcon}>
+                                    <button
+                                        onClick={() => phantomSeriesChosen !== maxEpisode && leftRigtBtnSwipe("right")}
+                                        className={cl.controlBtn}>
+                                        <svg
+                                            className={phantomSeriesChosen === maxEpisode ? cl.nonActiveControlIcon : cl.controlcon}>
                                             <use xlinkHref={"/sprite.svg#ShevronIcon"}></use>
                                         </svg>
                                     </button>
@@ -269,22 +333,47 @@ const VideoPlayer = () => {
                     </div>
                 </div>
                 <div className={cl.chooseTranslations}>
-                <div className={cl.chooseTranslationsContent}>
+                    <div className={cl.chooseTranslationsContent}>
                         <div className={cl.translationsContainer}>
                             <div className={cl.chooseCategoryContainer}>
-                                <span style={chosenBtn === "Translation" ? {textDecoration:"none",backgroundColor:"#434343"} : {}} onClick={()=>CheckActiveTranslationsBtn("Translation")} className={cl.chooseCategoryBtn}>Озвучка</span>
-                                <span style={chosenBtn === "Player" ? {textDecoration:"none",backgroundColor:"#434343"} : {}} onClick={()=>CheckActiveTranslationsBtn("Player")} className={cl.chooseCategoryBtn}>Плеер</span>
+                                <span style={chosenBtn === "Translation" ? {
+                                    textDecoration: "none",
+                                    backgroundColor: "#434343"
+                                } : {}} onClick={() => CheckActiveTranslationsBtn("Translation")}
+                                      className={cl.chooseCategoryBtn}>Озвучка</span>
+                                <span style={chosenBtn === "Player" ? {
+                                    textDecoration: "none",
+                                    backgroundColor: "#434343"
+                                } : {}} onClick={() => CheckActiveTranslationsBtn("Player")}
+                                      className={cl.chooseCategoryBtn}>Плеер</span>
                             </div>
                             <div className={cl.translation}>
                                 {chosenBtn === "Translation" && RenderTranslationMassive &&
-                                    RenderTranslationMassive.map((value,index) =>
-                                        <span onClick={()=>setCurrentTranslation(value)} style={currentTranslation === value ? {backgroundColor:"#ff5c57", pointerEvents:"none", cursor:"default"} : {}} key={index} className={cl.translationBtm}>{value}</span>)
+                                    RenderTranslationMassive.map((value, index) =>
+                                        <span onClick={() => setCurrentTranslation(value)}
+                                              style={currentTranslation === value ? {
+                                                  backgroundColor: "#ff5c57",
+                                                  pointerEvents: "none",
+                                                  cursor: "default"
+                                              } : {}} key={index} className={cl.translationBtm}>{value}</span>)
                                 }
                                 {chosenBtn === "Player" &&
-                                    <span  style={{backgroundColor:"#ff5c57", pointerEvents:"none", cursor:"default"}}  className={cl.translationBtm}>Kodik</span>
+                                    <span style={{backgroundColor: "#ff5c57", pointerEvents: "none", cursor: "default"}}
+                                          className={cl.translationBtm}>Kodik</span>
                                 }
                             </div>
                         </div>
+                    </div>
+                    <div   onClick={()=>checkTranslationSideBarActive()} className={cl.burgerBtnContainer}>
+                        <button style={{
+                            background: "none",
+                            border: "none",
+                            width: "100%",
+                            height: "100%",
+                            position: "relative"
+                        }}>
+                            <span className={ TranslationsSideBarActive ? cl.BurgerButtonActive : cl.BurgerButton}></span>
+                        </button>
                     </div>
                 </div>
             </div>

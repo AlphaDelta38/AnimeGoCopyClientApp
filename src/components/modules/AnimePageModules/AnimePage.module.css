@@ -433,3 +433,158 @@
 .linked{
 
 }
+
+@media (min-width: 0px) and (max-width: 576px ){
+    .row{
+        padding: 0;
+    }
+
+    .container {
+        max-width: 540px;
+        padding-top: 120px;
+        margin-bottom: 5rem;
+    }
+    .mainInfo{
+        flex-direction: column;
+    }
+
+    .animeMediaContentContainer{
+        flex-direction: column;
+    }
+
+    .photoContainer{
+        width: 100%;
+        flex:  0 0 100%;
+        max-height: 182px;
+        margin-bottom: 1rem;
+    }
+    .imgContainerForViewer:last-child{
+        display: none;
+    }
+
+    .imgContainerForViewer{
+        height: 137px;
+        flex: 0 0 48%;
+        width: 48%;
+    }
+    .trailerContainer{
+        flex: 0 0 100%;
+        width: 100%;
+        padding-left: 0;
+        max-height: 330px;
+    }
+    .videoContaineRForViewer{
+        height: 300px;
+    }
+}
+
+
+@media (min-width: 576px) and (max-width: 768px ){
+    .container {
+        max-width: 540px;
+        padding-top: 120px;
+        margin-bottom: 5rem;
+    }
+    .mainInfo{
+        flex-direction: column;
+    }
+
+    .animeMediaContentContainer{
+        flex-direction: column;
+    }
+
+    .photoContainer{
+        width: 100%;
+        flex:  0 0 100%;
+        max-height: 182px;
+        margin-bottom: 1rem;
+    }
+    .imgContainerForViewer:last-child{
+        display: none;
+    }
+
+    .imgContainerForViewer{
+        height: 137px;
+        flex: 0 0 48%;
+        width: 48%;
+    }
+    .trailerContainer{
+        flex: 0 0 100%;
+        width: 100%;
+        padding-left: 0;
+        max-height: 330px;
+    }
+    .videoContaineRForViewer{
+        height: 300px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+    .container {
+        max-width: 720px;
+        padding-top: 148px;
+    }
+    .imgContainerForViewer{
+        flex: 0 0 48%;
+        width: 48%;
+        max-height: 120px;
+    }
+
+    .containerForPtotoItem{
+        gap: 10px;
+        align-items: center;
+    }
+
+    .imgContainerForViewer:last-child{
+        display: none;
+    }
+
+    .trailerContainer{
+        width: 33.34%;
+        flex: 33.34%;
+    }
+
+    .photoContainer{
+        flex: 0 0 66.66%;
+        width: 66.66%;
+        justify-content: center;
+    }
+    .videoContaineRForViewer{
+        height: 120px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+        padding-top: 64px;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+        padding-top: 64px;
+    }
+
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1340px;
+        padding-top: 64px;
+    }
+
+}
+
+@media (min-width: 0px) and (max-width: 576px) {
+    .container {
+        width: 100%;
+        padding-top: 120px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 5rem;
+    }
+
+}

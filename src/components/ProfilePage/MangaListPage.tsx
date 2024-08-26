@@ -78,6 +78,7 @@ const MangaListPage = () => {
                             </div>
                         </div>
                     </div>
+
                     <table className={cl.TableOfAnime}>
                         <thead className={cl.HeaderOfTable}>
                         <tr>
@@ -94,9 +95,7 @@ const MangaListPage = () => {
                         <tr style={{display: "flex"}}>
                             <th>1</th>
                             <td>
-                                <img width="100%" height="100%"
-                                     src={"https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"}
-                                     alt={""}/>
+                                <img width="100%" height="100%" src={"https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"} alt={""}/>
                             </td>
                             <td>
                                 <div className={cl.TbodyNameOfAnime}>

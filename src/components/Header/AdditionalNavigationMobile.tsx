@@ -14,7 +14,7 @@ interface AdditionalNavigationMobileProps {
 const AdditionalNavigationMobile = ({scrollPosition}:AdditionalNavigationMobileProps) => {
     const [temp, setTemp] = useState(0);
     const [visible, setVIsible] = useState(false);
-    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const {MobileNavBarActive, setMobileNavBarActive,TranslationsSideBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
 
 

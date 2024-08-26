@@ -261,4 +261,9 @@
         align-items: center;
         justify-content: space-around;
     }
+
+    .InfoAboutUserRaiting{
+        display: none;
+    }
 }
+

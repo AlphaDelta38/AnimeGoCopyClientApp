@@ -81,12 +81,12 @@
     flex: 0 0 25%;
     max-width: 25%;
     text-overflow: ellipsis;
-    white-space: none;
     text-align: right;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1rem;
     padding-left: 15px;
     padding-right: 15px;
+    white-space: nowrap;
 }
 
 .statusOfWatching{
@@ -177,4 +177,25 @@
     fill: black;
     transform: rotate(-90deg);
     margin-left: 6px;
+}
+
+
+
+
+
+@media (min-width: 0px) and (max-width: 576px ){
+
+
+    .nameOfSeries{
+        flex: 1 1 25%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 25%;
+    }
+
+    .dateOfOut{
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 }

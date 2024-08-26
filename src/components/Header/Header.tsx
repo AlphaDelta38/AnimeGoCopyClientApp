@@ -23,7 +23,7 @@ const Header = ({ FilterBarActive, setFilterBarActive}:HeaderInterface) => {
     const [IsLogin, setIsLogin] = useState(false);
     const [searching, setSerching] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
-    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const {MobileNavBarActive, setMobileNavBarActive, TranslationsSideBarActive,setTranslationsSideBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
 
     const handleScroll = () => {
@@ -55,6 +55,7 @@ const Header = ({ FilterBarActive, setFilterBarActive}:HeaderInterface) => {
            if(!WidthState){
                setMobileNavBarActive(false)
                setFilterBarActive(false)
+               setTranslationsSideBarActive(false)
                document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
            }
 
@@ -70,6 +71,7 @@ const Header = ({ FilterBarActive, setFilterBarActive}:HeaderInterface) => {
 
     function  CloserFildSideBar(){
         setMobileNavBarActive(false);
+        setTranslationsSideBarActive(false)
         setFilterBarActive(false)
         document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
     }
@@ -84,7 +86,7 @@ const Header = ({ FilterBarActive, setFilterBarActive}:HeaderInterface) => {
 
 
     return (
-      <div >
+      <div  >
 
           <SideNavMenu setFilterBarActive={setFilterBarActive}  FilterBarActive={FilterBarActive} />
           <div  onClick={()=>{CloserFildSideBar()}} className={ MobileNavBarActive ? cl.CLoseFieldForSideNavBarActive : FilterBarActive ? cl.CLoseFieldForSideNavBarActive :cl.CLoseFieldForSideNavBar }></div>

@@ -375,3 +375,381 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 1rem;
     color: #FFFFFF;
 }
+
+.selectionOfSeries{
+    display: none;
+    width: 100%;
+    position: relative;
+    align-items: center;
+}
+
+.selectionOfSeries select{
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+}
+
+.selectionOfSeries select:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffd7d6;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 0 .2rem rgba(255, 92, 87, .25);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 0 .2rem rgba(255, 92, 87, .25);
+}
+
+
+
+.burgerBtnContainer{
+    height: 24px;
+    width: 30px;
+    display: none;
+    align-items: flex-end;
+}
+
+
+
+.BurgerButton{
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 22px;
+    transform-origin: 0 0;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation1Revese 1s linear forwards;
+}
+
+.BurgerButton::before{
+    left: 0;
+    top: -11px;
+    height: 2px;
+    width: 30px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation2Revese 1s linear forwards;
+}
+
+.BurgerButton::after{
+    left: 0;
+    top: -22px;
+    height: 2px;
+    width: 30px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation3Revese 1s linear forwards;
+}
+
+
+
+/*active */ /*active *//*active *//*active *//*active *//*active */
+
+.BurgerButtonActive{
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 22px;
+    transition: 0.3s ease-in-out;
+    transform-origin: 0 0;
+    animation: ButtonAnimation1 1s linear forwards;
+}
+
+.BurgerButtonActive::before{
+    left: 0;
+    top: -11px;
+    height: 2px;
+    width: 30px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation2 1s linear forwards;
+}
+
+
+.BurgerButtonActive::after{
+    left: 0;
+    top: -22px;
+    height: 2px;
+    width: 30px;
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    animation: ButtonAnimation3 1s linear forwards;
+}
+
+
+
+
+
+
+@keyframes ButtonAnimation1 {
+    0% {
+        rotate: 0deg;
+    }
+    30% {
+        rotate: 0deg;
+    }
+    40% {
+        rotate: -45deg;
+    }
+    100% {
+        rotate: -45deg;
+    }
+}
+
+@keyframes ButtonAnimation2 {
+    0% {
+        left: 0;
+        top: -11px;
+
+    }
+    20% {
+        left: 0;
+        top: -11px;
+
+    }
+    30% {
+        left: 0;
+        top: 0;
+        rotate: 0deg;
+
+    }
+    50% {
+        left: 0;
+        top: 0;
+        rotate: -90deg;
+
+    }
+    100% {
+        left: 0;
+        top: 0;
+        rotate: -90deg;
+    }
+}
+
+@keyframes ButtonAnimation3 {
+    0% {
+        left: 0;
+        top: -22px;
+
+    }
+    20% {
+        left: 0;
+        top: -11px;
+
+    }
+    30% {
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        top: 0;
+        opacity: 1;
+
+    }
+}
+
+@keyframes ButtonAnimation1Revese {
+    0% {
+        rotate: -45deg;
+    }
+    30% {
+        rotate: -45deg;
+    }
+    40% {
+        rotate: 0deg;
+    }
+    100% {
+        rotate: 0deg;
+    }
+}
+
+
+
+@keyframes ButtonAnimation2Revese {
+    0% {
+        left: 0;
+        top: 0;
+        rotate: -90deg;
+
+    }
+    20% {
+        left: 0;
+        top: 0;
+        rotate: -90deg;
+    }
+    30% {
+        left: 0;
+        top: 0;
+        rotate: 0deg;
+
+    }
+    50% {
+        left: 0;
+        top: -11px;
+
+
+    }
+    100% {
+        left: 0;
+        top: -11px;
+    }
+}
+
+@keyframes ButtonAnimation3Revese {
+    0% {
+        left: 0;
+        top: 0;
+        opacity: 1;
+
+    }
+    20% {
+        left: 0;
+        top: 0;
+        opacity: 0;
+
+    }
+    30% {
+        left: 0;
+        top: -11px;
+        opacity: 0;
+    }
+    64% {
+        left: 0;
+        top: -22px;
+        opacity: 1;
+    }
+
+    100% {
+        left: 0;
+        top: -22px;
+        opacity: 1;
+    }
+}
+
+
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .playerContainer{
+        flex: 0 0 66.66%;
+        width: 66.66%;
+    }
+
+    .player{
+        height: 349px;
+    }
+
+    .chooseTranslations{
+        flex: 0 0 33.34%;
+        width: 33.34%;
+        max-height: 405px;
+    }
+
+    .signOfseries{
+        font-size: 0.85rem;
+    }
+
+    .searchSeries{
+        margin-right: 10px;
+    }
+
+    .forSearchSeries{
+        width: 55px;
+    }
+
+}
+
+
+@media (min-width: 0px) and (max-width: 992px) {
+    .chooseTranslationsContent{
+        display: none;
+        width: 100%;
+
+    }
+
+    .burgerBtnContainer{
+        display: flex;
+    }
+    .chooseTranslations{
+        order: 1;
+        max-height: 24px;
+        margin-bottom: 1rem;
+        background-color: inherit;
+        justify-content: end;
+        flex-direction: row;
+        width: 100%;
+    }
+    .playerContainer{
+        order: 2;
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .playerContentContainer{
+        flex-direction: column;
+    }
+    .forSearchSeries{
+        width: 55px;
+    }
+
+    .player{
+        height: 388px;
+    }
+
+    .seriesTapeContainer{
+        display: none;
+    }
+
+    .leftRightControlBtnContainer{
+        display: none;
+    }
+
+    .selectionOfSeries{
+        display: flex;
+        width: 100%;
+        position: relative;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 576px ){
+    .burgerBtnContainer{
+        margin-right: 1rem;
+    }
+    .signOfseries{
+        display: none;
+    }
+    .searchSeries{
+        margin-right: 1rem;
+        flex: 0 0 33.33%;
+        width: 33.33%;
+    }
+
+}

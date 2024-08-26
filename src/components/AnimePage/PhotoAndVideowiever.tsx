@@ -23,7 +23,7 @@ const PhotoAndVideowiever = ({basePhotoPage, imgUrl, type}: PhotoAndVideowieverI
     const [RequestLimiter, setRequestLimiter] = useState<string>("start")
     const [sideMenuActive, setSideMenuActive] = useState<boolean>(false)
     const [stateForVideoReRender, setStateForVideoReRender] = useState<string[]>(imgUrl)
-
+    const [paddingForSideMenu, setPaddingForSideMenu] = useState<number>(208)
 
     const refCurrentPosition = useRef<number>(0);
     const startXRef = useRef<number>()
@@ -32,6 +32,7 @@ const PhotoAndVideowiever = ({basePhotoPage, imgUrl, type}: PhotoAndVideowieverI
     const firstItemRef = useRef<HTMLDivElement | null>(null);
     const refCurrnetPhotoPage = useRef<number>(basePhotoPage);
     const refGapItem = useRef<number>(0);
+    const refSideMenu = useRef<HTMLDivElement | null>(null)
     const TimeOutRef = useRef<NodeJS.Timeout | null>(null)
 
 
@@ -64,6 +65,11 @@ const PhotoAndVideowiever = ({basePhotoPage, imgUrl, type}: PhotoAndVideowieverI
             setGapItem(80)
         }
         AutoMaticallySwiper(refCurrnetPhotoPage.current)()
+        if(window.innerWidth < 576){
+            setPaddingForSideMenu(108)
+        }else{
+            setPaddingForSideMenu(208)
+        }
     }
 
 
@@ -269,7 +275,7 @@ const PhotoAndVideowiever = ({basePhotoPage, imgUrl, type}: PhotoAndVideowieverI
                 </svg>
             </div>
             <div onClick={(e)=>windowActive(e)} style={ViewerActive ? {} : {opacity:"0", pointerEvents: "none"}} className={cl.ViewerContainer}>
-                <div className={cl.containerForSideMenu}>
+                <div style={sideMenuActive ? {paddingRight:`${paddingForSideMenu}px`} : {}} className={cl.containerForSideMenu}>
                     <div className={`${cl.swiperActions} ${autoPlayActive && cl.forAnimation}`}>
                         <div className={cl.counter}>{`${currentPhotoPage + 1}`} / {`${imgUrl.length}`}</div>
                         <div className={cl.actions}>
@@ -358,7 +364,7 @@ const PhotoAndVideowiever = ({basePhotoPage, imgUrl, type}: PhotoAndVideowieverI
                         {type === "img" ? "Кадр" : "Видео"} {`${currentPhotoPage + 1}`} из Аля иногда кокетничает со мной по-русски
                     </div>
                 </div>
-                <div style={sideMenuActive ? {} : {display: "none"}} className={cl.sideMenu}>
+                <div ref={refSideMenu} style={sideMenuActive ? {} : {display: "none"}} className={cl.sideMenu}>
                     <div className={cl.sideMenuItemContainer}>
                         {stateForVideoReRender.map((value,index) =>
                             <div onClick={()=>AutoMaticallySwiper(index)} key={index + value.length} className={cl.sideMenuItem}>

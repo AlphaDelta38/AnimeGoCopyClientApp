@@ -169,11 +169,11 @@
 
 
 .photoItem{
-    flex: 0 0 100%;
+    flex: 0 0  100%;
     max-width: 1920px;
     height: 100%;
     position: relative;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 
@@ -261,9 +261,11 @@
     z-index: 999;
     display: flex;
     align-items: start;
-    margin-right: -15px;
     margin-left: 20px;
     background-color: rgb(221, 221, 221);
+    position: absolute;
+    top: 0;
+    right: -15px;
 }
 
 
@@ -295,7 +297,9 @@
     .sideMenu{
         min-width: 108px;
         max-width: 108px;
+        margin-right: 20px;
     }
+
 
 
 }

@@ -48,14 +48,15 @@ const GeneralInfoAboutAnime = () => {
                 <RedirectionText>Dogakobo</RedirectionText>
             </dd>
             <dt>Рейтинг MPAA
-                <InfoToolTip cssProperties={{marginLeft:"6px"}} message={"Принятая в США система оценки содержания фильма, введённая Американской киноассоциацией (MPAA). Для расшифровки значений иконки, наведите на нее курсор мыши."}/>
+
+                <span className={cl.raitingMpaaSpanForHide}><InfoToolTip cssProperties={{marginLeft:"6px"}} message={"Принятая в США система оценки содержания фильма, введённая Американской киноассоциацией (MPAA). Для расшифровки значений иконки, наведите на нее курсор мыши."}/></span>
             </dt>
             <dd>
-                <TextWithAdditionalInfo textAbove={"дети до 13 лет допускаются на фильм только с родителями"} title={"PG-13"}/>
+                <TextWithAdditionalInfo mainstyles={{maxHeight:"24px"}} textAbove={"дети до 13 лет допускаются на фильм только с родителями"} title={"PG-13"}/>
             </dd>
             <dt>Возрастные ограничения</dt>
             <dd>
-                <span style={{background:"black", borderRadius:"8px", color:"white", padding:"0 6px 0 6px", fontWeight:"700"}}>16+</span>
+                <span style={{background:"black", borderRadius:"8px", color:"white", padding:"0 6px 0 6px", fontWeight:"700", maxHeight:"24px"}}>16+</span>
             </dd>
             <dt>
                 Длительность
@@ -71,7 +72,7 @@ const GeneralInfoAboutAnime = () => {
             <dd style={{display: "flex", flexDirection: "column", alignItems: "start"}}>
                 <div className={cl.generalPerson}>
                     <MiniWindowPage title={"Алиса Михайловна Кудзё"} basicState={"top"}>dad</MiniWindowPage>
-                    <span style={{marginLeft:"6px"}}>
+                    <span style={{marginLeft:"6px", display:"inline-block"}}>
                         (озвучивает {" "}
                         <MiniWindowPage title={"Сумирэ Уэсака"} basicState={"top"}>dada</MiniWindowPage>
                         )
