@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import cl from '../modules/AnimePageModules/Linked.module.css'
 import MiniWindowPage from "../AdditionalComponents/MiniWindowPage";
+import ViewerItemCharacter from "../ViewerItems/ViewerItemCharacter";
+import ViewerItemAnimeManga from "../ViewerItems/ViewerItemAnimeManga";
 
 
  export interface LinkedItemsProps{
@@ -32,7 +34,7 @@ const Linked: FC<LinkedInterface> = ({Items}) => {
                                         alt={""} width={"100%"} height={"100%"} style={{objectFit: "cover"}}/>}
                                     basicState={"right"}
                                 >
-                                    dad
+                                    <ViewerItemAnimeManga type={"Манхва"}/>
                                 </MiniWindowPage>
                             </div>
                             <div className={cl.linkeditem__info}>

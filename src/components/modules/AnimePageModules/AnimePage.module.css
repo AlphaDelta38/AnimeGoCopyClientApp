@@ -60,8 +60,11 @@
 .imageContainer{
     width: 250px;
     height: 350px;
+    position: relative;
     object-fit: cover;
 }
+
+
 
 .actionsContainer{
     padding: 1rem;

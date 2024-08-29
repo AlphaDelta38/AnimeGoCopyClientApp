@@ -1,0 +1,174 @@
+
+
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 454px;
+}
+
+
+.header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+
+.mainName{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+}
+
+.mainName:hover{
+    color: #ff5c57;
+}
+
+.othernames{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: start;
+    width: 100%;
+    position: relative;
+}
+
+.othernames li{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 0.75rem;
+}
+
+
+.contentContainer{
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+
+
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+}
+
+.imgContainer{
+    min-width: 100px;
+    max-width: 100px;
+    height: 140px;
+    object-fit: cover;
+    position: relative;
+    margin-right: 0.5rem;
+}
+
+
+
+
+.aboutPersonContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+    position: relative;
+}
+
+
+.personInfoItemDT{
+    flex: 0 0 41.66667% !important;
+    width: 41.66667% !important;
+    text-align: start;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #212529 !important;
+    font-weight: 600 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 0.875rem;
+    max-height: 28px;
+    margin-bottom: 0.25rem;
+
+}
+
+.personInfoItemDD{
+    flex: 0 0 58.3333% !important;
+    width: 58.3333% !important;
+    text-align: start;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: black !important;
+    font-weight: 400 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 0.875rem;
+    max-height: 28px;
+    margin-bottom: 0.25rem;
+}
+
+
+.lastProject{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 15px;
+}
+
+.textForLastProject{
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212529;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin-bottom: 0.5rem;
+}
+
+.lastProjectItemContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.lastProjectItem{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.lastProjectItemContainer hr{
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+
+.lastAnimeContainer{
+    width: 60px;
+    height: 80px;
+    position: relative;
+}
+
+.lastGeneralPersonContainer{
+    width: 60px;
+    height: 80px;
+    position: relative;
+}
+

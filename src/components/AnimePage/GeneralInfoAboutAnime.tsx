@@ -4,6 +4,7 @@ import InfoToolTip from "../AdditionalComponents/InfoToolTip";
 import TextWithAdditionalInfo from "../AdditionalComponents/TextWithAdditionalInfo";
 import RedirectionText from "./RedirectionText";
 import MiniWindowPage from "../AdditionalComponents/MiniWindowPage";
+import VoiceOverItem from "../ViewerItems/VoiceOverItem";
 
 
 
@@ -31,9 +32,9 @@ const GeneralInfoAboutAnime = () => {
             </dd>
             <dt>Жанр</dt>
             <dd>
-                <RedirectionText>Комедия</RedirectionText>,
-                <RedirectionText>Романтика</RedirectionText>,
-                <RedirectionText>Школа</RedirectionText>,
+                <RedirectionText>Комедия,</RedirectionText>
+                <RedirectionText>Романтика,</RedirectionText>
+                <RedirectionText>Школа,</RedirectionText>
             </dd>
             <dt>Первоисточник</dt>
             <dd>Легкая новвела</dd>
@@ -48,7 +49,6 @@ const GeneralInfoAboutAnime = () => {
                 <RedirectionText>Dogakobo</RedirectionText>
             </dd>
             <dt>Рейтинг MPAA
-
                 <span className={cl.raitingMpaaSpanForHide}><InfoToolTip cssProperties={{marginLeft:"6px"}} message={"Принятая в США система оценки содержания фильма, введённая Американской киноассоциацией (MPAA). Для расшифровки значений иконки, наведите на нее курсор мыши."}/></span>
             </dt>
             <dd>
@@ -82,7 +82,7 @@ const GeneralInfoAboutAnime = () => {
                     <MiniWindowPage title={"Масатика Кудзэ"} basicState={"top"}>dad</MiniWindowPage>
                     <span style={{marginLeft: "6px"}}>
                         (озвучивает {" "}
-                        <MiniWindowPage title={"Кохэй Амасаки"} basicState={"top"}>dada</MiniWindowPage>
+                        <MiniWindowPage title={"Кохэй Амасаки"} basicState={"top"}><VoiceOverItem/></MiniWindowPage>
                         )
                     </span>
                 </div>

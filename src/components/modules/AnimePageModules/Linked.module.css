@@ -27,8 +27,7 @@
     display: flex;
     justify-content: start;
     position: relative;
-    overflow-x: auto;
-    overflow-y: hidden;
+    flex-wrap: wrap;
 }
 
 .linkedItem{

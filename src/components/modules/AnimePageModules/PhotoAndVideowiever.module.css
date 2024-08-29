@@ -9,6 +9,9 @@
     flex-direction: column;
     cursor: pointer;
     border: none;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
     top: 0;
 }
 
@@ -169,11 +172,19 @@
 
 
 .photoItem{
+    display: flex;
     flex: 0 0  100%;
     max-width: 1920px;
     height: 100%;
     position: relative;
     object-fit: cover;
+    align-items: center;
+    justify-content: center;
+}
+
+.photoItem img{
+    height: auto;
+    width: auto;
 }
 
 

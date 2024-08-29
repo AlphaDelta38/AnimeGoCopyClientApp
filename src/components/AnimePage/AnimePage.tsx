@@ -92,9 +92,7 @@ const AnimePage = () => {
                         <div className={cl.mainInfo}>
                             <div className={cl.sideImageAndActions}>
                                 <div className={cl.imageContainer}>
-                                    <img width="100%" height="100%"
-                                         src={"https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"}
-                                         alt={""}/>
+                                    <PhotoAndVideowiever basePhotoPage={0} imgUrl={["https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"]} type={"img"}/>
                                 </div>
                                 <div className={cl.actionsContainer}>
                                     <button className={cl.watchOnlineBtn}>
