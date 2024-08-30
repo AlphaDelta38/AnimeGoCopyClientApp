@@ -15,6 +15,8 @@ export const routes: RoutesInterface = {
     FriendRequests: "/friend/requests",
     Anime: "/anime/:id",
     ReviewPage: "/review/:id/new",
-    Manga:"/manga/:id"
+    Manga:"/manga/:id",
+    CharactersPage: "/character/:id",
+    VoiceOverPage:"/voice/:id"
 }
 

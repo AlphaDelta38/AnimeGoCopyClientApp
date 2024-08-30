@@ -48,6 +48,8 @@ export interface RoutesInterface {
     Anime:string
     ReviewPage:string
     Manga: string
+    CharactersPage: string
+    VoiceOverPage: string
 }
 
 

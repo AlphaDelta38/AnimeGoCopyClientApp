@@ -18,6 +18,7 @@ import MobileFriendsRequestMesseages from "./components/MobileMassegePage/Mobile
 import AnimePage from "./components/AnimePage/AnimePage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
 import MangaPage from "./components/AnimePage/MangaPage";
+import CharacterPage from "./components/CharactersList/CharacterPage";
 
 
 
@@ -47,6 +48,8 @@ function App() {
               <Route path={"/*"} element={<GeneralPage setFilterBarActive={setFilterBarActive} />} />
               <Route path={routes.ReviewPage} element={<ReviewPage/>}/>
               <Route path={routes.Manga} element={<MangaPage/>}/>
+              <Route path={routes.CharactersPage} element={<CharacterPage type={"character"}/>}/>
+              <Route path={routes.VoiceOverPage} element={<CharacterPage type={"voicePerson"}/>}/>
           </Routes>
           <Footer/>
       </BrowserRouter>
