@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {routes} from "./routes";
 import Header from "./components/Header/Header";
@@ -19,6 +19,8 @@ import AnimePage from "./components/AnimePage/AnimePage";
 import ReviewPage from "./components/ReviewPage/ReviewPage";
 import MangaPage from "./components/AnimePage/MangaPage";
 import CharacterPage from "./components/CharactersList/CharacterPage";
+import LoginRegistrationPage from "./components/Login-registrationPage/LoginRegistrationPage";
+import {check} from "./http/UserApi";
 
 
 
@@ -26,7 +28,17 @@ function App() {
 
     const [FilterBarActive, setFilterBarActive] = useState(false);
 
+    async function checkLogin(){
+        try {
+            const data = await check()
+            console.log(data)
+        }catch (err){
 
+        }
+    }
+    useEffect(()=>{
+        checkLogin()
+    }, [])
 
 
   return (
@@ -50,6 +62,8 @@ function App() {
               <Route path={routes.Manga} element={<MangaPage/>}/>
               <Route path={routes.CharactersPage} element={<CharacterPage type={"character"}/>}/>
               <Route path={routes.VoiceOverPage} element={<CharacterPage type={"voicePerson"}/>}/>
+              <Route path={routes.login} element={<LoginRegistrationPage/>}/>
+              <Route path={routes.registration} element={<LoginRegistrationPage/>}/>
           </Routes>
           <Footer/>
       </BrowserRouter>

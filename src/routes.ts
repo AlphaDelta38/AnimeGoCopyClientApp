@@ -17,6 +17,8 @@ export const routes: RoutesInterface = {
     ReviewPage: "/review/:id/new",
     Manga:"/manga/:id",
     CharactersPage: "/character/:id",
-    VoiceOverPage:"/voice/:id"
+    VoiceOverPage:"/voice/:id",
+    login: "/login",
+    registration: "/registration"
 }
 

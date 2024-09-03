@@ -1,4 +1,5 @@
 import {CSSProperties} from "react";
+import exp from "node:constants";
 
 export interface MessegesInterface {
     AnimeName: string,
@@ -50,6 +51,8 @@ export interface RoutesInterface {
     Manga: string
     CharactersPage: string
     VoiceOverPage: string
+    login: string
+    registration: string
 }
 
 
@@ -104,4 +107,20 @@ export interface ScheduleItemType{
     dateOfOut: string,
     status: boolean
 
+}
+
+
+
+export interface UserRegistrationDataInteraface{
+    email:string,
+    password:string,
+}
+
+export interface userDataAuthAndRegistation{
+    email:string,
+    password:string,
+}
+
+export interface AuthTokenInterface {
+    token: string;
 }

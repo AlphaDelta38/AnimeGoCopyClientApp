@@ -1,0 +1,164 @@
+
+.container{
+    max-width: 1340px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 68px;
+    height: 100vh;
+    position: relative;
+
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+
+.formContainer{
+    max-width: 600px;
+    width: 100%;
+    /*height: 450px;*/
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.2);
+    margin-bottom: 4rem;
+    box-shadow: 4px 8px 8px 0 rgba(0,0,0,0.1);
+    position: relative;
+    padding: 1rem;
+}
+
+.loginContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.customInput{
+    width: 100%;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    padding: 0.875rem 1rem  0.875rem 1rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+.customInput:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffd7d6;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 0 .2rem rgba(255, 92, 87, .25);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 0 .2rem rgba(255, 92, 87, .25);
+    transition: 0.2s ease;
+}
+
+.customLabel{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding-left: 6px;
+    padding-right: 6px;
+    cursor: default;
+    user-select: none;
+
+}
+
+.passwordContainer{
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.hidePasswordBtn{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 0;
+    top: 0;
+    margin-top: 2px;
+    margin-right: 12px;
+    cursor: pointer;
+    transform: translateY(50%);
+}
+
+.loginContainer h2{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.75rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.btnContainer{
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    position: relative;
+    justify-content: space-between;
+}
+
+.customBtn{
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 2px;
+    -webkit-transition: background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    -o-transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    color: #fff;
+    background-color: #ff5c57;
+    cursor: pointer;
+    border-radius: 4px;
+    border-color: #ff5c57;
+}
+
+.customBtn:focus{
+    outline: 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075), 0 0 0 .2rem rgba(255, 92, 87, .5);
+}
+
+.otherBtn{
+    border: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    cursor: pointer;
+    background: none;
+    text-decoration: 1px solid underline;
+}
+
+.otherBtn:hover{
+    color: #ff5c57;
+    text-decoration: none;
+}
+
+.ErrorsField{
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+}
+
+.ErrorsField span{
+    color: #ff5c57;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 0.875rem;
+}
