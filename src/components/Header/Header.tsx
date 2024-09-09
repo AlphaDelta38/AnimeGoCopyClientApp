@@ -9,6 +9,7 @@ import PopatUniversal from "./popatUniversal";
 import {Link} from "react-router-dom";
 import {routes} from "../../routes";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
 
 
 interface HeaderInterface{
@@ -20,11 +21,10 @@ interface HeaderInterface{
 
 const Header = ({ FilterBarActive, setFilterBarActive}:HeaderInterface) => {
     const [WidthState, setWidthState] = useState(false);
-    const [IsLogin, setIsLogin] = useState(false);
     const [searching, setSerching] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
     const {MobileNavBarActive, setMobileNavBarActive, TranslationsSideBarActive,setTranslationsSideBarActive}:ToggleContextProps = useContext(ToggleContext)!
-
+    const data = useTypedSelector(state => state.user)
 
     const handleScroll = () => {
         let position = window.scrollY;
@@ -148,11 +148,11 @@ const Header = ({ FilterBarActive, setFilterBarActive}:HeaderInterface) => {
 
                         </ul>
                         <ul className={cl.SecondNavigation}>
-                            {IsLogin
+                            {data.isLogin
                                 ?
-                                <WithLoginBar setSerching={setSerching}  searching={searching} setIsLogin={setIsLogin}/>
+                                <WithLoginBar setSerching={setSerching}  searching={searching}/>
                                 :
-                                <WithOutLoginBar setSerching={setSerching} searching={searching} setIsLogin={setIsLogin}/>
+                                <WithOutLoginBar setSerching={setSerching} searching={searching}/>
                             }
                         </ul>
                     </div>

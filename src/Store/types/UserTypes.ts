@@ -1,7 +1,6 @@
 
 
 export  interface AboutDataUserInterface{
-    name: string,
     familyName?: string,
     aboutUser?: string,
     gender?: string,
@@ -12,14 +11,15 @@ export  interface AboutDataUserInterface{
 }
 
 export enum UserConstActionType{
-    SET_USER="SET_USER"
+    SET_USER="SET_USER",
+    EXIT_USER="EXIT_USER",
 }
 
 
 export  interface  UserStateInterface{
     email: string,
     login: string,
-    aboutData: AboutDataUserInterface;
+    aboutData?: AboutDataUserInterface;
     isLogin: boolean
 }
 
@@ -32,5 +32,11 @@ export  interface SetUserInterfaceAction{
     },
 }
 
+export  interface ExitUserSetActionCreator{
+    type: UserConstActionType.EXIT_USER,
+    payload: {
+    },
+}
 
-export  type UserActionTypes = SetUserInterfaceAction
+
+export  type UserActionTypes = SetUserInterfaceAction | ExitUserSetActionCreator;

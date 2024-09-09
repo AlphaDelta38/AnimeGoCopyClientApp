@@ -113,11 +113,13 @@ export interface ScheduleItemType{
 
 export interface UserRegistrationDataInteraface{
     email:string,
+    login:string,
     password:string,
 }
 
 export interface userDataAuthAndRegistation{
     email:string,
+    name: string,
     password:string,
 }
 

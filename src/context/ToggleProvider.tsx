@@ -15,6 +15,8 @@ export interface ToggleContextProps {
     setTranslationsStateMassive: (e: string[])=>void
     funcMassive: any[]
     setFunmassive: ([]:any)=>void
+    setFilterBarActive: (e:boolean)=> void;
+    FilterBarActive: boolean;
 
 }
 
@@ -27,6 +29,7 @@ const ToggleProvider: FC<ToggleProviderProps> = ({ children }) => {
     const [TranslationsSideBarActive, setTranslationsSideBarActive] = useState<boolean>(false);
     const [translationsStateMassive, setTranslationsStateMassive] = useState<string[]>([]);
     const [funcMassive, setFunmassive] =useState<any[]>([])
+    const [FilterBarActive, setFilterBarActive] = useState(false);
 
     return (
         <ToggleContext.Provider value={{
@@ -38,6 +41,8 @@ const ToggleProvider: FC<ToggleProviderProps> = ({ children }) => {
             setTranslationsStateMassive,
             funcMassive,
             setFunmassive,
+            setFilterBarActive,
+            FilterBarActive,
         }}>
             {children}
         </ToggleContext.Provider>

@@ -3,11 +3,13 @@ import cl from "../modules/HeaderModules/Header.module.css";
 import PopatUniversal from "./popatUniversal";
 import {Link} from "react-router-dom";
 import {routes} from "../../routes";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
+import {useDispatch} from "react-redux";
+import {ExitUserSetActionCreator} from "../../Store/action-creator/userActionCreator";
 
 
 interface WithLogin {
     searching: boolean,
-    setIsLogin: (value:boolean) => void,
     setSerching: (value:boolean) => void,
 }
 
@@ -23,7 +25,7 @@ interface WithLogin {
 }
 
 
-const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
+const WithLoginBar = ({searching, setSerching}:WithLogin) => {
 
     const [PopatActive, setPopatActive] = useState(false);
     const [TypeDataPopat, setTypeDataPopat] = useState("");
@@ -31,6 +33,9 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
     const [messegeas, setMessegeas] = useState("");
     const [distansePopat, setDistancePopat] = useState(0);
     const [tempTypePopat, setTempTypePopat] = useState("none");
+    const data = useTypedSelector(state => state.user)
+    const dispatch = useDispatch()
+
     const [meseggesObjects, setMessegesObjects] = useState([
         {
             AnimeName: "Кайдзю номер восемь",
@@ -135,7 +140,7 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
                 <ul className={cl.navigationUser}>
                     <li>
                         <Link style={{textDecoration: "none", color: "inherit"}} to={routes.Profile}>
-                            AlphaDelta38
+                            {data.login}
                         </Link>
                     </li>
                     <li onClick={() => {ActivateUpdatePopat(ObjectsType.friends)}}>
@@ -176,7 +181,7 @@ const WithLoginBar = ({searching, setIsLogin, setSerching}:WithLogin) => {
                 </li>
             }
             <li onClick={() => {
-                setIsLogin(false)
+                dispatch(ExitUserSetActionCreator())
             }}>Выйти
             </li>
         </ul>

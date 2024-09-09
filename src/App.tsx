@@ -21,17 +21,62 @@ import MangaPage from "./components/AnimePage/MangaPage";
 import CharacterPage from "./components/CharactersList/CharacterPage";
 import LoginRegistrationPage from "./components/Login-registrationPage/LoginRegistrationPage";
 import {check} from "./http/UserApi";
+import {SetUserActionCreator} from "./Store/action-creator/userActionCreator";
+import {useDispatch} from "react-redux";
+import {useTypedSelector} from "./hooks/useTypeSelector";
 
 
 
 function App() {
 
     const [FilterBarActive, setFilterBarActive] = useState(false);
+    const data = useTypedSelector(state=>state.user)
+    const dispatch = useDispatch();
+
+
+
+    const NoneAuthRoutes = [
+        {route: routes.HomePage, element: <GeneralPage/>},
+        {route: routes.AnimeList, element: <AnimeContent SearchButtonAvaible={false}  header={"Список Аниме"} />},
+        {route: routes.MangaList, element: <AnimeContent SearchButtonAvaible={false}  header={"Список Манги"} />},
+        {route: routes.Characters, element:<CharactersList/>},
+        {route: routes.Anime, element: <AnimePage/>},
+        {route: routes.Manga, element: <MangaPage/>},
+        {route: routes.CharactersPage, element: <CharacterPage type={"character"}/>},
+        {route: routes.VoiceOverPage, element: <CharacterPage type={"voicePerson"}/>},
+        {route: routes.login, element: <LoginRegistrationPage/>},
+        {route: routes.registration, element: <LoginRegistrationPage/>},
+        {route: "/*", element:  <Route path={"/*"} element={<GeneralPage  />} />},
+    ]
+
+
+    const AuthRoutes = [
+        {route: routes.HomePage, element: <GeneralPage/>},
+        {route: routes.AnimeList, element: <AnimeContent SearchButtonAvaible={false}  header={"Список Аниме"} />},
+        {route: routes.MangaList, element: <AnimeContent SearchButtonAvaible={false}  header={"Список Манги"} />},
+        {route: routes.Characters, element:<CharactersList/>},
+        {route: routes.Anime, element: <AnimePage/>},
+        {route: routes.Manga, element: <MangaPage/>},
+        {route: routes.CharactersPage, element: <CharacterPage type={"character"}/>},
+        {route: routes.VoiceOverPage, element: <CharacterPage type={"voicePerson"}/>},
+        {route: routes.Profile, element: <ProfilePage/>},
+        {route: routes.Friends, element: <FriendsPage/>},
+        {route: routes.OwnAnimeList, element: <AnimeListPage/>},
+        {route: routes.OwnMangaList, element: <MangaListPage/>},
+        {route: routes.MyProfileSettings, element: <SettingsPage/>},
+        {route: routes.Notification, element: <MobileMessagePage/>},
+        {route: routes.FriendRequests, element: <MobileFriendsRequestMesseages/>},
+        {route: routes.ReviewPage, element: <ReviewPage/>},
+        {route: "/*", element:  <Route path={"/*"} element={<GeneralPage  />} />},
+    ]
+
 
     async function checkLogin(){
         try {
             const data = await check()
-            console.log(data)
+            if(data){
+                dispatch(SetUserActionCreator({email:data?.email, login: data.name, isLogin:true}))
+            }
         }catch (err){
 
         }
@@ -45,25 +90,15 @@ function App() {
       <BrowserRouter>
           <Header setFilterBarActive={setFilterBarActive}  FilterBarActive={FilterBarActive} ></Header>
           <Routes>
-              <Route path={routes.HomePage} element={<GeneralPage setFilterBarActive={setFilterBarActive} />} />
-              <Route path={routes.AnimeList} element={<AnimeContent SearchButtonAvaible={false}  setFilterBarActive={setFilterBarActive} header={"Список Аниме"} />} />
-              <Route path={routes.MangaList} element={<AnimeContent SearchButtonAvaible={false}  setFilterBarActive={setFilterBarActive} header={"Список Манги"} />} />
-              <Route path={routes.Characters} element={<CharactersList/>} />
-              <Route path={routes.Profile} element={<ProfilePage/>} />
-              <Route path={routes.Friends} element={<FriendsPage/>} />
-              <Route path={routes.OwnAnimeList} element={<AnimeListPage/>} />
-              <Route path={routes.OwnMangaList} element={<MangaListPage/>} />
-              <Route path={routes.MyProfileSettings} element={<SettingsPage/>} />
-              <Route path={routes.Notification} element={<MobileMessagePage/>} />
-              <Route path={routes.FriendRequests} element={<MobileFriendsRequestMesseages/>} />
-              <Route path={routes.Anime} element={<AnimePage/>} />
-              <Route path={"/*"} element={<GeneralPage setFilterBarActive={setFilterBarActive} />} />
-              <Route path={routes.ReviewPage} element={<ReviewPage/>}/>
-              <Route path={routes.Manga} element={<MangaPage/>}/>
-              <Route path={routes.CharactersPage} element={<CharacterPage type={"character"}/>}/>
-              <Route path={routes.VoiceOverPage} element={<CharacterPage type={"voicePerson"}/>}/>
-              <Route path={routes.login} element={<LoginRegistrationPage/>}/>
-              <Route path={routes.registration} element={<LoginRegistrationPage/>}/>
+              <Route path={"/*"} element={<GeneralPage  />} />
+              {
+                data.isLogin &&
+                    AuthRoutes.map((value,index)=><Route key={index} path={value.route} element={value.element}/>)
+              }
+              {
+                  !data.isLogin &&
+                  NoneAuthRoutes.map((value,index)=><Route key={index} path={value.route} element={value.element}/>)
+              }
           </Routes>
           <Footer/>
       </BrowserRouter>

@@ -1,19 +1,23 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import cl from '../modules/LoginRegistrationModules/LoginRegistration.module.css'
 import {userDataAuthAndRegistation} from "../../types";
-import {login} from "../../http/UserApi";
+import {login, registration} from "../../http/UserApi";
 import {useTypedSelector} from "../../hooks/useTypeSelector";
 import {useDispatch} from "react-redux";
 import {Link, useLocation} from "react-router-dom";
 import {routes} from "../../routes";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import {AxiosResponse} from "axios";
+import {JwtPayload} from "jwt-decode";
+import {SetUserActionCreator} from "../../Store/action-creator/userActionCreator";
+
 
 
 const LoginRegistrationPage = () => {
 
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
-    const [userData, setUserData] = useState<userDataAuthAndRegistation>({email:"", password:""})
+    const [userData, setUserData] = useState<userDataAuthAndRegistation>({email:"", name:"", password:""})
     const [matchPassword, setMatchPassword] = useState<boolean | null>(null)
     const [showPasswrod, setShowPasswrod] = useState<boolean>(false)
     const [errorsMassive, setErrorsMassive] = useState<string[]>([])
@@ -25,7 +29,7 @@ const LoginRegistrationPage = () => {
     const dispatch = useDispatch()
     const location = useLocation()
 
-
+    console.log(data)
     function checkMatchPassword(password:string){
 
         if(password.length  >0 && userData.password.length > 0 ){
@@ -68,22 +72,35 @@ const LoginRegistrationPage = () => {
                 massive.push( "Почта должна содержать @gmail.com")
             }
         }
+        if((userData.name.length > 0 && userData.name.length < 16) || userData.name.length === 0){
+            massive = massive.filter((value)=>value !== "Login должен быть больше 5 и меньше 16 символов")
+        }else{
+            if(!errorMassiveRef.current.includes("Login должен быть больше 5 и меньше 16 символов") && userData.name.length !== 0 ){
+                massive.push( "Login должен быть больше 5 и меньше 16 символов")
+            }
+        }
         setErrorsMassive(massive)
+
     }
 
 
     async function loginOrRegistrationPage(){
         if(location.pathname === routes.login){
-
+           if(errorsMassive.length  === 0){
+               const data=  await login(userData.email, userData.password);
+               if(data){
+                   dispatch(SetUserActionCreator({email:data?.email, login: data.name, isLogin:true}))
+               }
+           }
         }else if(location.pathname === routes.registration){
-
+           if(errorsMassive.length  === 0 && matchPassword){
+              const data= await registration({email: userData.email, password: userData.password, login: userData.name});
+               if(data){
+                   dispatch(SetUserActionCreator({email:data?.email, login: data.name, isLogin:true}))
+               }
+           }
         }
     }
-
-    useEffect(()=>{
-        // dispatch(SetUserActionCreator({email:"xui", login:"xui2", isLogin:true, aboutData:{name:"da"}}))
-    }, [])
-
 
     useEffect(()=>{
         if(location.pathname === routes.registration){
@@ -93,9 +110,25 @@ const LoginRegistrationPage = () => {
     },[userData, matchPassword])
 
     useEffect(()=>{
-
-        errorMassiveRef.current = errorsMassive
+        errorMassiveRef.current = errorsMassive;
     },[errorsMassive])
+
+    useEffect(() => {
+        setMatchPassword(null)
+        if(errorsMassive.includes("Пароли должны совпадать")){
+            let massive = [...errorMassiveRef.current];
+            errorMassiveRef.current= massive.filter((value)=>value !== "Пароли должны совпадать")
+        }
+        if(errorsMassive.includes("Login должен быть больше 5 и меньше 16 символов")){
+            let massive = [...errorMassiveRef.current];
+            setErrorsMassive(massive.filter((value)=>value !== "Login должен быть больше 5 и меньше 16 символов"))
+            setUserData({...userData, name: ""})
+        }
+    }, [location.pathname]);
+
+
+
+
 
     return (
         <div style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}} className={cl.container}>
@@ -125,7 +158,7 @@ const LoginRegistrationPage = () => {
                                 }
                             </div>
                             <div className={cl.btnContainer}>
-                                <button className={cl.customBtn}>Войти</button>
+                                <button onClick={()=>loginOrRegistrationPage()} className={cl.customBtn}>Войти</button>
                                 <Link to={routes.registration}>
                                     <button className={cl.otherBtn}>Регистрация</button>
                                 </Link>
@@ -139,6 +172,12 @@ const LoginRegistrationPage = () => {
                             <input value={userData.email}
                                    onChange={(e) => setUserData({...userData, email: e.target.value})}
                                    placeholder={"email"} className={cl.customInput}/>
+
+                            <label style={{marginTop:"16px"}} className={cl.customLabel}>Логин</label>
+                            <input value={userData.name}
+                                   onChange={(e) => setUserData({...userData, name: e.target.value})}
+                                   placeholder={"login"} className={cl.customInput}/>
+
                             <label style={{marginTop: "1rem"}} className={cl.customLabel}>Пароль</label>
                             <div className={cl.passwordContainer}>
                                 <input value={userData.password}
@@ -182,7 +221,9 @@ const LoginRegistrationPage = () => {
                                 }
                             </div>
                             <div className={cl.btnContainer}>
-                                <button className={cl.customBtn}>Зарегистрироваться</button>
+                                <button onClick={() => loginOrRegistrationPage()}
+                                        className={cl.customBtn}>Зарегистрироваться
+                                </button>
                                 <Link to={routes.login}>
                                     <button className={cl.otherBtn}>Авторизироваться</button>
                                 </Link>

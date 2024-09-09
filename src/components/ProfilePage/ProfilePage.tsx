@@ -2,12 +2,15 @@ import React, {useContext, useState} from 'react';
 import cl from "../modules/ProfilePageModules/ProfilePage.module.css"
 import SideNavigationProfile from "./SideNavigationProfile";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
 
 
 const ProfilePage = () => {
 
     const [btnMoreInfoActive, setBtnMoreInfoActive] = useState(false);
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+
+    const data = useTypedSelector(state => state.user)
 
     function changeBtnActive(){
         if(btnMoreInfoActive){
@@ -51,7 +54,7 @@ const ProfilePage = () => {
                                     </label>
                                 </div>
                                 <div className={cl.ProfileImg}>
-                                    <img src={"https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"}
+                                    <img  src={"https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"}
                                          alt={""}/>
                                 </div>
                             </div>
@@ -59,7 +62,7 @@ const ProfilePage = () => {
                         <div className={cl.UserInfo}>
                             <div className={cl.HeaderInfo}>
                                 <h2>
-                                    AlphaDelta38
+                                    {data.login}
                                 </h2>
                                 <span>
                                     на сайте с 30 мая

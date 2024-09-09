@@ -1,4 +1,10 @@
 import {RoutesInterface} from "./types";
+import GeneralPage from "./components/GeneralPage/GeneralPage";
+import React from "react";
+import AnimeContent from "./components/AnimeChooseContent/AnimeContent";
+
+
+
 
 
 export const routes: RoutesInterface = {
@@ -21,4 +27,7 @@ export const routes: RoutesInterface = {
     login: "/login",
     registration: "/registration"
 }
+
+
+
 

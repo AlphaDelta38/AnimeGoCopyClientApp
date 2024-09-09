@@ -798,11 +798,11 @@
 
 .SideBarHeader div:nth-child(1){
     border-radius: 50%;
+    overflow: hidden;
     width: 100px;
     height: 100px;
     margin-bottom: .5rem;
     object-fit: cover;
-    background: url("https://animego.org/media/cache/thumbs_200x200/upload/avatar/6294db1666f75353368830.jpg");
     border-bottom: 1px solid rgba(0, 0, 0, .125);
     cursor: pointer;
 }

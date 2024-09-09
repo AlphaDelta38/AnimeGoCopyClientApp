@@ -8,12 +8,10 @@ import {DateContext} from "../../context/context";
 import Footer from "../AdditionalComponents/Footer";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
-interface GeneralPageInterfaceP {
-    setFilterBarActive: (e:boolean)=>void
-}
 
 
-const GeneralPage = ({setFilterBarActive}:GeneralPageInterfaceP) => {
+
+const GeneralPage = () => {
 
 
 
@@ -28,7 +26,7 @@ const GeneralPage = ({setFilterBarActive}:GeneralPageInterfaceP) => {
     const [CurrentWidthTape, setCurrentWidthTape] = useState<number>(0)
 
     const CurrentYear = useContext(DateContext)?.CurrentYear
-    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const {MobileNavBarActive, setMobileNavBarActive, setFilterBarActive, FilterBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
     function StartSliderCalc(e:any, type: string){
         if(type === "desktop") {
@@ -311,7 +309,7 @@ const GeneralPage = ({setFilterBarActive}:GeneralPageInterfaceP) => {
                     </div>
                 </div>
             </div>
-            <AnimeContent styles={{paddingTop: "20px", gap:"20px", transform:"unset"}} SearchButtonAvaible={true} SortingContentDisable={true} header={"Новые аниме на сайте"} setFilterBarActive={setFilterBarActive}/>
+            <AnimeContent styles={{paddingTop: "20px", gap:"20px", transform:"unset"}} SearchButtonAvaible={true} SortingContentDisable={true} header={"Новые аниме на сайте"}/>
         </div>
     );
 };

@@ -1,16 +1,22 @@
 import React from 'react';
 import cl from "../modules/HeaderModules/Header.module.css";
+import {Link} from "react-router-dom";
+import {routes} from "../../routes";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
 
 
 interface LoginFalse {
     searching: boolean,
-    setIsLogin: (value:boolean) => void,
     setSerching: (value:boolean) => void,
 }
 
 
 
-const WithOutLoginBar = ({searching, setIsLogin, setSerching}:LoginFalse) => {
+const WithOutLoginBar = ({searching, setSerching}:LoginFalse) => {
+
+
+
+
     return (
         <ul className={cl.SecondNavigation}>
             {searching ?
@@ -25,10 +31,8 @@ const WithOutLoginBar = ({searching, setIsLogin, setSerching}:LoginFalse) => {
                     </div>
                 </li>
                 :
-                <li onClick={() => {
-                    setIsLogin(true)
-                }} className={cl.SecondLi}>
-                    Войти
+                <li className={cl.SecondLi}>
+                   <Link style={{textDecoration:"none", color:"inherit"}} to={routes.login}>Войти</Link>
                 </li>
             }
             {searching ?

@@ -3,6 +3,11 @@ import cl from "../modules/HeaderModules/Header.module.css"
 import AdpativeFilters from "../AnimeChooseContent/AdpativeFilters";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import TranslationsSideBar from "../AnimePage/TranslationsSideBar";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
+import {Link} from "react-router-dom";
+import {routes} from "../../routes";
+import {useDispatch} from "react-redux";
+import {ExitUserSetActionCreator} from "../../Store/action-creator/userActionCreator";
 
 
 
@@ -17,13 +22,18 @@ interface SideNavMenuInterface {
 const SideNavMenu = ({ FilterBarActive,setFilterBarActive}: SideNavMenuInterface) => {
 
     const {MobileNavBarActive, setMobileNavBarActive, TranslationsSideBarActive}:ToggleContextProps = useContext(ToggleContext)!
-
-
+    const data = useTypedSelector(state => state.user)
+    const dispatch = useDispatch()
 
     function FilterSideBarDisable(){
         setFilterBarActive(false)
         setMobileNavBarActive(false)
         document.documentElement.style.setProperty('--GLobalOverFlow', `visible`);
+    }
+
+    function Exit(){
+        dispatch(ExitUserSetActionCreator());
+        FilterSideBarDisable();
     }
 
     return (
@@ -34,10 +44,14 @@ const SideNavMenu = ({ FilterBarActive,setFilterBarActive}: SideNavMenuInterface
                 <div>
                     <div className={cl.SideBarHeader}>
                         <div>
-
+                             <img src={false ? "" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQzLhg0HDlP9pTv_UW4xk1SftSxAvz8wRSxA&s"} width={"100%"} height={"100%"}/>
                         </div>
                         <div>
-                            alphadelta38
+                            {data.isLogin ?
+                                <Link onClick={()=>FilterSideBarDisable()} style={{textDecoration:"none", color:"inherit"}} to={routes.Profile}>{data.login}</Link>
+                            :
+                                <Link onClick={()=>FilterSideBarDisable()} style={{textDecoration:"none", color:"inherit"}} to={routes.login}>Войти</Link>
+                            }
                         </div>
                     </div>
                     <ul className={cl.SideBarNav}>
@@ -60,11 +74,17 @@ const SideNavMenu = ({ FilterBarActive,setFilterBarActive}: SideNavMenuInterface
                         <li>
                             <span>Случайное Аниме</span>
                         </li>
+                        {data.isLogin &&
+                            <li onClick={() => Exit()}
+                                style={{textAlign: "center", justifyContent: "center", backgroundColor: "#ff5c57"}}>
+                                <span style={{marginLeft: "auto", color: "white"}}>Выйти</span>
+                            </li>
+                        }
                     </ul>
                 </div>
             }
-            <div className={FilterBarActive ? cl.CloseBtnForFiltersActive : cl.CloseBtnForFilters }>
-                <button onClick={()=>FilterSideBarDisable()}>Закрыть фильтр</button>
+            <div className={FilterBarActive ? cl.CloseBtnForFiltersActive : cl.CloseBtnForFilters}>
+                <button onClick={() => FilterSideBarDisable()}>Закрыть фильтр</button>
             </div>
             {
                 FilterBarActive &&

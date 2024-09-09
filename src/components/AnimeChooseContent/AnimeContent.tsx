@@ -8,16 +8,15 @@ import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 
  interface AnimeContentInterface{
      header: string
-     setFilterBarActive: (e:boolean)=>void
      SortingContentDisable?: boolean
      SearchButtonAvaible?: boolean
      styles?: CSSProperties
  }
 
 
-const AnimeContent = ({header, setFilterBarActive, SortingContentDisable, SearchButtonAvaible, styles}:AnimeContentInterface ) => {
+const AnimeContent = ({header, SortingContentDisable, SearchButtonAvaible, styles}:AnimeContentInterface ) => {
     const [SetkaGridActive, setSetkaGridActive] = useState("2x3");
-    const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const {MobileNavBarActive, setMobileNavBarActive, setFilterBarActive, FilterBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
     return (
         <div style={MobileNavBarActive ? { transform:"translate3d(var(--translate-value), 0, 0)", ...styles,} : {...styles}} className={cl.container}>

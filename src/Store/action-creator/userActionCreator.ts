@@ -11,3 +11,15 @@ export const SetUserActionCreator= ({email, isLogin, login, aboutData}:UserState
         }
     }
 }
+
+
+export const ExitUserSetActionCreator= ():any => {
+    localStorage.setItem("token", "")
+    return (dispatch:Dispatch<UserActionTypes>) =>{
+        try {
+            dispatch({type: UserConstActionType.EXIT_USER, payload: {}})
+        }catch (err){
+
+        }
+    }
+}
