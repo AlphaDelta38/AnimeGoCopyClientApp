@@ -33,8 +33,6 @@ function App() {
     const data = useTypedSelector(state=>state.user)
     const dispatch = useDispatch();
 
-
-
     const NoneAuthRoutes = [
         {route: routes.HomePage, element: <GeneralPage/>},
         {route: routes.AnimeList, element: <AnimeContent SearchButtonAvaible={false}  header={"Список Аниме"} />},
@@ -70,12 +68,18 @@ function App() {
         {route: "/*", element:  <Route path={"/*"} element={<GeneralPage  />} />},
     ]
 
-
     async function checkLogin(){
         try {
             const data = await check()
             if(data){
-                dispatch(SetUserActionCreator({email:data?.email, login: data.name, isLogin:true}))
+                dispatch(SetUserActionCreator({
+                    id: data.id,
+                    email:data?.email,
+                    login: data.name,
+                    isLogin:true,
+                    aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDay, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
+                    accessRule: {whoCanCommentProfile: data.whoCanCommentMyProfile, whoCanSendFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                }))
             }
         }catch (err){
 

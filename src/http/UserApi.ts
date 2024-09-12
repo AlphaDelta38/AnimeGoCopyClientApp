@@ -1,4 +1,9 @@
-import {AuthTokenInterface, userDataAuthAndRegistation, UserRegistrationDataInteraface} from "../types";
+import {
+    AuthTokenInterface,
+    userDataAuthAndRegistation,
+    UserRegistrationDataInteraface,
+    userSettingCurrentState
+} from "../types";
 import {$authHost, $host} from "./index";
 import {AxiosResponse} from "axios";
 import {jwtDecode} from "jwt-decode";
@@ -30,6 +35,16 @@ export const check = async (): Promise<userDataAuthAndRegistation | undefined>=>
         const {data}: AxiosResponse = await $authHost.post("/auth/checkAuth",  );
         localStorage.setItem("token", data.token);
         return jwtDecode(data.token)
+    }catch (err){
+
+    }
+}
+
+export const updateUSer = async (userDate: userSettingCurrentState ): Promise<userDataAuthAndRegistation | undefined>=>{
+    try {
+        const {data}: AxiosResponse = await $authHost.put("/users/update", {id: userDate.id, ...userDate.aboutUser, birthDayDate: userDate.aboutUser.birthday , name: userDate.name, email: userDate.email, ...userDate.accessRule} );
+        localStorage.setItem("token", data.token);
+        return jwtDecode(data.token);
     }catch (err){
 
     }

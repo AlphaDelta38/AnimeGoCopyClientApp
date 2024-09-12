@@ -1,11 +1,12 @@
+import {accessRule} from "../../types";
 
 
 export  interface AboutDataUserInterface{
-    familyName?: string,
+    fullname?: string,
     aboutUser?: string,
     gender?: string,
     birthday?: string,
-    status?: string,
+    lifeStatus?: string,
     country?: string,
     city?: string,
 }
@@ -17,18 +18,22 @@ export enum UserConstActionType{
 
 
 export  interface  UserStateInterface{
+    id:number,
     email: string,
     login: string,
     aboutData?: AboutDataUserInterface;
-    isLogin: boolean
+    isLogin: boolean,
+    accessRule: accessRule,
 }
 
 export  interface SetUserInterfaceAction{
     type: UserConstActionType.SET_USER,
     payload: {
+        id:number,
         email: string,
         login: string,
         aboutData: AboutDataUserInterface
+        accessRule: accessRule,
     },
 }
 

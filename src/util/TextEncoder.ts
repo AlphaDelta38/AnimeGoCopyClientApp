@@ -57,3 +57,15 @@ export function textEncoder(textAreaInputdata: string, type:string, start:number
     }
 
 }
+
+
+export function removeExtraSpaces(str:string):string {
+    let cleanedStr:string;
+    if(str.length>2 && str[str.length-1] === " " && str[str.length-2] === " "){
+        cleanedStr = str.trim().replace(/\s+/g, ' ');
+    }else{
+        cleanedStr = str;
+    }
+    return cleanedStr;
+
+}

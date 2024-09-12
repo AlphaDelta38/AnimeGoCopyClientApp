@@ -17,7 +17,7 @@ const LoginRegistrationPage = () => {
 
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
-    const [userData, setUserData] = useState<userDataAuthAndRegistation>({email:"", name:"", password:""})
+    const [userData, setUserData] = useState<userDataAuthAndRegistation>({id: 0, email:"", name:"", password:""})
     const [matchPassword, setMatchPassword] = useState<boolean | null>(null)
     const [showPasswrod, setShowPasswrod] = useState<boolean>(false)
     const [errorsMassive, setErrorsMassive] = useState<string[]>([])
@@ -89,14 +89,30 @@ const LoginRegistrationPage = () => {
            if(errorsMassive.length  === 0){
                const data=  await login(userData.email, userData.password);
                if(data){
-                   dispatch(SetUserActionCreator({email:data?.email, login: data.name, isLogin:true}))
+                   dispatch(SetUserActionCreator(
+                       {
+                           id: data.id,
+                           email:data?.email,
+                           login: data.name,
+                           isLogin:true,
+                           aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDay, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
+                           accessRule: {whoCanCommentProfile: data.whoCanCommentMyProfile, whoCanSendFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                       }))
                }
            }
         }else if(location.pathname === routes.registration){
            if(errorsMassive.length  === 0 && matchPassword){
               const data= await registration({email: userData.email, password: userData.password, login: userData.name});
+
                if(data){
-                   dispatch(SetUserActionCreator({email:data?.email, login: data.name, isLogin:true}))
+                   dispatch(SetUserActionCreator({
+                       id: data.id,
+                       email:data?.email,
+                       login: data.name,
+                       isLogin:true,
+                       aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDay, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
+                       accessRule: {whoCanCommentProfile: data.whoCanCommentMyProfile, whoCanSendFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                   }))
                }
            }
         }

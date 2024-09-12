@@ -1,5 +1,6 @@
 import {CSSProperties} from "react";
 import exp from "node:constants";
+import {AboutDataUserInterface} from "./Store/types/UserTypes";
 
 export interface MessegesInterface {
     AnimeName: string,
@@ -118,11 +119,37 @@ export interface UserRegistrationDataInteraface{
 }
 
 export interface userDataAuthAndRegistation{
+    id: number,
+    country?: string,
+    fullname?: string,
+    city?: string,
+    gender?: string,
+    aboutUser?: string,
+    lifeStatus?: string,
+    birthDay?: string,
     email:string,
     name: string,
     password:string,
+    whoCanViewMyList?:string,
+    whoCanSentFriendRequest?:string,
+    whoCanCommentMyProfile?:string,
 }
 
 export interface AuthTokenInterface {
     token: string;
+}
+
+
+export interface accessRule{
+    whoCanViewMyList?:string,
+    whoCanSendFriendRequest?:string,
+    whoCanCommentProfile?:string,
+}
+
+export interface userSettingCurrentState{
+    id: number
+    aboutUser: AboutDataUserInterface,
+    email:string,
+    name: string,
+    accessRule: accessRule,
 }
