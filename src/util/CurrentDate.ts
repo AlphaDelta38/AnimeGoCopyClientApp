@@ -1,5 +1,5 @@
 
-enum Months {
+export enum Months {
     января = 1,
     февраля,
     марта,

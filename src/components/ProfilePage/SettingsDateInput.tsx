@@ -79,7 +79,7 @@ const SettingsDateInput = ({labelDate, setBirthDate}:SettingsDateInputInterface)
             </label>
             <div className={cl.row}>
                 <select onChange={(e)=>birthDayController("day", e.target.value )} defaultValue={"Не указан"} className={cl.DateSelect}>
-                    <option disabled={true}>{data.aboutData?.fullname ? data.aboutData?.fullname!.split(" ")[0] : "Не указан"}</option>
+                    <option selected={true} disabled={true}>{data.aboutData?.birthday ? data.aboutData?.birthday!.split(" ")[0] : "Не указан"}</option>
                     {day.map((value, index, array)=>
                         <option key={array.length + index}>
                             {value}
@@ -87,7 +87,7 @@ const SettingsDateInput = ({labelDate, setBirthDate}:SettingsDateInputInterface)
                     )}
                 </select>
                 <select onChange={(e)=>birthDayController("month", e.target.value )} defaultValue={"Не указан"} className={cl.DateSelect}>
-                    <option disabled={true}>{data.aboutData?.fullname ? data.aboutData?.fullname!.split(" ")[1] : "Не указан"}</option>
+                    <option selected={true} disabled={true}>{data.aboutData?.birthday ? data.aboutData?.birthday!.split(" ")[1] : "Не указан"}</option>
                     {month.map((value, index, array) =>
                         <option key={array.length + index}>
                             {value}
@@ -95,7 +95,7 @@ const SettingsDateInput = ({labelDate, setBirthDate}:SettingsDateInputInterface)
                     )}
                 </select>
                 <select onChange={(e)=>birthDayController("year", e.target.value )} defaultValue={"Не указан"} className={cl.DateSelect}>
-                    <option  disabled={true}>{data.aboutData?.fullname ? data.aboutData?.fullname!.split(" ")[2] : "Не указан"}</option>
+                    <option  selected={true} disabled={true}>{data.aboutData?.birthday ? data.aboutData?.birthday!.split(" ")[2] : "Не указан"}</option>
                     {years.map((value, index, array)=>
                         <option key={array.length + index}>
                             {value}

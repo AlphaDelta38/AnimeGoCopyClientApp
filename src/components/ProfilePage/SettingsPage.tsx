@@ -51,11 +51,12 @@ const SettingsPage = () => {
             aboutUser: {
                 ...data.aboutData,
                 fullname: data.aboutData?.fullname,
+                birthday: data.aboutData?.birthday,
             },
             accessRule: {
-                whoCanCommentProfile: data.accessRule.whoCanCommentProfile,
+                whoCanCommentMyProfile: data.accessRule.whoCanCommentMyProfile,
                 whoCanViewMyList: data.accessRule.whoCanViewMyList,
-                whoCanSendFriendRequest: data.accessRule.whoCanSendFriendRequest,
+                whoCanSentFriendRequest: data.accessRule.whoCanSentFriendRequest,
             },
         }
         setCurrentUserSettings(initialSettingOjbect);
@@ -98,9 +99,9 @@ const SettingsPage = () => {
         }else if(nameField === "Могут видеть мой список"){
             setCurrentUserSettings({...currentUserSettings, accessRule: {...currentUserSettings.accessRule, whoCanViewMyList: filtredValue}})
         }else if(nameField === "Могут присылать заявки в друзья"){
-            setCurrentUserSettings({...currentUserSettings, accessRule: {...currentUserSettings.accessRule, whoCanSendFriendRequest: filtredValue}})
+            setCurrentUserSettings({...currentUserSettings, accessRule: {...currentUserSettings.accessRule, whoCanSentFriendRequest: filtredValue}})
         }else if(nameField === "Могут комментировать мой профиль"){
-            setCurrentUserSettings({...currentUserSettings, accessRule: {...currentUserSettings.accessRule, whoCanCommentProfile: filtredValue}})
+            setCurrentUserSettings({...currentUserSettings, accessRule: {...currentUserSettings.accessRule, whoCanCommentMyProfile: filtredValue}})
 
         }
 
@@ -132,16 +133,13 @@ const SettingsPage = () => {
                 email: user?.email,
                 login: user.name,
                 isLogin:true,
-                aboutData:{aboutUser: user.aboutUser, city:user.city, gender: user.gender, birthday: user.birthDay, country:user.country, fullname: user.fullname, lifeStatus: user.lifeStatus},
-                accessRule: {whoCanCommentProfile: user.whoCanCommentMyProfile, whoCanSendFriendRequest: user.whoCanSentFriendRequest, whoCanViewMyList: user.whoCanViewMyList},
+                aboutData:{aboutUser: user.aboutUser, city:user.city, gender: user.gender, birthday: user.birthDayDate, country:user.country, fullname: user.fullname, lifeStatus: user.lifeStatus},
+                accessRule: {whoCanCommentMyProfile: user.whoCanCommentMyProfile, whoCanSentFriendRequest: user.whoCanSentFriendRequest, whoCanViewMyList: user.whoCanViewMyList},
+                createAt: data.createAt,
             }))
         }
-        console.log(user)
-    }
 
-    useEffect(() => {
-        console.log(currentUserSettings.aboutUser.birthday)
-    }, [data]);
+    }
 
 
     return (
@@ -185,7 +183,7 @@ const SettingsPage = () => {
                                             defaultSelected={data.accessRule.whoCanViewMyList!}/>
                             <SettingsSelect setStateFunction={changeSettingsState} labelDate={"Могут присылать заявки в друзья"}
                                             object={["Никто"]}
-                                            defaultSelected={data.accessRule.whoCanSendFriendRequest!}/>
+                                            defaultSelected={data.accessRule.whoCanSentFriendRequest!}/>
                             <div style={{marginTop: "auto"}}>
                                 <button onClick={()=>sendUpdateSettings()} className={cl.RefreshBtn}>
                                     Обновить
@@ -195,7 +193,7 @@ const SettingsPage = () => {
                         <div className={cl.RightColumSettingsContainer}>
                             <SettingsSelect setStateFunction={changeSettingsState} labelDate={"Могут комментировать мой профиль"}
                                             object={["Только мои друзья","Никто кроме меня"]}
-                                            defaultSelected={data.accessRule.whoCanCommentProfile!}/>
+                                            defaultSelected={data.accessRule.whoCanCommentMyProfile!}/>
                         </div>
                     </div>
                 }

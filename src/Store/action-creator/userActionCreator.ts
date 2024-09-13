@@ -2,11 +2,11 @@ import {Dispatch} from "redux";
 import {SetUserInterfaceAction, UserActionTypes, UserConstActionType, UserStateInterface} from "../types/UserTypes";
 
 
-export const SetUserActionCreator= ({email,  login, aboutData, id, accessRule}:UserStateInterface):any => {
+export const SetUserActionCreator= ({email,  login, aboutData, id, accessRule, createAt}:UserStateInterface):any => {
     return (dispatch:Dispatch<UserActionTypes>) =>{
         try {
             if(id){
-                dispatch({type: UserConstActionType.SET_USER, payload: { id ,email,  login, aboutData: {...aboutData}, accessRule: {...accessRule}} })
+                dispatch({type: UserConstActionType.SET_USER, payload: { id ,email,  login, aboutData: {...aboutData}, accessRule: {...accessRule}, createAt: createAt }})
             }
         }catch (err){
 

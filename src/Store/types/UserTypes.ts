@@ -21,6 +21,7 @@ export  interface  UserStateInterface{
     id:number,
     email: string,
     login: string,
+    createAt: string,
     aboutData?: AboutDataUserInterface;
     isLogin: boolean,
     accessRule: accessRule,
@@ -32,6 +33,7 @@ export  interface SetUserInterfaceAction{
         id:number,
         email: string,
         login: string,
+        createAt: string,
         aboutData: AboutDataUserInterface
         accessRule: accessRule,
     },

@@ -17,7 +17,7 @@ const LoginRegistrationPage = () => {
 
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
-    const [userData, setUserData] = useState<userDataAuthAndRegistation>({id: 0, email:"", name:"", password:""})
+    const [userData, setUserData] = useState<userDataAuthAndRegistation>({id: 0, email:"", name:"", password:"", createAt: ""})
     const [matchPassword, setMatchPassword] = useState<boolean | null>(null)
     const [showPasswrod, setShowPasswrod] = useState<boolean>(false)
     const [errorsMassive, setErrorsMassive] = useState<string[]>([])
@@ -95,8 +95,9 @@ const LoginRegistrationPage = () => {
                            email:data?.email,
                            login: data.name,
                            isLogin:true,
-                           aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDay, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
-                           accessRule: {whoCanCommentProfile: data.whoCanCommentMyProfile, whoCanSendFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                           aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDayDate, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
+                           accessRule: {whoCanCommentMyProfile: data.whoCanCommentMyProfile, whoCanSentFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                           createAt: data.createAt,
                        }))
                }
            }
@@ -110,8 +111,9 @@ const LoginRegistrationPage = () => {
                        email:data?.email,
                        login: data.name,
                        isLogin:true,
-                       aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDay, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
-                       accessRule: {whoCanCommentProfile: data.whoCanCommentMyProfile, whoCanSendFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                       aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDayDate, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
+                       accessRule: {whoCanCommentMyProfile: data.whoCanCommentMyProfile, whoCanSentFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                       createAt: data.createAt,
                    }))
                }
            }

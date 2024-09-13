@@ -126,7 +126,8 @@ export interface userDataAuthAndRegistation{
     gender?: string,
     aboutUser?: string,
     lifeStatus?: string,
-    birthDay?: string,
+    birthDayDate?: string,
+    createAt: string,
     email:string,
     name: string,
     password:string,
@@ -142,8 +143,8 @@ export interface AuthTokenInterface {
 
 export interface accessRule{
     whoCanViewMyList?:string,
-    whoCanSendFriendRequest?:string,
-    whoCanCommentProfile?:string,
+    whoCanSentFriendRequest?:string,
+    whoCanCommentMyProfile?:string,
 }
 
 export interface userSettingCurrentState{

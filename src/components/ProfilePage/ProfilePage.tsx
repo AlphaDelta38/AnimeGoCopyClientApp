@@ -1,14 +1,16 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import cl from "../modules/ProfilePageModules/ProfilePage.module.css"
 import SideNavigationProfile from "./SideNavigationProfile";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import {useTypedSelector} from "../../hooks/useTypeSelector";
+import {Months} from "../../util/CurrentDate";
 
 
 const ProfilePage = () => {
 
     const [btnMoreInfoActive, setBtnMoreInfoActive] = useState(false);
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const [aboutInfoMassive, setAboutInfoMassive] = useState<any[]>([])
 
     const data = useTypedSelector(state => state.user)
 
@@ -20,9 +22,50 @@ const ProfilePage = () => {
         }
     }
 
+    const onSiteFromdate = new Date(data.createAt);
+
+    const year = onSiteFromdate.getUTCFullYear();
+    const month = onSiteFromdate.getUTCMonth() + 1;
+    const day = onSiteFromdate.getUTCDate();
 
 
+    useEffect(() => {
+        let tempMassive = Object.entries(
+            {
+                name: data.aboutData?.fullname?.split(" ")[0],
+                famalyName: data.aboutData?.fullname?.split(" ")[1],
+                birthday: data.aboutData?.birthday,
+                country: data.aboutData?.country,
+                city: data.aboutData?.city,
+                gender: data.aboutData?.gender,
+                ...data.aboutData!
+            })
+        setAboutInfoMassive(tempMassive.filter((value)=>value[1] !== undefined && value[1] !== null && value[1] !=="" && value[1] !== " " && value[0] !=="fullname"))
+    }, [data]);
 
+
+    function convertorToRussianText(text: string, additional?:string):string{
+
+        if(text === "name"){
+            return "Имя"
+        }else if(text === "famalyName") {
+            return "Фамилия"
+        }else if(text === "gender"){
+            return "Пол"
+        }else if(text === "country"){
+            return "Страна"
+        }else if(text === "city"){
+            return "Город"
+        }else if(text === "birthday"){
+            return "День рождение"
+        }else if(text === "lifeStatus"){
+            return "Статус"
+        }else if(text === "aboutUser"){
+            return "О себе"
+        }
+
+        return ""
+    }
 
 
 
@@ -65,26 +108,21 @@ const ProfilePage = () => {
                                     {data.login}
                                 </h2>
                                 <span>
-                                    на сайте с 30 мая
+                                    на сайте с {`${day} ${Months[month]} ${year} года`}
                                 </span>
                             </div>
                             <div className={cl.MainInfo}>
-                                    <dl style={btnMoreInfoActive ? {maxHeight:"100%"} : {}}>
-                                        <dt>Имя: </dt>
-                                        <dd>
-                                        Kiril
-                                        </dd>
-                                        <dt>Фамилия:</dt>
-                                        <dd>
-                                        Morozov
-                                        </dd>
-                                        <dt>Страна</dt>
-                                        <dd>
-                                        Ukraine
-                                        </dd>
-                                    </dl>
-                                <div onClick={()=>changeBtnActive()} className={cl.BtnOpenMoreInfo}>
-                                    <button >{btnMoreInfoActive ? "Скрыть подробную информацию" : "Показать полную информацию"}</button>
+                                <dl style={btnMoreInfoActive ? {maxHeight: "100%"} : {}}>
+                                    {aboutInfoMassive.map((value,index)=>
+                                        <>
+                                            <dt key={index}>{`${convertorToRussianText(value[0], value[1])}`}:</dt>
+                                            <dd>{`${value[1]}`}</dd>
+                                        </>
+                                  )}
+
+                                </dl>
+                                <div style={aboutInfoMassive.length >= 1 ? {} : {display:"none"}} onClick={() => changeBtnActive()} className={cl.BtnOpenMoreInfo}>
+                                    <button>{btnMoreInfoActive ? "Скрыть подробную информацию" : "Показать полную информацию"}</button>
                                 </div>
                             </div>
                             <div className={cl.StatisticOfAnime}>

@@ -71,14 +71,16 @@ function App() {
     async function checkLogin(){
         try {
             const data = await check()
+            console.log(data)
             if(data){
                 dispatch(SetUserActionCreator({
                     id: data.id,
                     email:data?.email,
                     login: data.name,
                     isLogin:true,
-                    aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDay, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
-                    accessRule: {whoCanCommentProfile: data.whoCanCommentMyProfile, whoCanSendFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                    aboutData:{aboutUser: data.aboutUser, city:data.city, gender: data.gender, birthday: data.birthDayDate, country:data.country, fullname: data.fullname, lifeStatus: data.lifeStatus},
+                    accessRule: {whoCanCommentMyProfile: data.whoCanCommentMyProfile, whoCanSentFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
+                    createAt: data.createAt,
                 }))
             }
         }catch (err){
