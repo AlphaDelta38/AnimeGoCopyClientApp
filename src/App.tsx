@@ -21,7 +21,11 @@ import MangaPage from "./components/AnimePage/MangaPage";
 import CharacterPage from "./components/CharactersList/CharacterPage";
 import LoginRegistrationPage from "./components/Login-registrationPage/LoginRegistrationPage";
 import {check} from "./http/UserApi";
-import {SetUserActionCreator} from "./Store/action-creator/userActionCreator";
+import {
+    SetUserActionCreator,
+    SetUserBackGroundImageCreator,
+    SetUserProfilePhotoCreator
+} from "./Store/action-creator/userActionCreator";
 import {useDispatch} from "react-redux";
 import {useTypedSelector} from "./hooks/useTypeSelector";
 
@@ -68,6 +72,7 @@ function App() {
         {route: "/*", element:  <Route path={"/*"} element={<GeneralPage  />} />},
     ]
 
+    console.log(data)
     async function checkLogin(){
         try {
             const data = await check()
@@ -82,6 +87,14 @@ function App() {
                     accessRule: {whoCanCommentMyProfile: data.whoCanCommentMyProfile, whoCanSentFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
                     createAt: data.createAt,
                 }))
+                if(data.profilePhoto){
+                    dispatch(SetUserProfilePhotoCreator(data.profilePhoto));
+                }
+                if(data.backGroundUrl){
+                    dispatch(SetUserBackGroundImageCreator(data.backGroundUrl));
+                }
+
+
             }
         }catch (err){
 

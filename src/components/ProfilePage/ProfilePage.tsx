@@ -4,6 +4,10 @@ import SideNavigationProfile from "./SideNavigationProfile";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import {useTypedSelector} from "../../hooks/useTypeSelector";
 import {Months} from "../../util/CurrentDate";
+import {useDispatch} from "react-redux";
+import {updateBackGroundPhoto, updateProfilePhoto} from "../../http/UserApi";
+import {SetUserBackGroundImageCreator, SetUserProfilePhotoCreator} from "../../Store/action-creator/userActionCreator";
+
 
 
 const ProfilePage = () => {
@@ -12,7 +16,11 @@ const ProfilePage = () => {
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
     const [aboutInfoMassive, setAboutInfoMassive] = useState<any[]>([])
 
+
+
     const data = useTypedSelector(state => state.user)
+    const dispatch = useDispatch();
+
 
     function changeBtnActive(){
         if(btnMoreInfoActive){
@@ -67,6 +75,22 @@ const ProfilePage = () => {
         return ""
     }
 
+    const handleImageChange =  async  (event: any) => {
+        const file = event.target.files[0];
+        if(file){
+            const profilePhotoUrl: string = await updateProfilePhoto({image: file, id: data.id});
+            dispatch(SetUserProfilePhotoCreator(profilePhotoUrl));
+        }
+    };
+
+    const handleBackGroundChange =  async  (event: any) => {
+        const file = event.target.files[0];
+        if(file){
+            const BackGroundUrl: string = await updateBackGroundPhoto({image: file, id: data.id});
+            dispatch(SetUserBackGroundImageCreator(BackGroundUrl));
+        }
+    };
+
 
 
     return (
@@ -74,7 +98,7 @@ const ProfilePage = () => {
             <div className={cl.row}>
                 <div className={cl.MainContentContainer}>
                     <div className={cl.MainContent}>
-                        <div className={cl.BackgroundImage}>
+                        <div style={data.backGroundUrl ? {backgroundImage:`url(${process.env.REACT_APP_API_URL}${data.backGroundUrl})`} : {}} className={cl.BackgroundImage}>
                             <div className={cl.ProfileImgAndBtnContainer}>
                                 <div className={cl.changeBtns}>
                                     <label className={cl.LabelBtn}>
@@ -84,7 +108,7 @@ const ProfilePage = () => {
                                             </svg>
                                         </span>
                                         Добавить обложку
-                                        <input type="file" placeholder="Добавить обложку"/>
+                                        <input onChange={handleBackGroundChange} type="file" placeholder="Добавить обложку"/>
                                     </label>
                                     <label className={cl.LabelBtn}>
                                         <span>
@@ -93,11 +117,11 @@ const ProfilePage = () => {
                                             </svg>
                                         </span>
                                         Добавить Аватарку
-                                        <input type="file" placeholder="Добавить Аватарку"/>
+                                        <input onChange={handleImageChange} type="file" placeholder="Добавить Аватарку"/>
                                     </label>
                                 </div>
                                 <div className={cl.ProfileImg}>
-                                    <img  src={"https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"}
+                                    <img  width={"100"} height={"100%"} src={data.profilePhoto ? `${process.env.REACT_APP_API_URL}${data.profilePhoto}` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQzLhg0HDlP9pTv_UW4xk1SftSxAvz8wRSxA&s" }
                                          alt={""}/>
                                 </div>
                             </div>

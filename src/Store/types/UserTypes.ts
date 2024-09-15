@@ -14,6 +14,8 @@ export  interface AboutDataUserInterface{
 export enum UserConstActionType{
     SET_USER="SET_USER",
     EXIT_USER="EXIT_USER",
+    SET_USERPHOTO="SET_USERPHOTO",
+    SET_BACKGROUND="SET_BACKGROUND",
 }
 
 
@@ -22,6 +24,8 @@ export  interface  UserStateInterface{
     email: string,
     login: string,
     createAt: string,
+    profilePhoto?: string,
+    backGroundUrl?: string,
     aboutData?: AboutDataUserInterface;
     isLogin: boolean,
     accessRule: accessRule,
@@ -39,6 +43,22 @@ export  interface SetUserInterfaceAction{
     },
 }
 
+
+export  interface SetUserPhotoAction{
+    type: UserConstActionType.SET_USERPHOTO,
+    payload: {
+        profilePhoto: string
+    },
+}
+
+
+export  interface SetBackGroundImage{
+    type: UserConstActionType.SET_BACKGROUND,
+    payload: {
+        backGroundUrl: string
+    },
+}
+
 export  interface ExitUserSetActionCreator{
     type: UserConstActionType.EXIT_USER,
     payload: {
@@ -46,4 +66,4 @@ export  interface ExitUserSetActionCreator{
 }
 
 
-export  type UserActionTypes = SetUserInterfaceAction | ExitUserSetActionCreator;
+export  type UserActionTypes = SetUserInterfaceAction | ExitUserSetActionCreator | SetUserPhotoAction | SetBackGroundImage;

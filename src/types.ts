@@ -131,6 +131,8 @@ export interface userDataAuthAndRegistation{
     email:string,
     name: string,
     password:string,
+    backGroundUrl?: string,
+    profilePhoto?: string
     whoCanViewMyList?:string,
     whoCanSentFriendRequest?:string,
     whoCanCommentMyProfile?:string,
@@ -154,3 +156,11 @@ export interface userSettingCurrentState{
     name: string,
     accessRule: accessRule,
 }
+
+
+export  interface updateProfileRequestTypes{
+    id: number,
+    image: any
+}
+
+

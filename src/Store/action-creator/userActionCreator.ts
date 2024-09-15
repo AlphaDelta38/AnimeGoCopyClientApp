@@ -25,3 +25,24 @@ export const ExitUserSetActionCreator= ():any => {
         }
     }
 }
+
+export const SetUserProfilePhotoCreator= (profilePhotoUrl: string):any => {
+    return (dispatch:Dispatch<UserActionTypes>) =>{
+        try {
+            dispatch({type: UserConstActionType.SET_USERPHOTO, payload: {profilePhoto: profilePhotoUrl}})
+        }catch (err){
+
+        }
+    }
+}
+
+
+export const SetUserBackGroundImageCreator = (backGroundUrl: string):any => {
+    return (dispatch:Dispatch<UserActionTypes>) =>{
+        try {
+            dispatch({type: UserConstActionType.SET_BACKGROUND, payload: {backGroundUrl: backGroundUrl}})
+        }catch (err){
+
+        }
+    }
+}

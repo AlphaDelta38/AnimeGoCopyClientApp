@@ -1,12 +1,13 @@
 import {
-    AuthTokenInterface,
+    updateProfileRequestTypes,
     userDataAuthAndRegistation,
     UserRegistrationDataInteraface,
-    userSettingCurrentState
+    userSettingCurrentState,
 } from "../types";
 import {$authHost, $host} from "./index";
 import {AxiosResponse} from "axios";
 import {jwtDecode} from "jwt-decode";
+
 
 
 export const login = async (email:string, password:string): Promise<userDataAuthAndRegistation | undefined>=>{
@@ -48,4 +49,34 @@ export const updateUSer = async (userDate: userSettingCurrentState ): Promise<us
     }catch (err){
 
     }
+}
+
+export const updateProfilePhoto = async ({id, image}: updateProfileRequestTypes): Promise<string> =>{
+    try {
+        const  {data}: AxiosResponse = await $authHost.put(`/users/update/photo/${id}`, {image: image}, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        return data;
+    }catch (e){
+
+    }
+    return ""
+}
+
+export const updateBackGroundPhoto = async ({id, image}: updateProfileRequestTypes): Promise<string> =>{
+    try {
+        const  {data}: AxiosResponse = await $authHost.put(`/users/update/background/${id}`, {image: image}, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        return data;
+    }catch (e){
+
+    }
+    return ""
 }

@@ -9,7 +9,11 @@ import {routes} from "../../routes";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import {AxiosResponse} from "axios";
 import {JwtPayload} from "jwt-decode";
-import {SetUserActionCreator} from "../../Store/action-creator/userActionCreator";
+import {
+    SetUserActionCreator,
+    SetUserBackGroundImageCreator,
+    SetUserProfilePhotoCreator
+} from "../../Store/action-creator/userActionCreator";
 
 
 
@@ -99,6 +103,12 @@ const LoginRegistrationPage = () => {
                            accessRule: {whoCanCommentMyProfile: data.whoCanCommentMyProfile, whoCanSentFriendRequest: data.whoCanSentFriendRequest, whoCanViewMyList: data.whoCanViewMyList},
                            createAt: data.createAt,
                        }))
+                   if(data.profilePhoto){
+                       dispatch(SetUserProfilePhotoCreator(data.profilePhoto));
+                   }
+                   if(data.backGroundUrl){
+                       dispatch(SetUserBackGroundImageCreator(data.backGroundUrl));
+                   }
                }
            }
         }else if(location.pathname === routes.registration){
