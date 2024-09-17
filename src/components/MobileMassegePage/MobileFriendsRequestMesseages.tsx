@@ -35,7 +35,7 @@ const MobileFriendsRequestMesseages = () => {
                         </h2>
                     </div>
                     <div className={cl.messegeas__container}>
-                        {friendrequestObj?.map((value, index, array)=><FriendRequest styles={{marginLeft:"-16px", marginRight:"-16px", paddingLeft: "16px", paddingRight:"16px"}} friendName={value.friendName}  key={index+array.length} />)}
+                        {friendrequestObj?.map((value, index, array)=><FriendRequest  id={1} styles={{marginLeft:"-16px", marginRight:"-16px", paddingLeft: "16px", paddingRight:"16px"}} friendName={value.friendName}  key={index+array.length} />)}
                     </div>
                 </div>
                 <div className={cl.sideMenu}>

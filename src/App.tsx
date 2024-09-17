@@ -28,6 +28,9 @@ import {
 } from "./Store/action-creator/userActionCreator";
 import {useDispatch} from "react-redux";
 import {useTypedSelector} from "./hooks/useTypeSelector";
+import UserProfileShowPage from "./components/ProfilePage/UserProfileShowPage";
+import {getAllMyFriedns} from "./http/FriendsApi";
+import {setFriendsDataActionCreator} from "./Store/action-creator/friendsActionCreator";
 
 
 
@@ -35,6 +38,7 @@ function App() {
 
     const [FilterBarActive, setFilterBarActive] = useState(false);
     const data = useTypedSelector(state=>state.user)
+    const data2 = useTypedSelector(state=>state.friends)
     const dispatch = useDispatch();
 
     const NoneAuthRoutes = [
@@ -48,6 +52,7 @@ function App() {
         {route: routes.VoiceOverPage, element: <CharacterPage type={"voicePerson"}/>},
         {route: routes.login, element: <LoginRegistrationPage/>},
         {route: routes.registration, element: <LoginRegistrationPage/>},
+        {route: routes.UserPfofilePage, element: <UserProfileShowPage/>},
         {route: "/*", element:  <Route path={"/*"} element={<GeneralPage  />} />},
     ]
 
@@ -69,6 +74,7 @@ function App() {
         {route: routes.Notification, element: <MobileMessagePage/>},
         {route: routes.FriendRequests, element: <MobileFriendsRequestMesseages/>},
         {route: routes.ReviewPage, element: <ReviewPage/>},
+        {route: routes.UserPfofilePage, element: <UserProfileShowPage/>},
         {route: "/*", element:  <Route path={"/*"} element={<GeneralPage  />} />},
     ]
 
@@ -93,17 +99,42 @@ function App() {
                 if(data.backGroundUrl){
                     dispatch(SetUserBackGroundImageCreator(data.backGroundUrl));
                 }
-
-
             }
         }catch (err){
 
         }
     }
+
+
+
+    async function initialFriends(){
+        try {
+            if(data.id){
+                const allFriendsShips = await getAllMyFriedns(data.id);
+                const friends = allFriendsShips?.filter((value)=>value.status === "friends");
+                const friendsRequest = allFriendsShips?.filter((value)=>value.status === "pending")
+                if(friends  && friendsRequest){
+                    dispatch(setFriendsDataActionCreator({friends: friends, friendsRequest: friendsRequest}))
+                }else if(friends  && !friendsRequest){
+                    dispatch(setFriendsDataActionCreator({friends: friends, friendsRequest: []}))
+                }else if(!friends  && friendsRequest){
+                    dispatch(setFriendsDataActionCreator({friends: [], friendsRequest: friendsRequest}))
+                }else{
+                    dispatch(setFriendsDataActionCreator({friends: [], friendsRequest: []}))
+                }
+            }
+        }catch (e){
+
+        }
+    }
+
     useEffect(()=>{
         checkLogin()
     }, [])
 
+    useEffect(() => {
+        initialFriends()
+    }, [data.id]);
 
   return (
       <BrowserRouter>

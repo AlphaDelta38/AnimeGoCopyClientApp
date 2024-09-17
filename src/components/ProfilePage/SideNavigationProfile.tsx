@@ -1,28 +1,52 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties, useEffect, useState} from 'react';
 import cl from '../modules/ProfilePageModules/SideNavigationProfile.module.css'
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {routes} from "../../routes";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
+import {getAllMyFriedns} from "../../http/FriendsApi";
+import {getAllFriensRequest} from "../../types";
 
 interface SideNavigationProfileInterface {
     styles?: CSSProperties
+    navigationAllow?: boolean
 }
 
-const SideNavigationProfile = ({styles}:SideNavigationProfileInterface) => {
+const SideNavigationProfile = ({styles, navigationAllow}:SideNavigationProfileInterface) => {
+
+    const [friendsMassive, setFriendsMassive] = useState<getAllFriensRequest[]>([]);
+    const data = useTypedSelector(state =>state.user)
+    const dataFriends = useTypedSelector(state =>state.friends)
+    const location = useLocation()
+    const navigate = useNavigate();
 
 
-    const testMassive = [
-        {ImgUrl: "https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg", name: "Andrei"},
-        {ImgUrl: "https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg", name: "Andrei"},
-        {ImgUrl: "https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg", name: "Andrei"},
-        {ImgUrl: "https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg", name: "Andrei"},
-        {ImgUrl: "https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg", name: "Andrei"},
-        {ImgUrl: "https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg", name: "Andrei"},
 
-    ]
+    async function getAllFriends(id:number){
+        if(id === data.id){
+            setFriendsMassive(dataFriends.friends)
+            return 1;
+        }
+        const friends = await getAllMyFriedns(id, "friends");
+        if(friends){
+            setFriendsMassive(friends)
+        }
+    }
+
+
+
+    useEffect(() => {
+        let id:number = 0;
+        if(location.pathname === "/profile"){
+            id = Number(data.id)
+        }else{
+            id = Number(location.pathname.split("/")[2])
+        }
+        getAllFriends(id)
+    }, [location, dataFriends.friends]);
 
     return (
         <div style={{...styles}} className={cl.container}>
-            <div className={cl.navigationContainer}>
+            <div style={navigationAllow ? {display:"none"} : {}} className={cl.navigationContainer}>
                 <div className={cl.navigationHeader}>
                     Меню
                 </div>
@@ -78,10 +102,9 @@ const SideNavigationProfile = ({styles}:SideNavigationProfileInterface) => {
                             <h5>Настройки</h5>
                         </div>
                     </Link>
-
-
                 </div>
             </div>
+
             <div className={cl.friendlist}>
                 <div className={cl.friendListHeader}>
                     <span>
@@ -90,12 +113,14 @@ const SideNavigationProfile = ({styles}:SideNavigationProfileInterface) => {
                         </svg>
                     </span>
                     <h5>Друзья</h5>
-                    2
+                    {friendsMassive.length}
                 </div>
                 <div className={cl.ListContainer}>
-                    {testMassive.map((value, index)=>
-                        <div key={value.name.length + index } style={{ backgroundImage: `url(${value.ImgUrl})`}} className={cl.friendList__item}><h5>{value.name}</h5></div>
-                    )}
+
+                    {
+                        friendsMassive.map((value, index)=>
+                            <div onClick={()=>navigate(`/profile/${value.user[0].id}`)} key={index } style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}${value.user[0].profilePhoto})`}} className={cl.friendList__item}><h5>{value.user[0].name}</h5></div>)
+                    }
                 </div>
             </div>
         </div>

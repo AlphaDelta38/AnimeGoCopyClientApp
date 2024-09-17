@@ -1,4 +1,5 @@
 import {
+    getOneUserInterFace,
     updateProfileRequestTypes,
     userDataAuthAndRegistation,
     UserRegistrationDataInteraface,
@@ -79,4 +80,13 @@ export const updateBackGroundPhoto = async ({id, image}: updateProfileRequestTyp
 
     }
     return ""
+}
+
+export const getOneUser = async (id:number): Promise<getOneUserInterFace | undefined>  =>{
+    try {
+        const  {data}: AxiosResponse<getOneUserInterFace, any> = await $host.get(`/users/${id}`);
+        return data;
+    }catch (e){
+       return undefined
+    }
 }

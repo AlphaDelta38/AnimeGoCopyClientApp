@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import cl from "../modules/HeaderModules/Header.module.css";
 import PopatUniversal from "./popatUniversal";
 import {Link} from "react-router-dom";
@@ -6,6 +6,8 @@ import {routes} from "../../routes";
 import {useTypedSelector} from "../../hooks/useTypeSelector";
 import {useDispatch} from "react-redux";
 import {ExitUserSetActionCreator} from "../../Store/action-creator/userActionCreator";
+import {getAllFriensRequest} from "../../types";
+import {getAllMyFriedns} from "../../http/FriendsApi";
 
 
 interface WithLogin {
@@ -34,6 +36,7 @@ const WithLoginBar = ({searching, setSerching}:WithLogin) => {
     const [distansePopat, setDistancePopat] = useState(0);
     const [tempTypePopat, setTempTypePopat] = useState("none");
     const data = useTypedSelector(state => state.user)
+    const dataFriend = useTypedSelector(state => state.friends)
     const dispatch = useDispatch()
 
     const [meseggesObjects, setMessegesObjects] = useState([
@@ -75,21 +78,12 @@ const WithLoginBar = ({searching, setSerching}:WithLogin) => {
         },
 
     ]);
-    const [friendrequestObj, setfriendRequestObj] = useState([
-        {
-            friendName: "Кайдзю номер восемь",
-        },
-        {
-            friendName: "AlphaDelta38",
-        },
-        {
-            friendName: "AlphaDelta38",
-        },
-        {
-            friendName: "AlphaDelta38",
-        },
 
-    ]);
+
+
+
+
+
 
     function ActivateUpdatePopat(type:string):void{
         if(type === ObjectsType.friends){
@@ -147,6 +141,9 @@ const WithLoginBar = ({searching, setSerching}:WithLogin) => {
                        <svg width={"18"} height={"18"} fill={"white"} >
                            <use xlinkHref={"/sprite.svg#friendsIcon"}></use>
                        </svg>
+                        <div style={dataFriend.friendsRequest.length > 0 ? {}  : {display:"none"}} className={cl.friendsMessageCircle}>
+                            <span>{dataFriend.friendsRequest.length}</span>
+                        </div>
                     </li>
                     <li onClick={() => {ActivateUpdatePopat(ObjectsType.messeges)}}>
                         <svg width={"16"} height={"16"} fill={"none"} stroke={"#FFF"} strokeWidth={"16px"} strokeMiterlimit={"10px"} >
@@ -154,7 +151,7 @@ const WithLoginBar = ({searching, setSerching}:WithLogin) => {
                         </svg>
                     </li>
                     <PopatUniversal
-                        objects2={friendrequestObj}
+                        objects2={dataFriend.friendsRequest}
                         objects={meseggesObjects}
                         distanse={distansePopat}
                         active={PopatActive}

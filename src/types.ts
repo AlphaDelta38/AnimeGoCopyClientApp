@@ -14,6 +14,8 @@ export interface MessegesInterface {
 
 export interface FriendsRequestInterface {
     friendName: string,
+    profilePhoto?: string
+    id: number
     styles?: CSSProperties
 }
 
@@ -36,6 +38,7 @@ export interface  RecentlyItemOjbectsInterface{
 
 
 export interface RoutesInterface {
+    UserPfofilePage: string,
     HomePage: string;
     AnimeList: string;
     MangaList: string;
@@ -164,3 +167,40 @@ export  interface updateProfileRequestTypes{
 }
 
 
+export interface  getOneUserInterFace{
+    country?: string,
+    fullname?: string,
+    city?: string,
+    gender?: string,
+    aboutUser?: string,
+    lifeStatus?: string,
+    birthDayDate?: string,
+    createdAt: string,
+    name: string,
+    backGroundPhoto?: string,
+    profilePhoto?: string
+}
+
+
+export interface  DateObject{
+    year: number,
+    day:number,
+    month: number
+}
+
+
+interface  userItemForFriendsRequest{
+    id: number,
+    name: string,
+    profilePhoto: string,
+}
+
+
+export interface getAllFriensRequest{
+    id: number,
+    friendId: number,
+    userId: number,
+    status: string,
+    user:userItemForFriendsRequest[]
+
+}
