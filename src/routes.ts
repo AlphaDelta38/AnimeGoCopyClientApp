@@ -26,7 +26,8 @@ export const routes: RoutesInterface = {
     VoiceOverPage:"/voice/:id",
     login: "/login",
     UserPfofilePage: "/profile/:id",
-    registration: "/registration"
+    registration: "/registration",
+    UserFriends: "/profile/:id/friends",
 }
 
 

@@ -39,6 +39,7 @@ export interface  RecentlyItemOjbectsInterface{
 
 export interface RoutesInterface {
     UserPfofilePage: string,
+    UserFriends: string,
     HomePage: string;
     AnimeList: string;
     MangaList: string;
@@ -189,9 +190,15 @@ export interface  DateObject{
 }
 
 
+interface friendListForUserItem{
+    id:number,
+    status:string,
+}
+
 interface  userItemForFriendsRequest{
     id: number,
     name: string,
+    friendlist?:friendListForUserItem[],
     profilePhoto: string,
 }
 

@@ -248,7 +248,7 @@ const UserProfileShowPage = () => {
                                 }
                                 {stageOfFrindsWay === "friends" &&
                                     <>
-                                        <label className={cl.LabelBtnSub}>
+                                        <label onClick={()=>activeControllerDropDownMenu()} className={cl.LabelBtnSub}>
                                             <span>
                                                 <svg width={"16px"} height={"16px"}>
                                                     <use xlinkHref={"/sprite.svg#CameraIcon"}></use>
@@ -347,7 +347,7 @@ const UserProfileShowPage = () => {
                         </div>
                     </div>
                 </div>
-                <SideNavigationProfile navigationAllow={true}/>
+                <SideNavigationProfile/>
             </div>
         </div>
     );

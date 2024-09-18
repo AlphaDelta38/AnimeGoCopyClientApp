@@ -8,14 +8,16 @@ import {getAllFriensRequest} from "../../types";
 
 interface SideNavigationProfileInterface {
     styles?: CSSProperties
-    navigationAllow?: boolean
 }
 
-const SideNavigationProfile = ({styles, navigationAllow}:SideNavigationProfileInterface) => {
+const SideNavigationProfile = ({styles}:SideNavigationProfileInterface) => {
 
     const [friendsMassive, setFriendsMassive] = useState<getAllFriensRequest[]>([]);
     const data = useTypedSelector(state =>state.user)
     const dataFriends = useTypedSelector(state =>state.friends)
+
+
+    const [allowNavigate, setAllowNavigate] = useState<boolean>(false);
     const location = useLocation()
     const navigate = useNavigate();
 
@@ -36,17 +38,29 @@ const SideNavigationProfile = ({styles, navigationAllow}:SideNavigationProfileIn
 
     useEffect(() => {
         let id:number = 0;
-        if(location.pathname === "/profile"){
+        if(location.pathname === "/profile" || isNaN(Number(location.pathname.split("/")[2]))){
             id = Number(data.id)
+            setAllowNavigate(true);
         }else{
             id = Number(location.pathname.split("/")[2])
         }
         getAllFriends(id)
+
     }, [location, dataFriends.friends]);
+
+
+    function checkWhoseFriends(){
+        if(!isNaN(Number(location.pathname.split("/")[2])) ){
+            return  `/profile/${location.pathname.split("/")[2]}/friends`
+        }else{
+            return "/profile/friends"
+        }
+    }
+
 
     return (
         <div style={{...styles}} className={cl.container}>
-            <div style={navigationAllow ? {display:"none"} : {}} className={cl.navigationContainer}>
+            <div style={allowNavigate ? {} : {display:"none"}} className={cl.navigationContainer}>
                 <div className={cl.navigationHeader}>
                     Меню
                 </div>
@@ -107,12 +121,12 @@ const SideNavigationProfile = ({styles, navigationAllow}:SideNavigationProfileIn
 
             <div className={cl.friendlist}>
                 <div className={cl.friendListHeader}>
-                    <span>
+                    <span onClick={()=>navigate(checkWhoseFriends())}>
                         <svg width={"14px"} height={"14px"} fill={"white"}>
                             <use xlinkHref={"/sprite.svg#friendsIcon"}></use>
                         </svg>
                     </span>
-                    <h5>Друзья</h5>
+                    <h5 onClick={()=>navigate(checkWhoseFriends())}>Друзья</h5>
                     {friendsMassive.length}
                 </div>
                 <div className={cl.ListContainer}>

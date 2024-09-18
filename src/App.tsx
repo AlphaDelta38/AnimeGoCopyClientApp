@@ -53,6 +53,7 @@ function App() {
         {route: routes.login, element: <LoginRegistrationPage/>},
         {route: routes.registration, element: <LoginRegistrationPage/>},
         {route: routes.UserPfofilePage, element: <UserProfileShowPage/>},
+        {route: routes.UserFriends, element: <FriendsPage/>},
         {route: "/*", element:  <Route path={"/*"} element={<GeneralPage  />} />},
     ]
 
@@ -75,6 +76,7 @@ function App() {
         {route: routes.FriendRequests, element: <MobileFriendsRequestMesseages/>},
         {route: routes.ReviewPage, element: <ReviewPage/>},
         {route: routes.UserPfofilePage, element: <UserProfileShowPage/>},
+        {route: routes.UserFriends, element: <FriendsPage/>},
         {route: "/*", element:  <Route path={"/*"} element={<GeneralPage  />} />},
     ]
 
@@ -122,6 +124,7 @@ function App() {
                 }else{
                     dispatch(setFriendsDataActionCreator({friends: [], friendsRequest: []}))
                 }
+                console.log(friends)
             }
         }catch (e){
 

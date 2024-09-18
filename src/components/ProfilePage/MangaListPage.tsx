@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import cl from "../modules/ProfilePageModules/AnimeListPage.module.css";
 import SideNavigationProfile from "./SideNavigationProfile";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -12,7 +13,7 @@ const MangaListPage = () => {
 
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
     const [choseType, setChoseType] = useState("All")
-
+    const navigate = useNavigate();
 
     function changeChooseFilter(type:string){
         setChoseType(type)
@@ -25,7 +26,7 @@ const MangaListPage = () => {
             <div className={cl.row}>
                 <div className={cl.OwnAnimeListContainer}>
                     <div className={cl.ListHeaderContainer}>
-                        <div className={cl.returnButtonContainer}>
+                        <div onClick={()=>navigate(-1)} className={cl.returnButtonContainer}>
                             <div className={cl.BtnContainer}>
                                  <span className={cl.returnArrowImgContainer}>
                                      <svg width={"16px"} height={"16px"} fill={"black"}>
