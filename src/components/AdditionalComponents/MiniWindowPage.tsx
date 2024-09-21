@@ -185,8 +185,8 @@ const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicStat
                 }
             }}
             >{title}</span>
-            <div style={active ? {minWidth:`${minWidth}px`} : {opacity:"0", pointerEvents:"none", minWidth:`${minWidth}`}} ref={miniWindowRef} className={`${stated} ${cl.OverAllClass}`}>
-                {children}
+            <div style={active ? {minWidth:`${minWidth}px`,} : {display:"none", pointerEvents:"none", minWidth:`${minWidth}`}} ref={miniWindowRef} className={`${stated} ${cl.OverAllClass}`}>
+                { active && children}
             </div>
         </div>
     );

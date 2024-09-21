@@ -1,8 +1,10 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 import cl from '../modules/ViewerItemsModules/ViewerItemAnimeManga.module.css'
 import InfoToolTip from "../AdditionalComponents/InfoToolTip";
 import RedirectionText from "../AnimePage/RedirectionText";
 import TextWithAdditionalInfo from "../AdditionalComponents/TextWithAdditionalInfo";
+import {getOneAnimePage} from "../../http/AnimePageItemApi";
+import {getALlAnimeItems} from "../../types";
 
 
 interface ViewerItemAnimeManga{
@@ -13,6 +15,9 @@ interface ViewerItemAnimeManga{
 const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
 
     const [hidingBtnActive, setHidingBtnActive] = useState(false);
+    const [dataOfAnime, setDataOfAnime] = useState<getALlAnimeItems>();
+
+
 
     function getAdditionalInfo(type:string): ReactNode{
         let textWillReturn:string = "";
@@ -30,27 +35,45 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
     }
 
 
+    async function getAnimePage(){
+        try {
+            if(id){
+                const data = await getOneAnimePage({id: id});
+                if(data){
+                    setDataOfAnime(data)
+
+                }
+            }
+        }catch (e){
+
+        }
+
+    }
+
+
+
+
+    useEffect(()=>{
+        if(id !== 0){
+            getAnimePage()
+        }
+    }, [])
+
     return (
         <div className={cl.container}>
             <div className={cl.contentContainer}>
                 <div className={cl.header}>
                     <h4 className={cl.mainName}>Башня бога 2</h4>
                     <ul className={cl.otherNames}>
-                        <li>負けヒロインが多すぎる！</li>
-                        <li>Too Many Losing Heroines!</li>
+                        <li>{dataOfAnime?.secondName}</li>
                     </ul>
                 </div>
                 <hr className={cl.hr}/>
                 <div className={cl.descriptionContainer}>
                     <div style={hidingBtnActive ? {maxHeight:"100%"} : {}} className={cl.description}>
-                        В мире появилась таинственная сила, известная как Шинсу. А ещё есть Башня — дом для людей,
-                        которые пользуются преимуществами Шинсу и называют себя «избранными». Говорят,
-                        достигший вершины Башни исполнит все свои желания. Чтобы добраться до верха, «Избранные»,
-                        отобранные хранителем Башни, обязаны пройти испытания… И вместе с ними на Башню взбирается Баам —
-                        главный герой и «Незаконный», который сам открыл себе двери. Он делает это с одной-единственной целью —
-                        найти Рахиль, что была для него всем.
+                        {dataOfAnime?.description}
                     </div>
-                    <button className={cl.hidingBtn} onClick={()=>hidingBtnActive ? setHidingBtnActive(false) : setHidingBtnActive(true)}>
+                    <button style={dataOfAnime?.description ? dataOfAnime.description.length > 225 ? {} : {display:"none"} : {display:"none"}} className={cl.hidingBtn} onClick={()=>hidingBtnActive ? setHidingBtnActive(false) : setHidingBtnActive(true)}>
                         {hidingBtnActive ?
                             "Скрыть"
                             :
@@ -72,24 +95,23 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
                             }
                         </dd>
                         <dt>Эпизоды</dt>
-                        <dd>13</dd>
+                        <dd>{dataOfAnime?.maxEpisodes}</dd>
                         <dt>Статус</dt>
-                        <dd><RedirectionText>Вышел</RedirectionText></dd>
+                        <dd><RedirectionText>{dataOfAnime?.status.status ? dataOfAnime.status.status : "Не известно"}</RedirectionText></dd>
                         <dt>Жанр</dt>
                         <dd>
-                            <RedirectionText>Фентези,</RedirectionText>
-                            <RedirectionText>Детектив,</RedirectionText>
-                            <RedirectionText>Экшен,</RedirectionText>
-                            <RedirectionText>Драма,</RedirectionText>
+                            {dataOfAnime?.genres.map((value)=>
+                                <RedirectionText>{value.genre},</RedirectionText>
+                            )}
                         </dd>
                         <dt>Первоисточник</dt>
-                        <dd>Веб-манга</dd>
+                        <dd>{dataOfAnime?.originalSource}</dd>
                         <dt>Сезон</dt>
-                        <dd><RedirectionText>Весна 2020</RedirectionText></dd>
+                        <dd><RedirectionText>{dataOfAnime?.season.season ? dataOfAnime.season.season : ""}</RedirectionText></dd>
                         <dt>Выпуск</dt>
-                        <dd>с 2 апреля 2020 по 25 июня 2020</dd>
+                        <dd>выпуск</dd>
                         <dt>Студия</dt>
-                        <dd><RedirectionText>Telecom Animation Film</RedirectionText></dd>
+                        <dd><RedirectionText>{dataOfAnime?.studio.studios}</RedirectionText></dd>
                         <dt>Рейтинг MPAA
                             <span className={cl.raitingMpaaSpanForHide}>
                                 <InfoToolTip cssProperties={{marginLeft: "6px"}}
@@ -99,16 +121,17 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
                         <dd>
                             <TextWithAdditionalInfo mainstyles={{maxHeight: "28px",color:"black"}}
                                                     textAbove={"дети до 13 лет допускаются на фильм только с родителями"}
-                                                    title={"PG-13"}/>
+                                                    title={`PG-${dataOfAnime?.raitingMPAA}`}/>
                         </dd>
                         <dt>Длительность</dt>
-                        <dd>23 мин. ~ серия</dd>
+                        <dd>{dataOfAnime?.duration} мин. ~ серия</dd>
                         <dt>Озвучка <InfoToolTip cssProperties={{marginLeft: "4px"}}
                                                  message={"Создаётся в основном любителями-фандабберами, зачастую при помощи лишь микрофона, компьютера и текста."}/>
                         </dt>
                         <dd>
-                            <RedirectionText>Anilibria,</RedirectionText>
-                            <RedirectionText>JAMClub,</RedirectionText>
+                            {dataOfAnime?.voiceOvers.map((value)=>
+                                <RedirectionText>{value.name},</RedirectionText>
+                            )}
                         </dd>
                         <dt style={{marginTop:"1rem"}}>Снят по манге</dt>
                         <dd style={{marginTop:"1rem"}}>DADADA</dd>

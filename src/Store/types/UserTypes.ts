@@ -1,4 +1,4 @@
-import {accessRule} from "../../types";
+import {accessRule, animeStatusResponse, starsOfuser} from "../../types";
 
 
 export  interface AboutDataUserInterface{
@@ -16,6 +16,8 @@ export enum UserConstActionType{
     EXIT_USER="EXIT_USER",
     SET_USERPHOTO="SET_USERPHOTO",
     SET_BACKGROUND="SET_BACKGROUND",
+    SET_ANIMESTATUS="SET_ANIMESTATUS",
+    SET_USERSTARS="SET_USERSTARS",
 }
 
 
@@ -28,6 +30,8 @@ export  interface  UserStateInterface{
     backGroundUrl?: string,
     aboutData?: AboutDataUserInterface;
     isLogin: boolean,
+    userStars?: starsOfuser[],
+    watchStatuses?: animeStatusResponse[],
     accessRule: accessRule,
 }
 
@@ -59,6 +63,22 @@ export  interface SetBackGroundImage{
     },
 }
 
+
+
+export  interface setWatchStatuses{
+    type: UserConstActionType.SET_ANIMESTATUS,
+    payload: {
+        watchStatuses: animeStatusResponse[]
+    },
+}
+
+export  interface setUsersStars{
+    type: UserConstActionType.SET_USERSTARS,
+    payload: {
+        stars: starsOfuser[]
+    },
+}
+
 export  interface ExitUserSetActionCreator{
     type: UserConstActionType.EXIT_USER,
     payload: {
@@ -66,4 +86,10 @@ export  interface ExitUserSetActionCreator{
 }
 
 
-export  type UserActionTypes = SetUserInterfaceAction | ExitUserSetActionCreator | SetUserPhotoAction | SetBackGroundImage;
+export  type UserActionTypes =
+    SetUserInterfaceAction
+    | ExitUserSetActionCreator
+    | SetUserPhotoAction
+    | SetBackGroundImage
+    | setUsersStars
+    | setWatchStatuses;

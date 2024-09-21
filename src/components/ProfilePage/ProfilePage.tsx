@@ -8,14 +8,24 @@ import {useDispatch} from "react-redux";
 import {updateBackGroundPhoto, updateProfilePhoto} from "../../http/UserApi";
 import {SetUserBackGroundImageCreator, SetUserProfilePhotoCreator} from "../../Store/action-creator/userActionCreator";
 
-
+interface animeWatchStatisticInterface{
+    watching: number
+    watched: number,
+    later: number,
+    throw: number,
+    planed: number,
+    allAmount: number,
+    allEpisodes: number,
+    timeWatch: string,
+    avgStar: number,
+}
 
 const ProfilePage = () => {
 
     const [btnMoreInfoActive, setBtnMoreInfoActive] = useState(false);
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
     const [aboutInfoMassive, setAboutInfoMassive] = useState<any[]>([])
-
+    const [animeWatchStatistic, setAnimeWatchStatistic] = useState<animeWatchStatisticInterface>()
 
 
     const data = useTypedSelector(state => state.user)
@@ -92,6 +102,82 @@ const ProfilePage = () => {
     };
 
 
+    function trasfromMinuteToHour(amount: number): string{
+            let amountSum = amount;
+            let month = 0;
+            let days =0;
+            if((amountSum/60)/24 >= 30){
+                month = Math.floor(((amount/60)/(24*30)));
+                amount = amount - ((month*30)*24)*60
+            }
+            if((amountSum/60)/24 < 30){
+                days = Math.floor(((amount/60) / 24));
+                amount = amount - (days * 24)*60;
+            }
+            return  `${month} м. ${days} д. ${Math.round(amount/60)} ч. `
+    }
+
+    useEffect(() => {
+        if(data.watchStatuses){
+            let timeWatch = 0;
+            let allEpisodes=0;
+            let allAmount= data.watchStatuses.length;
+            let avgStars = 0;
+            let Watching = 0;
+            let Watched = 0;
+            let Later = 0;
+            let Throw = 0;
+            let Planned = 0;
+
+            data.watchStatuses.forEach((value)=>{
+                if(value.animePage.duration && value.animePage.maxEpisodes && value.status === "Watched"){
+                    timeWatch += Number(value.animePage.duration) *  Number(value.animePage.maxEpisodes);
+                }
+                if(value.animePage.maxEpisodes && value.status === "Watched"){
+                    allEpisodes += Number(value.animePage.maxEpisodes);
+                }
+            })
+
+            if(data.userStars){
+                let count = 0;
+                data.userStars.forEach((value)=>{
+                    let next = false;
+                    data.watchStatuses?.forEach((valued)=>{
+                        if(valued.animePageId === value.animePAgeId){
+                            next= true;
+                            count++;
+                        }
+                    })
+                    if(next){
+                        avgStars += value.raiting;
+                    }
+                })
+                avgStars = avgStars/count;
+            }
+
+            Watching = data.watchStatuses.filter((value)=>value.status === "Watching").length;
+            Watched = data.watchStatuses.filter((value)=>value.status === "Watched").length;
+            Later = data.watchStatuses.filter((value)=>value.status === "Later").length;
+            Throw = data.watchStatuses.filter((value)=>value.status === "Throw").length;
+            Planned = data.watchStatuses.filter((value)=>value.status === "Planned").length;
+
+            console.log(timeWatch)
+            setAnimeWatchStatistic({
+                allAmount: allAmount,
+                allEpisodes: allEpisodes,
+                avgStar: avgStars,
+                watching: Watching,
+                watched: Watched,
+                later: Later,
+                planed: Planned,
+                throw: Throw,
+                timeWatch: trasfromMinuteToHour(timeWatch),
+            })
+
+        }
+    }, [data.watchStatuses, data.userStars]);
+
+
 
     return (
         <div style={ MobileNavBarActive ?  {transform:"translate3d(var(--translate-value), 0, 0)"} : {}} className={cl.container}>
@@ -149,7 +235,7 @@ const ProfilePage = () => {
                                     <button>{btnMoreInfoActive ? "Скрыть подробную информацию" : "Показать полную информацию"}</button>
                                 </div>
                             </div>
-                            <div className={cl.StatisticOfAnime}>
+                            <div style={data.watchStatuses && data.watchStatuses?.length > 0 ? {} : {display:"none"}} className={cl.StatisticOfAnime}>
                                 <div className={cl.StatisticHeader}>
                                    <h5> Статистика</h5>
                                 </div>
@@ -159,10 +245,10 @@ const ProfilePage = () => {
                                     </h5>
                                     <div className={cl.TimeManageContainer}>
                                         <span>
-                                            Время за просмотром:
+                                            Время за просмотром: {animeWatchStatistic?.timeWatch}
                                         </span>
                                         <span>
-                                            Средний балл:
+                                            Средний балл: {animeWatchStatistic?.avgStar}
                                         </span>
                                     </div>
                                 </div>
@@ -176,21 +262,21 @@ const ProfilePage = () => {
                                 <div className={cl.WatchStatistics}>
                                     <dl className={cl.StatisticsTable}>
                                         <dt>Смотрю</dt>
-                                        <dd>61</dd>
+                                        <dd>{animeWatchStatistic?.watching}</dd>
                                         <dt>Просмотрено</dt>
-                                        <dd>10</dd>
+                                        <dd>{animeWatchStatistic?.watched}</dd>
                                         <dt>Отложено</dt>
-                                        <dd>5</dd>
+                                        <dd>{animeWatchStatistic?.later}</dd>
                                         <dt>Брошено</dt>
-                                        <dd>6</dd>
+                                        <dd>{animeWatchStatistic?.throw}</dd>
                                         <dt>Запланировано</dt>
-                                        <dd>7</dd>
+                                        <dd>{animeWatchStatistic?.planed}</dd>
                                     </dl>
                                     <dl className={cl.StatisticsTable}>
                                         <dt>Всего в списках</dt>
-                                        <dd>252</dd>
+                                        <dd>{animeWatchStatistic?.allAmount}</dd>
                                         <dt>Эпизодов</dt>
-                                        <dd>3462</dd>
+                                        <dd>{animeWatchStatistic?.allEpisodes}</dd>
                                     </dl>
                                 </div>
                             </div>

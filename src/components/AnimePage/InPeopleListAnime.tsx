@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import cl from '../modules//AnimePageModules/InPeopleList.module.css'
+import {statisticAboutRaitingOfAnime} from "./HeaderGeneralInfo";
 
 
 
@@ -15,8 +16,11 @@ interface StatisticItem {
     styles?: Record<string, any>;
 }
 
+interface  functions{
+    setActivateRequest: (e:boolean)=>void
+}
 
-const InPeopleListAnime:React.FC<{ UiSettings: StatisticItem[], children?: React.ReactNode}> = ({UiSettings,children}) => {
+const InPeopleListAnime:React.FC<{ UiSettings: statisticAboutRaitingOfAnime | undefined, children?: React.ReactNode, func?: functions}> = ({UiSettings,children, func}) => {
 
     const PopatWindowRef = useRef<HTMLDivElement | null>(null)
     const [cordinate, setCordinate] = useState<number>(0)
@@ -52,6 +56,9 @@ const InPeopleListAnime:React.FC<{ UiSettings: StatisticItem[], children?: React
 
     function activateModalWindow(){
         setActiveWindow(true)
+        if(func){
+            func.setActivateRequest(true)
+        }
         window.addEventListener("mouseover", checkMouseOut )
         refTimeOut.current = null;
 
@@ -80,6 +87,9 @@ const InPeopleListAnime:React.FC<{ UiSettings: StatisticItem[], children?: React
 
     function disableModalWindow(){
         setActiveWindow(false)
+        if(func){
+            func.setActivateRequest(false)
+        }
         refTimeOut.current = null;
         window.removeEventListener("mouseover", checkMouseOut )
     }
@@ -100,6 +110,10 @@ const InPeopleListAnime:React.FC<{ UiSettings: StatisticItem[], children?: React
         }
     }, []);
 
+    useEffect(() => {
+        //@ts-ignore
+        console.log(UiSettings?.columDataInetface[0][0])
+    }, [UiSettings]);
 
 
     return (
@@ -115,43 +129,44 @@ const InPeopleListAnime:React.FC<{ UiSettings: StatisticItem[], children?: React
                     refTimeOut.current = null;
                 }
             }} className={cl.text}>{children}</span>
-            <div     style={UiSettings[0].styles && UiSettings[0].styles} ref={PopatWindowRef} className={activeWindow ? cl.statisticContainerActive : cl.statisticContainer}>
+            <div style={UiSettings?.titleSettings.styles && UiSettings.titleSettings.styles} ref={PopatWindowRef} className={activeWindow ? cl.statisticContainerActive : cl.statisticContainer}>
                 <div style={{left:`${238 - cordinate}px`}} className={cl.TriangleForStatistic}></div>
                 <div className={cl.header}>
-                    {UiSettings[0].title}
+                    {UiSettings?.titleSettings.title}
                 </div>
                 <table className={cl.statisticTable}>
                     <thead>
                     <tr className={cl.TableTr}>
-                        <td style={UiSettings[1].styles && UiSettings[1].styles[0]} className={cl.SideTd}>{UiSettings[1].ColumNameOne}</td>
-                        <td style={UiSettings[1].styles && UiSettings[1].styles[1]} className={cl.CenterTd}>{UiSettings[1].ColumNameTwo}</td>
-                        <td style={UiSettings[1].styles && UiSettings[1].styles[2]} className={cl.SideTd}>{UiSettings[1].ColumNameThree}</td>
+                        <td style={UiSettings?.columName.styles && UiSettings.columName.styles[0]} className={cl.SideTd}>{UiSettings?.columName.one}</td>
+                        <td style={UiSettings?.columName.styles && UiSettings.columName.styles[0]} className={cl.CenterTd}>{UiSettings?.columName.two}</td>
+                        <td style={UiSettings?.columName.styles && UiSettings.columName.styles[0]} className={cl.SideTd}>{UiSettings?.columName.three}</td>
                     </tr>
                     </thead>
                     <tbody>
                         {
-                            UiSettings.map((value, index, array) =>
-                                index !== 1 && index !== array.length-1 && index !== 0 &&
+                            //@ts-ignore
+                            UiSettings?.columDataInetface[0].map((value, index, array) =>
+
                                 <tr key={array.length + index} className={cl.TableTr}>
-                                    <td style={value.styles && {...value.styles[0]}} className={cl.SideTd} >
-                                        {value.ColumDateOne}
+                                    <td style={UiSettings?.columName.styles && UiSettings.columName.styles[0]} className={cl.SideTd} >
+                                        {value.fieldOne}
                                     </td>
-                                    <td style={value.styles && {...value.styles[1]}} className={cl.CenterTd}>
+                                    <td style={UiSettings?.columName.styles && UiSettings.columName.styles[1]} className={cl.CenterTd}>
                                         <div className={cl.progressLineContainer}>
-                                            <div style={{width: `${Number(value.ColumDateTwo)}%`}} className={cl.progressLine}>
-                                                {`${value.ColumDateTwo}%`}
+                                            <div style={{width: `${value.fieldTwo ? value.fieldTwo : 0}%`}} className={cl.progressLine}>
+                                                {`${value.fieldTwo ? value.fieldTwo : 0}%`}
                                             </div>
                                         </div>
                                     </td>
-                                    <td style={value.styles && {...value.styles[2]}} className={cl.SideTd}>
-                                        {value.ColumDateThree}
+                                    <td style={UiSettings?.columName.styles && UiSettings.columName.styles[2]} className={cl.SideTd}>
+                                        {value.fieldThree}
                                     </td>
                                 </tr>
                             )}
                     </tbody>
                 </table>
-                <div  style={UiSettings[UiSettings.length-1].footer ? {} : {display:"none"}} className={cl.statisticFooter}>
-                    {UiSettings[UiSettings.length-1].footer}
+                <div style={UiSettings?.footer ? {} : {display:"none"}} className={cl.statisticFooter}>
+                    {UiSettings?.footer && UiSettings.footer}
                 </div>
             </div>
         </div>

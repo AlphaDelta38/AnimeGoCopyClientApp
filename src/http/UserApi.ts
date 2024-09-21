@@ -1,5 +1,6 @@
 import {
-    getOneUserInterFace,
+    animeStatusResponse,
+    getOneUserInterFace, starsOfuser,
     updateProfileRequestTypes,
     userDataAuthAndRegistation,
     UserRegistrationDataInteraface,
@@ -88,5 +89,26 @@ export const getOneUser = async (id:number): Promise<getOneUserInterFace | undef
         return data;
     }catch (e){
        return undefined
+    }
+}
+
+export const getallWatchStatusOfUser = async (id:number): Promise<animeStatusResponse[] | undefined>  =>{
+    try {
+        const  {data}: AxiosResponse<animeStatusResponse[], any> = await $host.get(`/watchstatus/${id}`);
+        return data;
+    }catch (e){
+        return undefined
+    }
+}
+
+
+
+export const getAllStarsOfUser = async (id:number): Promise< starsOfuser[] | undefined>  =>{
+    try {
+        const  {data}: AxiosResponse<starsOfuser[], any> = await $host.get(`/stars/${id}`);
+        console.log(data)
+        return data;
+    }catch (e){
+        return undefined
     }
 }

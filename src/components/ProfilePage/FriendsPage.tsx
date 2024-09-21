@@ -76,15 +76,15 @@ const FriendsPage = () => {
                         {friendsMassive.map((value, index) =>
                             <div key={index } className={cl.FriendsCardContainer}>
                                 <div className={cl.media}>
-                                    <div
+                                    <div onClick={()=>navigate(`/profile/${value.user[0].id}`)}
                                         style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}${value.user[0].profilePhoto})`}}
                                         className={cl.FriendImageContainer}>
                                     </div>
                                     <div className={cl.InfoContainerAboutFriend}>
-                                        <h5>
+                                        <h5 onClick={()=>navigate(`/profile/${value.user[0].id}`)}>
                                             {value.user[0].name}
                                         </h5>
-                                        <span>
+                                        <span onClick={()=>navigate(`/profile/${value.user[0].id}/friends`)}>
                                             { value.user[0].friendlist!.length > 0
                                                 ?
                                                 <>

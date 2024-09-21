@@ -5,10 +5,28 @@ import TextWithAdditionalInfo from "../AdditionalComponents/TextWithAdditionalIn
 import RedirectionText from "./RedirectionText";
 import MiniWindowPage from "../AdditionalComponents/MiniWindowPage";
 import VoiceOverItem from "../ViewerItems/VoiceOverItem";
+import {charactersAnime} from "../../types";
+
+
+interface GeneralInfoAboutAnimeInterface{
+    episodes: number,
+    status: string,
+    ganres: string[],
+    originalSource: string,
+    season: string,
+    studio: string,
+    raitingMPAA: number,
+    ageLimit: number,
+    duration: number,
+    characters: charactersAnime[]
+
+}
+
+const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, season,status,studio, episodes,ganres, characters}:GeneralInfoAboutAnimeInterface) => {
 
 
 
-const GeneralInfoAboutAnime = () => {
+
     return (
         <dl className={cl.tableData}>
             <dt>
@@ -25,43 +43,43 @@ const GeneralInfoAboutAnime = () => {
             <dt>Тип</dt>
             <dd>ТВ Сериал</dd>
             <dt>Эпизоды</dt>
-            <dd>12</dd>
+            <dd>{episodes}</dd>
             <dt>Статус</dt>
             <dd>
-                <RedirectionText>Онгоинг</RedirectionText>
+                <RedirectionText>{status}</RedirectionText>
             </dd>
             <dt>Жанр</dt>
             <dd>
-                <RedirectionText>Комедия,</RedirectionText>
-                <RedirectionText>Романтика,</RedirectionText>
-                <RedirectionText>Школа,</RedirectionText>
+                {ganres &&
+                    ganres.map((value)=><RedirectionText>{value},</RedirectionText>)
+                }
             </dd>
             <dt>Первоисточник</dt>
-            <dd>Легкая новвела</dd>
+            <dd>{originalSource}</dd>
             <dt>Сезон</dt>
             <dd>
-                <RedirectionText>Лето 2024</RedirectionText>
+                <RedirectionText>{season}</RedirectionText>
             </dd>
             <dt>Выпуск</dt>
             <dd>с 3 июля 2024</dd>
             <dt>Студия</dt>
             <dd>
-                <RedirectionText>Dogakobo</RedirectionText>
+                <RedirectionText>{studio}</RedirectionText>
             </dd>
             <dt>Рейтинг MPAA
                 <span className={cl.raitingMpaaSpanForHide}><InfoToolTip cssProperties={{marginLeft:"6px"}} message={"Принятая в США система оценки содержания фильма, введённая Американской киноассоциацией (MPAA). Для расшифровки значений иконки, наведите на нее курсор мыши."}/></span>
             </dt>
             <dd>
-                <TextWithAdditionalInfo mainstyles={{maxHeight:"24px"}} textAbove={"дети до 13 лет допускаются на фильм только с родителями"} title={"PG-13"}/>
+                <TextWithAdditionalInfo mainstyles={{maxHeight:"24px"}} textAbove={"дети до 13 лет допускаются на фильм только с родителями"} title={`PG-${raitingMPAA}`}/>
             </dd>
             <dt>Возрастные ограничения</dt>
             <dd>
-                <span style={{background:"black", borderRadius:"8px", color:"white", padding:"0 6px 0 6px", fontWeight:"700", maxHeight:"24px"}}>16+</span>
+                <span style={{background:"black", borderRadius:"8px", color:"white", padding:"0 6px 0 6px", fontWeight:"700", maxHeight:"24px"}}>{ageLimit}+</span>
             </dd>
             <dt>
                 Длительность
             </dt>
-            <dd>24 мин. ~ серия</dd>
+            <dd>{duration} мин. ~ серия</dd>
             <dt style={{marginTop:"10px"}}>Снят по ранобэ</dt>
             <dd style={{marginTop:"10px"}}>
                 <MiniWindowPage basicState={"bottom"} title={"Аля иногда кокетничает со мной по-русски"}>
@@ -70,22 +88,16 @@ const GeneralInfoAboutAnime = () => {
             </dd>
             <dt>Главные герои</dt>
             <dd style={{display: "flex", flexDirection: "column", alignItems: "start"}}>
-                <div className={cl.generalPerson}>
-                    <MiniWindowPage title={"Алиса Михайловна Кудзё"} basicState={"top"}>dad</MiniWindowPage>
-                    <span style={{marginLeft:"6px", display:"inline-block"}}>
-                        (озвучивает {" "}
-                        <MiniWindowPage title={"Сумирэ Уэсака"} basicState={"top"}>dada</MiniWindowPage>
-                        )
-                    </span>
-                </div>
-                <div className={cl.generalPerson}>
-                    <MiniWindowPage title={"Масатика Кудзэ"} basicState={"top"}>dad</MiniWindowPage>
-                    <span style={{marginLeft: "6px"}}>
-                        (озвучивает {" "}
-                        <MiniWindowPage title={"Кохэй Амасаки"} basicState={"top"}><VoiceOverItem/></MiniWindowPage>
-                        )
-                    </span>
-                </div>
+                {
+                    characters.map((value) =>
+                            <div className={cl.generalPerson}>
+                                <MiniWindowPage title={value.name} basicState={"top"}>dad</MiniWindowPage>
+                                <span  style={ value.voicer ? {marginLeft: "6px"} : {display:"none"}}>
+                                    (озвучивает <MiniWindowPage title={value.voicer?.name} basicState={"top"}><VoiceOverItem id={value.voicer?.id ? value.voicer.id : 0}/></MiniWindowPage>)
+                                </span>
+                            </div>
+                    )
+                }
             </dd>
         </dl>
 

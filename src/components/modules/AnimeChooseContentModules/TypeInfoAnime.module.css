@@ -28,3 +28,18 @@
     padding-right: 5px;
     cursor: pointer;
 }
+
+.ganresContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ganresContainer span:hover{
+    color: #ff5c57;
+    text-decoration: 1px solid underline;
+}
+
+.hoverEffects:hover{
+    color: #ff5c57;
+    text-decoration: 1px solid underline;
+}

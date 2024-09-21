@@ -25,8 +25,7 @@ const GeneralPage = () => {
     const widthScale = useRef<HTMLDivElement | null>(null)
     const [CurrentWidthTape, setCurrentWidthTape] = useState<number>(0)
 
-    const CurrentYear = useContext(DateContext)?.CurrentYear
-    const {MobileNavBarActive, setMobileNavBarActive, setFilterBarActive, FilterBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const {MobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
     function StartSliderCalc(e:any, type: string){
         if(type === "desktop") {

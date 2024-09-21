@@ -20,11 +20,11 @@ import ReviewPage from "./components/ReviewPage/ReviewPage";
 import MangaPage from "./components/AnimePage/MangaPage";
 import CharacterPage from "./components/CharactersList/CharacterPage";
 import LoginRegistrationPage from "./components/Login-registrationPage/LoginRegistrationPage";
-import {check} from "./http/UserApi";
+import {check, getAllStarsOfUser, getallWatchStatusOfUser} from "./http/UserApi";
 import {
     SetUserActionCreator,
     SetUserBackGroundImageCreator,
-    SetUserProfilePhotoCreator
+    SetUserProfilePhotoCreator, setUserStarsActionCreator, setUserWatchStatusesActionCreator
 } from "./Store/action-creator/userActionCreator";
 import {useDispatch} from "react-redux";
 import {useTypedSelector} from "./hooks/useTypeSelector";
@@ -131,12 +131,32 @@ function App() {
         }
     }
 
+    async function initialWatchStatusAndStars(){
+        try {
+            if(data.id){
+                const watchStatusesResponse = await getallWatchStatusOfUser(data.id)
+                if(watchStatusesResponse){
+                    dispatch(setUserWatchStatusesActionCreator(watchStatusesResponse))
+                }
+                const starsOfuserResponse = await getAllStarsOfUser(data.id)
+                if(starsOfuserResponse){
+                    dispatch(setUserStarsActionCreator(starsOfuserResponse))
+                }
+            }
+        }catch (e){
+            alert(e)
+        }
+    }
+
+
+
     useEffect(()=>{
         checkLogin()
     }, [])
 
     useEffect(() => {
         initialFriends()
+        initialWatchStatusAndStars()
     }, [data.id]);
 
   return (

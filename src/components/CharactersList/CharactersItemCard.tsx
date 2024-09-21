@@ -30,7 +30,7 @@ const CharactersItemCard= ({name, ImgUrl}:CharactersItemCardInterface) => {
     return (
             <div   className={cl.CharactersItem}>
                 <div   onMouseLeave={(e)=>functions[1](e)}  onMouseOver={(e)=>functions[0](e)} className={cl.ImgContainer}>
-                    <AdaptiveViewer  right={true} top={false} setFunctions={setFunctions}><ViewerItemCharacter/></AdaptiveViewer>
+                    <AdaptiveViewer  right={true} top={false} setFunctions={setFunctions}><ViewerItemCharacter id={2}/></AdaptiveViewer>
                     <img  width="100%" height="100%" src={`${ImgUrl}`} alt={""}/>
                 </div>
                 <div className={cl.name}>

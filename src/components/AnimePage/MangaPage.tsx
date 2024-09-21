@@ -12,6 +12,7 @@ import Coments from "../Comments/Coments";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import {ScheduleItemType} from "../../types";
 import MangaGeneralInfo from "./MangaGeneralInfo";
+import {useLocation} from "react-router-dom";
 
 
 
@@ -24,6 +25,7 @@ const MangaPage = () => {
     const [openStatusMenu, setOpenStatusMenu] = useState<boolean>(false);
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
 
+    const location = useLocation();
 
     const temporaryForStatistic = [
         {title:"В списках у людей"},
@@ -251,13 +253,13 @@ const MangaPage = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    <InPeopleListAnime UiSettings={temporaryForStatistic}
-                                                       children={"В списках у людей"}/>
+                                    {/*<InPeopleListAnime UiSettings={temporaryForStatistic}*/}
+                                    {/*                   children={"В списках у людей"}/>*/}
                                     <span className={cl.readReviewText}>Читать все рецензии</span>
                                 </div>
                             </div>
                             <div className={cl.generalInfo}>
-                                <HeaderGeneralInfo/>
+                                <HeaderGeneralInfo id={Number(location.pathname.split("/")[2])} mainName={""} secondNames={[""]}/>
                                 <hr className={cl.hr}></hr>
                                 <MangaGeneralInfo/>
                             </div>

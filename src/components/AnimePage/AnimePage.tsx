@@ -7,10 +7,15 @@ import PhotoAndVideowiever from "./PhotoAndVideowiever";
 import Linked, { LinkedItemsProps} from "./Linked";
 import VideoPlayer from "./VideoPlayer";
 import ScheduleAnime from "./ScheduleAnime";
-import {ScheduleItemType} from "../../types";
+import {getALlAnimeItems, ScheduleItemType} from "../../types";
 import Reviews from "./Reviews";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import Coments from "../Comments/Coments";
+import {getOneAnimePage, getOneStatus, setStatusOfAnimeForUser} from "../../http/AnimePageItemApi";
+import {useLocation} from "react-router-dom";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
+import {useDispatch} from "react-redux";
+import {setUserWatchStatusesActionCreator} from "../../Store/action-creator/userActionCreator";
 
 
 
@@ -22,6 +27,11 @@ const AnimePage = () => {
     const [chosenWatchStatuses, setChosenWatchStatuses] = useState<string>("none");
     const [openStatusMenu, setOpenStatusMenu] = useState<boolean>(false);
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const [dataOfAnime , setDataOfAnime] = useState<getALlAnimeItems>()
+
+    const data = useTypedSelector(state=>state.user)
+    const location = useLocation()
+    const dispatch = useDispatch();
 
     const temporaryForStatistic = [
         {title:"В списках у людей"},
@@ -76,12 +86,57 @@ const AnimePage = () => {
 
 
 
+    async function setStatus(){
+            if(dataOfAnime?.id && data.id){
+                const isSuccess = await setStatusOfAnimeForUser({animePageId: dataOfAnime!.id, status:chosenWatchStatuses, userId: data.id})
+                if(isSuccess === 1){
+                    const watchStattues = data.watchStatuses;
+                    watchStattues?.forEach((value)=>{
+                        if(value.animePageId === Number(location.pathname.split("/")[2])){
+                            value.status = chosenWatchStatuses;
+                        }
+                    })
+                    if(watchStattues){
+                        dispatch(setUserWatchStatusesActionCreator(watchStattues))
+                    }
+                }
+            }
+    }
+
+
     useEffect(()=>{
-            setOpenStatusMenu(false)
+        setOpenStatusMenu(false)
+        if(chosenWatchStatuses !== "none" && data.id){
+            setStatus()
+        }
     }, [chosenWatchStatuses])
 
+   async function getDataOfAnimePage(){
+       let id = Number(location.pathname.split("/")[2])
+       const dated = await getOneAnimePage({id: id});
+       if(dated){
+           setDataOfAnime(dated)
+       }
 
 
+       console.log(data)
+    }
+
+
+    useEffect(()=>{
+        getDataOfAnimePage()
+    },[])
+
+    useEffect(() => {
+        if(data.isLogin){
+            let id = Number(location.pathname.split("/")[2])
+            const statusMasive = data.watchStatuses?.filter((value)=>value.animePageId === id)
+
+            if(statusMasive && statusMasive.length > 0 && statusMasive[0].status){
+                setChosenWatchStatuses(statusMasive[0].status)
+            }
+        }
+    }, [data.watchStatuses]);
 
 
     return (
@@ -256,23 +311,31 @@ const AnimePage = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    <InPeopleListAnime UiSettings={temporaryForStatistic}
-                                                       children={"В списках у людей"}/>
+                                    {/*<InPeopleListAnime UiSettings={temporaryForStatistic}*/}
+                                    {/*                   children={"В списках у людей"}/>*/}
                                     <span className={cl.readReviewText}>Читать все рецензии</span>
                                 </div>
                             </div>
                             <div className={cl.generalInfo}>
-                                <HeaderGeneralInfo/>
+                                <HeaderGeneralInfo id={Number(location.pathname.split("/")[2])} mainName={dataOfAnime?.mainName!}  secondNames={dataOfAnime?.secondName ? [dataOfAnime.secondName] : []}/>
                                 <hr className={cl.hr}></hr>
-                                <GeneralInfoAboutAnime/>
+                                <GeneralInfoAboutAnime
+                                    status={dataOfAnime?.status ? dataOfAnime.status.status : ""}
+                                    episodes={dataOfAnime?.maxEpisodes ? dataOfAnime.maxEpisodes : 0}
+                                    season={dataOfAnime?.season.season!}
+                                    ganres={dataOfAnime?.genres ? [...dataOfAnime!.genres.map((value)=>value.genre)] : ["Не известно"]}
+                                    ageLimit={dataOfAnime?.ageLimit ? dataOfAnime.ageLimit : 0}
+                                    duration={dataOfAnime?.duration ? dataOfAnime.duration : 0}
+                                    originalSource={dataOfAnime?.originalSource ? dataOfAnime.originalSource : ""}
+                                    raitingMPAA={dataOfAnime?.raitingMPAA ? dataOfAnime.raitingMPAA: 0}
+                                    studio={dataOfAnime?.studio ? dataOfAnime.studio.studios : "Не известно"}
+                                    characters={dataOfAnime?.characters ? dataOfAnime.characters : []}
+                                />
                             </div>
                         </div>
                         <div className={cl.description}>
                             {
-                                "Алиса — ученица из русско-японской семьи, пользующаяся большой популярностью в школе. " +
-                                "Холодная и равнодушная к окружающим, она прекрасно учится и хороша в спорте. " +
-                                "Обычно она очень строга к своему однокласснику Масатике, но иногда заигрывает с н" +
-                                "им на русском языке, не подозревая, что на самом деле он понимает русский."
+                                dataOfAnime?.description && dataOfAnime.description
                             }
                         </div>
                         <div className={cl.animeMediaContentContainer}>

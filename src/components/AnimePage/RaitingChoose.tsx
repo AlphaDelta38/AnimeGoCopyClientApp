@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import cl from "../modules/AnimePageModules/HeaderGeneralInfo.module.css";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
+import {useLocation} from "react-router-dom";
+import {setAnimeStarForUser} from "../../http/starsApi";
+import {useDispatch} from "react-redux";
+import {setUserStarsActionCreator} from "../../Store/action-creator/userActionCreator";
 
 const RaitingChoose = () => {
     const [activeTape, setActiveTape] = useState(false);
@@ -7,15 +12,50 @@ const RaitingChoose = () => {
     const [realCurrentRaiting, setRealCurrentRaiting] = useState(0);
     const StarsNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+    const data = useTypedSelector(state => state.user)
+    const dispatch = useDispatch()
+    const location = useLocation()
+
     function rePaitRaitingStars(e: number) {
         setTempStarRaiting(e)
     }
 
+
+    async function setRaitingStar(realRaiting: number){
+        const dated = await setAnimeStarForUser({raiting: realRaiting, animePAgeId: Number(location.pathname.split("/")[2]), userId:  data.id});
+
+        const newStarDate = data.userStars
+
+        if(newStarDate){
+            newStarDate.forEach((value)=>{
+                if(value.animePAgeId === Number(location.pathname.split("/")[2]) && dated?.raiting){
+                    value.raiting = dated?.raiting;
+                }
+            })
+        }
+
+        if(dated && newStarDate){
+            dispatch(setUserStarsActionCreator(newStarDate))
+        }
+    }
+
     useEffect(() => {
         setTempStarRaiting(realCurrentRaiting);
-
+        if(!activeTape && realCurrentRaiting !== 0){
+            setRaitingStar(realCurrentRaiting);
+        }
     }, [realCurrentRaiting, activeTape]);
 
+
+    useEffect(() => {
+        if(data.userStars){
+            data.userStars.forEach((value)=>{
+                   if(value.animePAgeId === Number(location.pathname.split("/")[2])){
+                        setRealCurrentRaiting(value.raiting)
+                   }
+            })
+        }
+    }, [data.userStars]);
 
     return (
         <div style={{display:"flex"}}>

@@ -16,15 +16,15 @@ const TypeInfoAnime = ({type, year, ganres, SetkaGridActive}:TypeInfoAnimeInterf
     return (
 
         <div style={SetkaGridActive === "3x3" ? {order: 3} : {}} className={cl.container}>
-            <div>
+            <div className={cl.hoverEffects}>
                 {type}
             </div>
             <span>/</span>
-            <div>
+            <div className={cl.hoverEffects}>
                 {year}
             </div>
             <span style={SetkaGridActive === "3x3" ? {display: "none"} : {}}>/</span>
-            <div style={SetkaGridActive === "3x3" ? {display: "none"} : {}}>
+            <div className={cl.ganresContainer} style={SetkaGridActive === "3x3" ? {display: "none"} : {}}>
                 {ganres.map((value,index)=><span key={index+value.length}>{`${value},`}</span>)}
             </div>
         </div>

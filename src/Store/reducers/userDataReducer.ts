@@ -1,4 +1,5 @@
 import {UserActionTypes, UserConstActionType, UserStateInterface} from "../types/UserTypes";
+import {starsOfuser} from "../../types";
 
 
 const initialState: UserStateInterface = {
@@ -9,6 +10,9 @@ const initialState: UserStateInterface = {
     profilePhoto: "",
     aboutData: {fullname: " ", aboutUser:"", gender:"",birthday:"", lifeStatus:"", country:"", city:""},
     isLogin: false,
+    userStars: [],
+    watchStatuses: [],
+    backGroundUrl: "",
     accessRule: {}
 }
 
@@ -24,6 +28,10 @@ export const userDataReducer = (state= initialState, action:UserActionTypes): Us
             return {...state, profilePhoto: action.payload.profilePhoto}
         case UserConstActionType.SET_BACKGROUND:
             return {...state, backGroundUrl: action.payload.backGroundUrl}
+        case UserConstActionType.SET_ANIMESTATUS:
+            return {...state, watchStatuses:  action.payload.watchStatuses }
+        case UserConstActionType.SET_USERSTARS:
+            return {...state, userStars: action.payload.stars}
         default:
             return state
     }

@@ -211,3 +211,123 @@ export interface getAllFriensRequest{
     user:userItemForFriendsRequest[]
 
 }
+
+
+
+
+
+
+interface genresForAnimeItems{
+    id:number,
+    genre: string,
+}
+
+interface voiceOverForAnimeItems{
+    id:number,
+    name: string,
+}
+
+interface anime{
+    id:number,
+    imagePath:string ,
+}
+
+export interface charactersAnime{
+    id:number ,
+    name: string,
+    differentName:string ,
+    description: string,
+    role: string,
+    imagePath: string,
+    voicer?: {
+        id: number,
+        name: string,
+        imagePath:string ,
+        career: string ,
+    }
+    anime?: anime[]
+}
+
+
+
+
+
+export interface  getALlAnimeItems{
+    id: number,
+    imagePath?: string,
+    mainName: string,
+    secondName?: string,
+    maxEpisodes?: number,
+    originalSource: string,
+    raitingMPAA: number,
+    ageLimit: number,
+    duration: number,
+    description?: string,
+    framess: string[],
+    trailerPath: string,
+    realeseDate: string,
+    createdAt: string,
+    status: {
+        id: number,
+        status: string,
+    },
+    studio: {
+        id: 1,
+        studios: "A-1 Pictures"
+    },
+    season:{
+        id: 1,
+        season: "Summer"
+    },
+    genres: genresForAnimeItems[],
+    voiceOvers: voiceOverForAnimeItems[],
+    characters: charactersAnime[]
+}
+
+
+interface animeInterfaceForVoiceOver{
+    id: number,
+    imagePath: string,
+}
+
+interface characterForVoiceOverRendering{
+    id: number,
+    imagePath: string,
+    anime: animeInterfaceForVoiceOver[],
+
+}
+
+export interface VoiceOverGetOne{
+    id:number,
+    name:string,
+    imagePath: string,
+    career: string,
+    birthDay: string
+    otherNames: string[]
+    character: characterForVoiceOverRendering[]
+
+}
+
+
+
+
+export interface animeStatusResponse {
+    id: number,
+    status: string
+    animePageId: number,
+    animePage: {
+        imagePath: string,
+        mainName: string
+        secondName: string
+        maxEpisodes: number
+        duration: number
+    }
+}
+
+export interface starsOfuser{
+    id:number
+    raiting:number
+    userId:number
+    animePAgeId:number
+}
+
