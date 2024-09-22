@@ -63,7 +63,7 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
         <div className={cl.container}>
             <div className={cl.contentContainer}>
                 <div className={cl.header}>
-                    <h4 className={cl.mainName}>Башня бога 2</h4>
+                    <h4 className={cl.mainName}>{dataOfAnime?.mainName}</h4>
                     <ul className={cl.otherNames}>
                         <li>{dataOfAnime?.secondName}</li>
                     </ul>

@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import cl from '../modules/AnimePageModules/AnimePage.module.css'
 import InPeopleListAnime from "./InPeopleListAnime";
-import HeaderGeneralInfo from "./HeaderGeneralInfo";
+import HeaderGeneralInfo, {statisticAboutRaitingOfAnime} from "./HeaderGeneralInfo";
 import GeneralInfoAboutAnime from "./GeneralInfoAboutAnime";
 import PhotoAndVideowiever from "./PhotoAndVideowiever";
 import Linked, { LinkedItemsProps} from "./Linked";
@@ -11,11 +11,12 @@ import {getALlAnimeItems, ScheduleItemType} from "../../types";
 import Reviews from "./Reviews";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import Coments from "../Comments/Coments";
-import {getOneAnimePage, getOneStatus, setStatusOfAnimeForUser} from "../../http/AnimePageItemApi";
+import {getAllWatchStatus, getOneAnimePage, getOneStatus, setStatusOfAnimeForUser} from "../../http/AnimePageItemApi";
 import {useLocation} from "react-router-dom";
 import {useTypedSelector} from "../../hooks/useTypeSelector";
 import {useDispatch} from "react-redux";
 import {setUserWatchStatusesActionCreator} from "../../Store/action-creator/userActionCreator";
+import {getAllStarsOfUser} from "../../http/starsApi";
 
 
 
@@ -28,6 +29,9 @@ const AnimePage = () => {
     const [openStatusMenu, setOpenStatusMenu] = useState<boolean>(false);
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
     const [dataOfAnime , setDataOfAnime] = useState<getALlAnimeItems>()
+    const [statistic, setStatistic] = useState<statisticAboutRaitingOfAnime>()
+    const [activateRequest, setActivateRequest] = useState(false)
+
 
     const data = useTypedSelector(state=>state.user)
     const location = useLocation()
@@ -75,6 +79,38 @@ const AnimePage = () => {
         {numberOfSeries:9, nameOfSeries:"Episode 9" , dateOfOut:"28 августа 2024", status: false },
     ]
 
+    async function getStatistics() {
+        try {
+
+            const data = await getAllWatchStatus(Number(location.pathname.split("/")[2]))
+            let StatusMassive = ["Watching", "Watched", "Later", "Throw", "Planned"]
+
+            setStatistic({
+                titleSettings:{title:"В списках у людей", styles: {}},
+                columName: {one:"Пользователей", two:"Процент", three:"Список", styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},
+                columDataInetface: [
+                    // @ts-ignore
+                    StatusMassive?.map((value,index)=>{
+                        return {
+                            fieldOne: data ? (data.filter((valued)=>valued.status === value).length) : 0,
+                            fieldTwo: data ? (data?.filter((valued)=>valued.status === value).length/data?.length)*100 : 0,
+                            fieldThree: (value),
+                        }
+                    })
+                ],
+                footer: data?.length === 1 ? `В списках у ${data.length} человека` : `В списках у ${data?.length} человек`
+            })
+        }catch (e){
+
+        }
+    }
+
+    useEffect(() => {
+        if(activateRequest && !statistic){
+            getStatistics()
+        }
+    }, [activateRequest]);
+
 
     function CheckActiveStatusMenu(){
         if(openStatusMenu){
@@ -83,7 +119,6 @@ const AnimePage = () => {
             setOpenStatusMenu(true)
         }
     }
-
 
 
     async function setStatus(){
@@ -147,7 +182,7 @@ const AnimePage = () => {
                         <div className={cl.mainInfo}>
                             <div className={cl.sideImageAndActions}>
                                 <div className={cl.imageContainer}>
-                                    <PhotoAndVideowiever basePhotoPage={0} imgUrl={["https://upload.wikimedia.org/wikipedia/ru/0/08/Mushoku_Tensei.jpg"]} type={"img"}/>
+                                    <PhotoAndVideowiever basePhotoPage={0} imgUrl={[dataOfAnime?.imagePath ? `${process.env.REACT_APP_API_URL}/${dataOfAnime.imagePath}` : ""]} type={"img"}/>
                                 </div>
                                 <div className={cl.actionsContainer}>
                                     <button className={cl.watchOnlineBtn}>
@@ -311,8 +346,8 @@ const AnimePage = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    {/*<InPeopleListAnime UiSettings={temporaryForStatistic}*/}
-                                    {/*                   children={"В списках у людей"}/>*/}
+                                    <InPeopleListAnime func={{setActivateRequest: setActivateRequest}} UiSettings={statistic}
+                                                       children={"В списках у людей"}/>
                                     <span className={cl.readReviewText}>Читать все рецензии</span>
                                 </div>
                             </div>

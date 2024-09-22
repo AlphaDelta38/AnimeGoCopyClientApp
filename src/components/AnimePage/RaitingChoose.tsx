@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import cl from "../modules/AnimePageModules/HeaderGeneralInfo.module.css";
 import {useTypedSelector} from "../../hooks/useTypeSelector";
 import {useLocation} from "react-router-dom";
-import {setAnimeStarForUser} from "../../http/starsApi";
+import {getAllStarsOfUser, setAnimeStarForUser} from "../../http/starsApi";
 import {useDispatch} from "react-redux";
 import {setUserStarsActionCreator} from "../../Store/action-creator/userActionCreator";
 
@@ -10,6 +10,7 @@ const RaitingChoose = () => {
     const [activeTape, setActiveTape] = useState(false);
     const [tempStarRaiting, setTempStarRaiting] = useState(0);
     const [realCurrentRaiting, setRealCurrentRaiting] = useState(0);
+    const [starsState, setStarsState] = useState<{amount: number, avgRaiting: number}>({avgRaiting: 0, amount: 0});
     const StarsNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     const data = useTypedSelector(state => state.user)
@@ -23,6 +24,17 @@ const RaitingChoose = () => {
 
     async function setRaitingStar(realRaiting: number){
         const dated = await setAnimeStarForUser({raiting: realRaiting, animePAgeId: Number(location.pathname.split("/")[2]), userId:  data.id});
+        const dataOfStars = await getAllStarsOfUser(Number(location.pathname.split("/")[2]))
+
+        if(dataOfStars){
+            let count =0;
+            dataOfStars.forEach((value)=>{
+                if(value.raiting){
+                    count += value.raiting;
+                }
+            })
+            setStarsState({amount: dataOfStars.length, avgRaiting: (count/dataOfStars.length)})
+        }
 
         const newStarDate = data.userStars
 
@@ -39,12 +51,16 @@ const RaitingChoose = () => {
         }
     }
 
+
     useEffect(() => {
         setTempStarRaiting(realCurrentRaiting);
         if(!activeTape && realCurrentRaiting !== 0){
             setRaitingStar(realCurrentRaiting);
         }
     }, [realCurrentRaiting, activeTape]);
+
+
+
 
 
     useEffect(() => {
@@ -57,6 +73,9 @@ const RaitingChoose = () => {
         }
     }, [data.userStars]);
 
+
+
+
     return (
         <div style={{display:"flex"}}>
             <div className={cl.StarContainer}>
@@ -67,11 +86,11 @@ const RaitingChoose = () => {
                     </span>
                 <div className={cl.currentRaiting}>
                     <div className={cl.AllRaitingContainer}>
-                        <span className={cl.Raiting}>9.1</span>
+                        <span className={cl.Raiting}>{starsState.avgRaiting}</span>
                         <span className={cl.PosibleRaiting}>/10</span>
                     </div>
                     <div style={{alignItems: "start", display: "flex"}}>
-                        <span className={cl.allWhoVoted}>2408</span>
+                        <span className={cl.allWhoVoted}>{starsState.amount}</span>
                     </div>
                 </div>
             </div>

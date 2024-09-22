@@ -70,3 +70,23 @@ export const getOneStatus =  async ({animePageId,userId}:getOneStatusInterface):
 }
 
 
+
+interface getAllWatchStatusInterface extends  getOneStatusInterface{
+    status: string
+}
+
+
+export const getAllWatchStatus =  async (animePageId: number): Promise<getAllWatchStatusInterface[] | undefined> =>{
+    try {
+        const {data}:AxiosResponse<getAllWatchStatusInterface[], any> = await $authHost.get(`/watchstatus`, {
+            params: {
+                animePageId
+            }
+        });
+
+        return  data;
+    }catch (e){
+
+    }
+}
+

@@ -8,10 +8,11 @@ interface MiniWindowPageInterface{
     title: string | ReactNode;
     basicState: string;
     styles?: CSSProperties
+    containerStyles?: CSSProperties
     minWidth?: number
 }
 
-const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicState, styles, minWidth}) => {
+const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicState, styles, minWidth, containerStyles}) => {
     const [active, setActive] = useState<boolean>(false)
     const [stated, setState] = useState()
     const refForWidthContent = useRef<HTMLSpanElement | null>(null)
@@ -169,7 +170,7 @@ const MiniWindowPage: FC<MiniWindowPageInterface> = ({title, children, basicStat
 
 
     return (
-        <div className={cl.container}>
+        <div style={containerStyles} className={cl.container}>
             <span style={styles} ref={refForWidthContent} onMouseOver={()=>
                 {
                     if(!active){

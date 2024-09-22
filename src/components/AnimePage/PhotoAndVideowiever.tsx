@@ -267,7 +267,7 @@ const PhotoAndVideowiever = ({basePhotoPage, imgUrl, type}: PhotoAndVideowieverI
             }}
             onMouseOver={()=> CheckHover()} onMouseLeave={()=> { if(!ViewerActive){setHoverActive(false)} } }
             className={cl.container}
-            style={{background:`url(${type === "img" ? imgUrl[basePhotoPage] : `https://img.youtube.com/vi/${returnLinkOnThumbailVideo(imgUrl[basePhotoPage])}/hqdefault.jpg`})`,backgroundSize:"cover", backgroundPosition:"center center"}}
+            style={{background:`url(${type === "img" ? imgUrl[basePhotoPage] : `https://img.youtube.com/vi/${returnLinkOnThumbailVideo(imgUrl[basePhotoPage])}/hqdefault.jpg`})`,backgroundSize:"cover", backgroundRepeat:"no-repeat"}}
         >
             <div className={hoverActive ? cl.btnActive : type === "video" ? cl.btnActive :  cl.btn}>
                 <svg width={"32px"} height={"32px"} fill={`${type === "img" ? "none" : "black"}`} stroke={"black"} strokeWidth={"6px"} strokeMiterlimit={10} >

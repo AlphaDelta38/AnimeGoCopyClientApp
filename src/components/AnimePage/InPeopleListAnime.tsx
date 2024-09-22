@@ -110,10 +110,7 @@ const InPeopleListAnime:React.FC<{ UiSettings: statisticAboutRaitingOfAnime | un
         }
     }, []);
 
-    useEffect(() => {
-        //@ts-ignore
-        console.log(UiSettings?.columDataInetface[0][0])
-    }, [UiSettings]);
+
 
 
     return (
