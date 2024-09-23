@@ -1,6 +1,7 @@
 import {AxiosResponse} from "axios";
-import {charactersAnime} from "../types";
+import {charactersAnime, getAllLinkedCharactersInterface} from "../types";
 import {$host} from "./index";
+
 
 
 export const getOneCharacter = async (id:number):Promise<charactersAnime | undefined> =>{
@@ -9,5 +10,20 @@ export const getOneCharacter = async (id:number):Promise<charactersAnime | undef
         return data
     }catch (e){
 
+    }
+}
+
+
+
+
+
+
+
+export const getAllLinkedCharacters = async (id:number): Promise<getAllLinkedCharactersInterface | undefined> =>{
+    try {
+        const {data}: AxiosResponse<getAllLinkedCharactersInterface, any> = await $host.get(`/characters/links/${id}`);
+        return  data;
+    }catch (e){
+        alert(e)
     }
 }

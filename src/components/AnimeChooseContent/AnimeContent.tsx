@@ -52,6 +52,7 @@ const AnimeContent = ({header, SortingContentDisable, SearchButtonAvaible, style
                             rednerMassive.map((value,index)=>
                                 <AnimeItem key={index}
                                            id={value.id}
+                                           imagePath={value.imagePath}
                                            name={value.mainName}
                                            secondName={value.secondName ? value.secondName : ""}
                                            desctiption={value.description}

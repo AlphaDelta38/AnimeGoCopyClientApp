@@ -331,3 +331,25 @@ export interface starsOfuser{
     animePAgeId:number
 }
 
+
+export interface LinkedItemAnime{
+    animeId: number,
+    chrono:  string,
+    image:  string,
+    createAt: string,
+    name: string,
+    episodes: number,
+    year: string
+}
+
+export interface  getAllLinkedCharactersInterface{
+    anime: LinkedItemAnime[],
+    manga: {
+        mangeId: number,
+        image: string
+        name:string,
+        realeseDate:string,
+    }
+}
+
+

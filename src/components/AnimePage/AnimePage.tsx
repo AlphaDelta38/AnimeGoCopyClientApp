@@ -7,7 +7,7 @@ import PhotoAndVideowiever from "./PhotoAndVideowiever";
 import Linked, { LinkedItemsProps} from "./Linked";
 import VideoPlayer from "./VideoPlayer";
 import ScheduleAnime from "./ScheduleAnime";
-import {getALlAnimeItems, ScheduleItemType} from "../../types";
+import {getALlAnimeItems, getAllLinkedCharactersInterface, LinkedItemAnime, ScheduleItemType} from "../../types";
 import Reviews from "./Reviews";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import Coments from "../Comments/Coments";
@@ -17,6 +17,7 @@ import {useTypedSelector} from "../../hooks/useTypeSelector";
 import {useDispatch} from "react-redux";
 import {setUserWatchStatusesActionCreator} from "../../Store/action-creator/userActionCreator";
 import {getAllStarsOfUser} from "../../http/starsApi";
+import {getAllLinkedCharacters} from "../../http/CharactersApi";
 
 
 
@@ -31,22 +32,12 @@ const AnimePage = () => {
     const [dataOfAnime , setDataOfAnime] = useState<getALlAnimeItems>()
     const [statistic, setStatistic] = useState<statisticAboutRaitingOfAnime>()
     const [activateRequest, setActivateRequest] = useState(false)
-
+    const [renderLinkedItems, setRenderLinkedItems] = useState<getAllLinkedCharactersInterface>()
 
     const data = useTypedSelector(state=>state.user)
     const location = useLocation()
     const dispatch = useDispatch();
 
-    const temporaryForStatistic = [
-        {title:"В списках у людей"},
-        {ColumNameOne: "Пользователей", ColumNameTwo: "Процент" , ColumNameThree: "Список", styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},
-        {ColumDateOne: "8603", ColumDateTwo: "72.3" , ColumDateThree: "Запланировано", styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},
-        {ColumDateOne: "25083", ColumDateTwo: "0.4" , ColumDateThree: "Смотрю", styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},
-        {ColumDateOne: "151", ColumDateTwo: "0.4" , ColumDateThree: "Просмотрено", styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},
-        {ColumDateOne: "162", ColumDateTwo: "1.7" , ColumDateThree: "Брошено", styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},
-        {ColumDateOne: "609", ColumDateTwo: "24.8" , ColumDateThree: "Отложено",styles:[{fontWeight:"400"},{},{fontWeight:"400"}]},
-        {footer: "В списках у 34648 человек"}
-    ]
 
     const testImagesForViewer = [
         "https://img.freepik.com/free-photo/medium-shot-anime-characters-hugging_23-2150970855.jpg",
@@ -60,11 +51,6 @@ const AnimePage = () => {
     "https://www.youtube.com/embed/gS8puFPc0F0",
         "https://www.youtube.com/embed/t9GqF-oeIl0?si=ISm2G5Xee55DdoUj",
         "https://www.youtube.com/embed/26WmZyhobzs?si=Re5T-nNV3QkEpIg4",
-    ]
-
-    const LinkedTestMassive: LinkedItemsProps[] = [
-        {type:"Манхва",year:"2010"},
-        {type:"ТВ Сериал",year:"2010", timeline:"Предыстория", episodes: 12},
     ]
 
     const ScheduleTestMassive: ScheduleItemType[] = [
@@ -144,7 +130,7 @@ const AnimePage = () => {
         if(chosenWatchStatuses !== "none" && data.id){
             setStatus()
         }
-    }, [chosenWatchStatuses])
+    }, [chosenWatchStatuses, location.pathname])
 
    async function getDataOfAnimePage(){
        let id = Number(location.pathname.split("/")[2])
@@ -152,15 +138,54 @@ const AnimePage = () => {
        if(dated){
            setDataOfAnime(dated)
        }
+    }
+
+    async function getLinkedThings(){
+        const id = Number(location.pathname.split("/")[2])
+        const linkedData = await getAllLinkedCharacters(id)
+
+        const filtred = linkedData?.anime.filter((value)=>value.chrono === null ||  value.chrono === "Продолжение")
+        let currentActive: LinkedItemAnime;
+        if(filtred){
+            currentActive = filtred.filter((value)=>value.animeId === Number(location.pathname.split("/")[2]))[0]
+            filtred.sort((a, b) => new Date(a.createAt).getTime() - new Date(b.createAt).getTime())
+            let resultMassive: LinkedItemAnime[] = [];
+            filtred.forEach((value)=>{
+                if(value.animeId !== Number(location.pathname.split("/")[2]) && currentActive){
+                    if(new Date(value.createAt).getTime() < new Date(currentActive.createAt).getTime()){
+                        resultMassive.push({...value, chrono: "Предыстория"})
+                    }else{
+                        resultMassive.push({...value})
+                    }
+                }
+            })
+            if(linkedData){
+                linkedData.anime.forEach((value)=>{
+                    if(value.chrono !== "Продолжение" && value.chrono !== null && value.animeId !== Number(location.pathname.split("/")[2])){
+                        resultMassive.push({...value})
+                    }else{
+                        if(value.animeId !== Number(location.pathname.split("/")[2]) && !resultMassive.some((valued)=>valued.animeId === value.animeId)){
+                            resultMassive.push(({...value, chrono: "Альтернативаня история"}))
+                        }
+                    }
+                })
+                console.log(resultMassive)
+                setRenderLinkedItems({anime: resultMassive, manga: linkedData.manga})
+            }
+
+        }
 
 
-       console.log(data)
+
     }
 
 
+
+
     useEffect(()=>{
+        getLinkedThings()
         getDataOfAnimePage()
-    },[])
+    },[location.pathname])
 
     useEffect(() => {
         if(data.isLogin){
@@ -365,6 +390,8 @@ const AnimePage = () => {
                                     raitingMPAA={dataOfAnime?.raitingMPAA ? dataOfAnime.raitingMPAA: 0}
                                     studio={dataOfAnime?.studio ? dataOfAnime.studio.studios : "Не известно"}
                                     characters={dataOfAnime?.characters ? dataOfAnime.characters : []}
+                                    idManga={renderLinkedItems?.manga.mangeId ? renderLinkedItems?.manga.mangeId  : 0}
+                                    titleManga={renderLinkedItems?.manga.name ? renderLinkedItems?.manga.name : "none"}
                                 />
                             </div>
                         </div>
@@ -399,7 +426,7 @@ const AnimePage = () => {
                                 </div>
                             </div>
                         </div>
-                        <Linked Items={LinkedTestMassive}/>
+                        <Linked Items={renderLinkedItems!}/>
                     </div>
                     <VideoPlayer/>
                     <ScheduleAnime item={ScheduleTestMassive.reverse()}/>

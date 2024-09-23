@@ -78,6 +78,10 @@ const MangaPage = () => {
 
 
 
+
+
+
+
     return (
         <div style={MobileNavBarActive ? {transform: "translate3d(var(--translate-value), 0, 0)"} : {}}
              className={cl.container}>
@@ -272,7 +276,7 @@ const MangaPage = () => {
                                 "им на русском языке, не подозревая, что на самом деле он понимает русский."
                             }
                         </div>
-                        <Linked Items={LinkedTestMassive}/>
+                        {/*<Linked Items={LinkedTestMassive}/>*/}
                     </div>
                     <Reviews/>
                     <Coments/>

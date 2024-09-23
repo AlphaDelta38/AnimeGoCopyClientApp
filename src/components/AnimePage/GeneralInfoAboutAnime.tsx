@@ -6,6 +6,8 @@ import RedirectionText from "./RedirectionText";
 import MiniWindowPage from "../AdditionalComponents/MiniWindowPage";
 import VoiceOverItem from "../ViewerItems/VoiceOverItem";
 import {charactersAnime} from "../../types";
+import ViewerItemAnimeManga from "../ViewerItems/ViewerItemAnimeManga";
+import ViewerItemCharacter from "../ViewerItems/ViewerItemCharacter";
 
 
 interface GeneralInfoAboutAnimeInterface{
@@ -19,10 +21,12 @@ interface GeneralInfoAboutAnimeInterface{
     ageLimit: number,
     duration: number,
     characters: charactersAnime[]
+    titleManga: string,
+    idManga: number
 
 }
 
-const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, season,status,studio, episodes,ganres, characters}:GeneralInfoAboutAnimeInterface) => {
+const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, season,status,studio, episodes,ganres, characters, idManga,titleManga}:GeneralInfoAboutAnimeInterface) => {
 
 
 
@@ -82,8 +86,8 @@ const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, 
             <dd>{duration} мин. ~ серия</dd>
             <dt style={{marginTop:"10px"}}>Снят по ранобэ</dt>
             <dd style={{marginTop:"10px"}}>
-                <MiniWindowPage basicState={"bottom"} title={"Аля иногда кокетничает со мной по-русски"}>
-                    dad
+                <MiniWindowPage basicState={"bottom"} title={titleManga}>
+                    <ViewerItemAnimeManga id={idManga} type={"Manga"}/>
                 </MiniWindowPage>
             </dd>
             <dt>Главные герои</dt>
@@ -91,7 +95,7 @@ const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, 
                 {
                     characters.map((value) =>
                             <div className={cl.generalPerson}>
-                                <MiniWindowPage title={value.name} basicState={"top"}>dad</MiniWindowPage>
+                                <MiniWindowPage title={value.name} basicState={"top"}><ViewerItemCharacter id={value.id}/></MiniWindowPage>
                                 <span  style={ value.voicer ? {marginLeft: "6px"} : {display:"none"}}>
                                     (озвучивает <MiniWindowPage title={value.voicer?.name} basicState={"top"}><VoiceOverItem id={value.voicer?.id ? value.voicer.id : 0}/></MiniWindowPage>)
                                 </span>
