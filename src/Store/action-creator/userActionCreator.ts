@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {SetUserInterfaceAction, UserActionTypes, UserConstActionType, UserStateInterface} from "../types/UserTypes";
-import {animeStatusResponse, starsOfuser} from "../../types";
+import {animeStatusResponse, starsOfuser, userMessagesInterface} from "../../types";
 
 
 export const SetUserActionCreator= ({email,  login, aboutData, id, accessRule, createAt}:UserStateInterface):any => {
@@ -62,6 +62,17 @@ export const setUserWatchStatusesActionCreator = (watchStatus: animeStatusRespon
     return (dispatch:Dispatch<UserActionTypes>) =>{
         try {
             dispatch({type: UserConstActionType.SET_ANIMESTATUS, payload:{ watchStatuses: watchStatus}})
+        }catch (err){
+
+        }
+    }
+}
+
+
+export const setUserMessagesActionCreator = (messages: userMessagesInterface[] ):any => {
+    return (dispatch:Dispatch<UserActionTypes>) =>{
+        try {
+            dispatch({type: UserConstActionType.SET_USERMESSAGES, payload:{ messages: messages }})
         }catch (err){
 
         }

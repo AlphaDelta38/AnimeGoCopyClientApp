@@ -24,6 +24,5 @@ export const getAllLinkedCharacters = async (id:number): Promise<getAllLinkedCha
         const {data}: AxiosResponse<getAllLinkedCharactersInterface, any> = await $host.get(`/characters/links/${id}`);
         return  data;
     }catch (e){
-        alert(e)
     }
 }

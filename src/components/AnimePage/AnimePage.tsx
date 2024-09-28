@@ -18,6 +18,8 @@ import {useDispatch} from "react-redux";
 import {setUserWatchStatusesActionCreator} from "../../Store/action-creator/userActionCreator";
 import {getAllStarsOfUser} from "../../http/starsApi";
 import {getAllLinkedCharacters} from "../../http/CharactersApi";
+import {animeItemsInerface, getNamesOfSeriesAndDateOfOut} from "../../http/anilibriaApi";
+import {Months} from "../../util/CurrentDate";
 
 
 
@@ -33,6 +35,9 @@ const AnimePage = () => {
     const [statistic, setStatistic] = useState<statisticAboutRaitingOfAnime>()
     const [activateRequest, setActivateRequest] = useState(false)
     const [renderLinkedItems, setRenderLinkedItems] = useState<getAllLinkedCharactersInterface>()
+    const [seriesData, setSeriesData] = useState<animeItemsInerface>()
+    const [sheduleData, setSheduleData] = useState< ScheduleItemType[]>()
+
 
     const data = useTypedSelector(state=>state.user)
     const location = useLocation()
@@ -180,11 +185,38 @@ const AnimePage = () => {
     }
 
 
+    async function getallSeriesInfo(){
+        if(dataOfAnime?.mainName){
+            const data: animeItemsInerface = await getNamesOfSeriesAndDateOfOut(dataOfAnime.mainName)
+            setSeriesData(data)
+            console.log(data, "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ")
+            let tempSheduleMassive: ScheduleItemType[] =[];
+
+
+            for (let i = 1; i <= data.player.episodes.last; i++) {
+                const date = new Date(data.player.list[i].created_timestamp * 1000)
+                if(!data.player.list[i].name){
+                    tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: "Не известно", numberOfSeries: i})
+                }else if(data.player.list[i].name && data){
+                    tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: data.player.list[i].name!, numberOfSeries: i})
+                }
+            }
+            setSheduleData(tempSheduleMassive)
+        }
+    }
+
+
+
+    useEffect(() => {
+            getallSeriesInfo()
+    }, [dataOfAnime?.mainName]);
+
 
 
     useEffect(()=>{
         getLinkedThings()
         getDataOfAnimePage()
+
     },[location.pathname])
 
     useEffect(() => {
@@ -428,8 +460,8 @@ const AnimePage = () => {
                         </div>
                         <Linked Items={renderLinkedItems!}/>
                     </div>
-                    <VideoPlayer/>
-                    <ScheduleAnime item={ScheduleTestMassive.reverse()}/>
+                    <VideoPlayer seriesData={seriesData}/>
+                    <ScheduleAnime  item={sheduleData ? sheduleData : []}/>
                     <Reviews/>
                     <Coments/>
                 </div>

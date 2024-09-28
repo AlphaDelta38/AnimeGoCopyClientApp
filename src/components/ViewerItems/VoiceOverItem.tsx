@@ -20,7 +20,6 @@ const VoiceOverItem = ({id}:VoiceOverItemInterface) => {
     async function getVoicer(){
         const voicerData = await getOneVoicer(id);
         setVoicerStateData(voicerData);
-        console.log(voicerData, 21312312321312312312)
     }
 
 

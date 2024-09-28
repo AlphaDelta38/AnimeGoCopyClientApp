@@ -152,7 +152,7 @@ const WithLoginBar = ({searching, setSerching}:WithLogin) => {
                     </li>
                     <PopatUniversal
                         objects2={dataFriend.friendsRequest}
-                        objects={meseggesObjects}
+                        objects={data.messages ? data.messages : []}
                         distanse={distansePopat}
                         active={PopatActive}
                         type={TypeDataPopat}

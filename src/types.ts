@@ -8,6 +8,7 @@ export interface MessegesInterface {
     VoiceOver: string,
     isSaw: boolean,
     when: string,
+    imgUrl: string
     styles?: CSSProperties
 }
 
@@ -353,3 +354,11 @@ export interface  getAllLinkedCharactersInterface{
 }
 
 
+export interface userMessagesInterface{
+    id: number,
+    name: string,
+    number: number,
+    voiceOver: string,
+    howLongBefore: string,
+    animeImgUrl:string,
+}

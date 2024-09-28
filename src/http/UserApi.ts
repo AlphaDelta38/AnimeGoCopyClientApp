@@ -2,7 +2,7 @@ import {
     animeStatusResponse,
     getOneUserInterFace, starsOfuser,
     updateProfileRequestTypes,
-    userDataAuthAndRegistation,
+    userDataAuthAndRegistation, userMessagesInterface,
     UserRegistrationDataInteraface,
     userSettingCurrentState,
 } from "../types";
@@ -107,6 +107,17 @@ export const getAllStarsOfUser = async (id:number): Promise< starsOfuser[] | und
     try {
         const  {data}: AxiosResponse<starsOfuser[], any> = await $host.get(`/stars/${id}`);
         console.log(data)
+        return data;
+    }catch (e){
+        return undefined
+    }
+}
+
+
+export const getALlMyMessage = async (): Promise< userMessagesInterface[] | undefined>  =>{
+    try {
+        const  {data}: AxiosResponse<userMessagesInterface[], any> = await $authHost.get(`/users/messages`);
+
         return data;
     }catch (e){
         return undefined

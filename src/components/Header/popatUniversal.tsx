@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from "../modules/HeaderModules/Header.module.css"
 import {ObjectsType} from "./WithLoginBar";
-import {FriendsRequestInterface, getAllFriensRequest, MessegesInterface} from "../../types";
+import { getAllFriensRequest, userMessagesInterface} from "../../types";
 import MessegesComponent from "./MessegesComponent";
 import FriendRequest from "./FriendRequest";
 
@@ -9,7 +9,7 @@ import FriendRequest from "./FriendRequest";
 
 interface PopatUniversalInterface {
     Title: string,
-    objects?: MessegesInterface[],
+    objects?: userMessagesInterface[],
     objects2?: getAllFriensRequest[],
     message: string,
     active:boolean,
@@ -33,7 +33,7 @@ const PopatUniversal = ({Title,objects,objects2, message , active, type,distanse
                 {
                     type === ObjectsType.messeges &&
                     objects?.map((value, index, array)=>
-                        <MessegesComponent key={index+array.length} AnimeName={value.AnimeName} isSaw={value.isSaw} NofSeries={value.NofSeries} VoiceOver={value.VoiceOver} when={value.when}/>
+                        <MessegesComponent key={index+array.length}  imgUrl={value.animeImgUrl} AnimeName={value.name} isSaw={false} NofSeries={value.number}  VoiceOver={value.voiceOver} when={value.howLongBefore}/>
                     )
                 }
                 {type === ObjectsType.friends &&

@@ -27,6 +27,8 @@ const AnimeItem = ({name, secondName, SetkaGridActive, genres,imagePath, year, t
 
     const navigate = useNavigate()
 
+
+
     return (
         <div  style={SetkaGridActive === '3x3' ? {flex: "25%"} : SetkaGridActive === '2x2'  ? {flex: "50%"} :  {flex: "100%"}  } className={ SetkaGridActive === '3x3' ? cl.container3x3 : SetkaGridActive === '2x2'  ? cl.container2x2 :  cl.container }>
             <div className={SetkaGridActive === "2x3" ? cl.content : SetkaGridActive === "2x2" ? cl.content : cl.content3x3 }>

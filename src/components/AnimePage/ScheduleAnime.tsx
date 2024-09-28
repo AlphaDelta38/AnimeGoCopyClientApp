@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import cl from '../modules/AnimePageModules/Schedule.module.css'
 import {ScheduleItemType} from "../../types";
 import TextWithAdditionalInfo from "../AdditionalComponents/TextWithAdditionalInfo";
+import {animeItemsInerface} from "../../http/anilibriaApi";
 
 interface ScheduleAnimeInterface{
     item: ScheduleItemType[];
@@ -25,7 +26,7 @@ enum Months {
 
 const ScheduleAnime = ({item}:ScheduleAnimeInterface) => {
 
-    const [itemMassive, setItemMassive] = useState<ScheduleItemType[]>(item);
+    const [itemMassive, setItemMassive] = useState<ScheduleItemType[]>([]);
     const [activeOpenBtn, setActiveOpenBtn] = useState<boolean>(false)
 
     function getDayForm(days: number): string {
@@ -39,7 +40,7 @@ const ScheduleAnime = ({item}:ScheduleAnimeInterface) => {
             return 'дней';
         }
     }
-
+    console.log(item, "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
 
     function calcDifferentDay(year:string, months: keyof typeof Months, day:string): string{
 
@@ -68,6 +69,11 @@ const ScheduleAnime = ({item}:ScheduleAnimeInterface) => {
             setActiveOpenBtn(true)
         }
     }
+
+
+    useEffect(() => {
+        setItemMassive(item.reverse())
+    }, [item]);
 
     return (
         <div className={cl.container}>

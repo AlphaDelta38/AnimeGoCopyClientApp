@@ -12,6 +12,7 @@ const initialState: UserStateInterface = {
     isLogin: false,
     userStars: [],
     watchStatuses: [],
+    messages: [],
     backGroundUrl: "",
     accessRule: {}
 }
@@ -32,6 +33,8 @@ export const userDataReducer = (state= initialState, action:UserActionTypes): Us
             return {...state, watchStatuses:  action.payload.watchStatuses }
         case UserConstActionType.SET_USERSTARS:
             return {...state, userStars: action.payload.stars}
+        case UserConstActionType.SET_USERMESSAGES:
+            return {...state, messages: action.payload.messages}
         default:
             return state
     }

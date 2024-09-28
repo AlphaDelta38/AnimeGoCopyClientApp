@@ -3,13 +3,21 @@ import cl from '../modules/AnimePageModules/VideoPlayer.module.css'
 import MiniWindowPage from "../AdditionalComponents/MiniWindowPage";
 import {AnimePageType} from "../../types";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
-import {unstable_renderSubtreeIntoContainer} from "react-dom";
+import {getAllSeries} from "../../http/kodik-Api";
+import {useLocation} from "react-router-dom";
+import {animeItemsInerface} from "../../http/anilibriaApi";
+import {Months} from "../../util/CurrentDate";
 
 
 
 
+interface VideoPlayerInterface{
+    seriesData?: animeItemsInerface
+}
 
-const VideoPlayer = () => {
+
+
+const VideoPlayer = ({seriesData}:VideoPlayerInterface) => {
     const [dataOfAnime, setDataofAnime] = useState<AnimePageType[] | null>()
     const [sortedMassive, setSortedMassive] = useState<AnimePageType>()
     const [currentEpisode, setCurrentEpisode] = useState<number>(1)
@@ -31,8 +39,8 @@ const VideoPlayer = () => {
     const refCurrentPositionTape = useRef<number>(0)
     const refLastPositionTape = useRef<number>(0)
     const refTapeContainer = useRef<HTMLDivElement | null>(null)
+    const location = useLocation()
 
-    const haveAccessTranslation = ["JAM","AniLibria.TV","Crunchyroll.Subtitles","AniRise","AniBaza","AniDub Online","AnimeVost","SHIZA Project","Dream Cast","AniStar","Amazing Dubbing","AniDUB"]
 
 
     function checkTranslationSideBarActive(){
@@ -83,9 +91,13 @@ const VideoPlayer = () => {
 
 
     async function  getAllDataAbaoutAnime(){
-        const data = await fetch(`https://kodikapi.com/search?token=${process.env.REACT_APP_KODIK_API_TOKEN}&title=${"Башня Бога [ТВ-2]"}&with_seasons=true&with_episodes=true&full_match=true&translations=false`).then((e)=>e.json())
+        const data = await getAllSeries(Number(location.pathname.split("/")[2]))
+        if(!data){
+           return 0;
+        }
         let sorted:AnimePageType[] = [];
-        data.results.forEach((element:any) => haveAccessTranslation.includes(element.translation.title) && sorted.push(element))
+        data.forEach((element:any) => sorted.push(element))
+
         if(sorted.length !== 0){
             setDataofAnime(sorted)
         }else{
@@ -99,7 +111,7 @@ const VideoPlayer = () => {
         max_series.sort((a,b)=> a + b)
 
         setMaxEpisode(max_series[0])
-        setCurrentTranslation(data.results[0].translation.title)
+        setCurrentTranslation(data[0].translation.title)
     }
 
 
@@ -259,6 +271,13 @@ const VideoPlayer = () => {
         }
     }, [currentEpisode,RenderTranslationMassive]);
 
+
+    function dateForSeries(timeStamp: number): string{
+        const date = new Date(timeStamp * 1000)
+
+        return `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`
+    }
+
     return (
         <div className={cl.container}>
             <div className={cl.header}>
@@ -378,8 +397,8 @@ const VideoPlayer = () => {
                 </div>
             </div>
             <div className={cl.descriptionAboutSeries}>
-                <div>Название: <span className={cl.descriptionText}>{'A storm arrives'}</span></div>
-                <div>Дата выхода: <span className={cl.descriptionText}>{'14 августа 2024 '}</span></div>
+                <div>Название: <span className={cl.descriptionText}>{seriesData ? seriesData.player.list[currentEpisode].name ? seriesData.player.list[currentEpisode].name  : "неизвестно" : "нету"}</span></div>
+                <div>Дата выхода: <span className={cl.descriptionText}>{seriesData ? dateForSeries(seriesData.player.list[currentEpisode].created_timestamp) : "не известно"}</span></div>
             </div>
         </div>
     );

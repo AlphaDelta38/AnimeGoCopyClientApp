@@ -10,21 +10,7 @@ const MobileFriendsRequestMesseages = () => {
 
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
     const dataFriend = useTypedSelector(state =>state.friends)
-    const [friendrequestObj, setfriendRequestObj] = useState([
-        {
-            friendName: "Кайдзю номер восемь",
-        },
-        {
-            friendName: "AlphaDelta38",
-        },
-        {
-            friendName: "AlphaDelta38",
-        },
-        {
-            friendName: "AlphaDelta38",
-        },
 
-    ]);
 
     return (
         <div style={MobileNavBarActive ? {transform: "translate3d(var(--translate-value), 0, 0)"} : {}}

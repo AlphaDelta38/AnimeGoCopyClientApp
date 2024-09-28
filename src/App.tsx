@@ -20,10 +20,10 @@ import ReviewPage from "./components/ReviewPage/ReviewPage";
 import MangaPage from "./components/AnimePage/MangaPage";
 import CharacterPage from "./components/CharactersList/CharacterPage";
 import LoginRegistrationPage from "./components/Login-registrationPage/LoginRegistrationPage";
-import {check, getAllStarsOfUser, getallWatchStatusOfUser} from "./http/UserApi";
+import {check, getALlMyMessage, getAllStarsOfUser, getallWatchStatusOfUser} from "./http/UserApi";
 import {
     SetUserActionCreator,
-    SetUserBackGroundImageCreator,
+    SetUserBackGroundImageCreator, setUserMessagesActionCreator,
     SetUserProfilePhotoCreator, setUserStarsActionCreator, setUserWatchStatusesActionCreator
 } from "./Store/action-creator/userActionCreator";
 import {useDispatch} from "react-redux";
@@ -31,6 +31,9 @@ import {useTypedSelector} from "./hooks/useTypeSelector";
 import UserProfileShowPage from "./components/ProfilePage/UserProfileShowPage";
 import {getAllMyFriedns} from "./http/FriendsApi";
 import {setFriendsDataActionCreator} from "./Store/action-creator/friendsActionCreator";
+import {updateALlAnime} from "./http/kodik-Api";
+import axios from "axios";
+import {userMessagesInterface} from "./types";
 
 
 
@@ -124,7 +127,6 @@ function App() {
                 }else{
                     dispatch(setFriendsDataActionCreator({friends: [], friendsRequest: []}))
                 }
-                console.log(friends)
             }
         }catch (e){
 
@@ -148,6 +150,36 @@ function App() {
         }
     }
 
+    async function initialMessages(){
+        try {
+            if(data.id){
+                const messages: userMessagesInterface[] | undefined = await getALlMyMessage()
+                if(messages){
+                    dispatch(setUserMessagesActionCreator(messages))
+                }
+            }
+        }catch (e){
+        }
+    }
+
+    async function updateAllAnime(animePages: number[]){
+            await updateALlAnime(animePages);
+    }
+
+    useEffect(() => {
+        if(data.watchStatuses){
+            let massvieAnimeId: number[] =[];
+
+            data.watchStatuses.forEach((value)=>{
+                if(value.status === "Watching"){
+                    massvieAnimeId.push(value.animePageId)
+                }
+            })
+            if(massvieAnimeId.length >= 1){
+                updateAllAnime(massvieAnimeId)
+            }
+        }
+    }, [data.watchStatuses]);
 
 
     useEffect(()=>{
@@ -157,8 +189,9 @@ function App() {
     useEffect(() => {
         initialFriends()
         initialWatchStatusAndStars()
+        initialMessages()
     }, [data.id]);
-
+    
   return (
       <BrowserRouter>
           <Header setFilterBarActive={setFilterBarActive}  FilterBarActive={FilterBarActive} ></Header>
