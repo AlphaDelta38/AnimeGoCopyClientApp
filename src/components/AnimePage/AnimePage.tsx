@@ -7,7 +7,13 @@ import PhotoAndVideowiever from "./PhotoAndVideowiever";
 import Linked, { LinkedItemsProps} from "./Linked";
 import VideoPlayer from "./VideoPlayer";
 import ScheduleAnime from "./ScheduleAnime";
-import {getALlAnimeItems, getAllLinkedCharactersInterface, LinkedItemAnime, ScheduleItemType} from "../../types";
+import {
+    getALlAnimeItems,
+    getAllLinkedCharactersInterface,
+    LinkedItemAnime,
+    ScheduleItemType,
+    setWatchedStatus
+} from "../../types";
 import Reviews from "./Reviews";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import Coments from "../Comments/Coments";
@@ -20,6 +26,7 @@ import {getAllStarsOfUser} from "../../http/starsApi";
 import {getAllLinkedCharacters} from "../../http/CharactersApi";
 import {animeItemsInerface, getNamesOfSeriesAndDateOfOut} from "../../http/anilibriaApi";
 import {Months} from "../../util/CurrentDate";
+import {getWatchedSeries} from "../../http/UserApi";
 
 
 
@@ -58,17 +65,6 @@ const AnimePage = () => {
         "https://www.youtube.com/embed/26WmZyhobzs?si=Re5T-nNV3QkEpIg4",
     ]
 
-    const ScheduleTestMassive: ScheduleItemType[] = [
-        {numberOfSeries:1, nameOfSeries:"Alya Hides Her Feelings in Russian" , dateOfOut:"3 июля 2024", status: true },
-        {numberOfSeries:2, nameOfSeries:"So Much for Childhood Friends" , dateOfOut:"10 июля 2024", status: false },
-        {numberOfSeries:3, nameOfSeries:"And So They Met" , dateOfOut:"17 июля 2024", status: false },
-        {numberOfSeries:4, nameOfSeries:"An Outpouring of Emotion" , dateOfOut:"24 июля 2024", status: false },
-        {numberOfSeries:5, nameOfSeries:"Different People, Common Undercurrent" , dateOfOut:"31 июля 2024", status: false },
-        {numberOfSeries:6, nameOfSeries:"A Kiss of the Indirect Variety" , dateOfOut:"7 августа 2024", status: false },
-        {numberOfSeries:7, nameOfSeries:"A Storm Arrives" , dateOfOut:"14 августа 2024", status: false },
-        {numberOfSeries:8, nameOfSeries:"Episode 8" , dateOfOut:"21 августа 2024", status: false },
-        {numberOfSeries:9, nameOfSeries:"Episode 9" , dateOfOut:"28 августа 2024", status: false },
-    ]
 
     async function getStatistics() {
         try {
@@ -187,24 +183,36 @@ const AnimePage = () => {
 
     async function getallSeriesInfo(){
         if(dataOfAnime?.mainName){
-            const data: animeItemsInerface = await getNamesOfSeriesAndDateOfOut(dataOfAnime.mainName)
-            setSeriesData(data)
-            console.log(data, "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ")
+            const datad: animeItemsInerface = await getNamesOfSeriesAndDateOfOut(dataOfAnime.mainName)
+            setSeriesData(datad)
             let tempSheduleMassive: ScheduleItemType[] =[];
 
 
-            for (let i = 1; i <= data.player.episodes.last; i++) {
-                const date = new Date(data.player.list[i].created_timestamp * 1000)
-                if(!data.player.list[i].name){
+            for (let i = 1; i <= datad.player.episodes.last; i++) {
+                const date = new Date(datad.player.list[i].created_timestamp * 1000)
+                if(!datad.player.list[i].name){
                     tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: "Не известно", numberOfSeries: i})
-                }else if(data.player.list[i].name && data){
-                    tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: data.player.list[i].name!, numberOfSeries: i})
+                }else if(datad.player.list[i].name && data){
+                    tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: datad.player.list[i].name!, numberOfSeries: i})
                 }
             }
+
             setSheduleData(tempSheduleMassive)
+
+
         }
     }
 
+
+    async function watchedSeries(){
+        const watchedseriesData: setWatchedStatus | setWatchedStatus[] | undefined = await getWatchedSeries({userId: data.id, animeId: Number(location.pathname.split("/")[2]), seriesWatched:[]})
+        let forChange = sheduleData;
+        if(forChange){
+            //@ts-ignore
+            forChange[0].seriesWatched = watchedseriesData.seriesWatched
+        }
+        setSheduleData(forChange);
+    }
 
 
     useEffect(() => {
@@ -227,6 +235,7 @@ const AnimePage = () => {
             if(statusMasive && statusMasive.length > 0 && statusMasive[0].status){
                 setChosenWatchStatuses(statusMasive[0].status)
             }
+            watchedSeries()
         }
     }, [data.watchStatuses]);
 
@@ -412,8 +421,9 @@ const AnimePage = () => {
                                 <HeaderGeneralInfo id={Number(location.pathname.split("/")[2])} mainName={dataOfAnime?.mainName!}  secondNames={dataOfAnime?.secondName ? [dataOfAnime.secondName] : []}/>
                                 <hr className={cl.hr}></hr>
                                 <GeneralInfoAboutAnime
-                                    status={dataOfAnime?.status ? dataOfAnime.status.status : ""}
-                                    episodes={dataOfAnime?.maxEpisodes ? dataOfAnime.maxEpisodes : 0}
+                                    currentEpisode={dataOfAnime?.maxEpisodess ? dataOfAnime.maxEpisodess : 0}
+                                    realeseDateStamp={seriesData ? seriesData.player.list[1].created_timestamp : 0}
+                                    episodes={seriesData?.player.episodes.string.split("-")[1] ? seriesData?.player.episodes.string.split("-")[1] : "?" }
                                     season={dataOfAnime?.season.season!}
                                     ganres={dataOfAnime?.genres ? [...dataOfAnime!.genres.map((value)=>value.genre)] : ["Не известно"]}
                                     ageLimit={dataOfAnime?.ageLimit ? dataOfAnime.ageLimit : 0}
@@ -460,8 +470,8 @@ const AnimePage = () => {
                         </div>
                         <Linked Items={renderLinkedItems!}/>
                     </div>
-                    <VideoPlayer seriesData={seriesData}/>
-                    <ScheduleAnime  item={sheduleData ? sheduleData : []}/>
+                    <VideoPlayer watchedSeries={sheduleData && sheduleData[0].seriesWatched ? sheduleData[0].seriesWatched : [0]} dataForAnimePage={dataOfAnime} setDataForAnimePage={setDataOfAnime} seriesData={seriesData}/>
+                    <ScheduleAnime  item={sheduleData && sheduleData[0].seriesWatched ? sheduleData : []}/>
                     <Reviews/>
                     <Coments/>
                 </div>

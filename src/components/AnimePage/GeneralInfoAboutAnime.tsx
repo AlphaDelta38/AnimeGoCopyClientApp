@@ -8,11 +8,12 @@ import VoiceOverItem from "../ViewerItems/VoiceOverItem";
 import {charactersAnime} from "../../types";
 import ViewerItemAnimeManga from "../ViewerItems/ViewerItemAnimeManga";
 import ViewerItemCharacter from "../ViewerItems/ViewerItemCharacter";
+import {Months} from "../../util/CurrentDate";
 
 
 interface GeneralInfoAboutAnimeInterface{
-    episodes: number,
-    status: string,
+    episodes: string,
+    realeseDateStamp: number,
     ganres: string[],
     originalSource: string,
     season: string,
@@ -23,23 +24,28 @@ interface GeneralInfoAboutAnimeInterface{
     characters: charactersAnime[]
     titleManga: string,
     idManga: number
+    currentEpisode: number
 
 }
 
-const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, season,status,studio, episodes,ganres, characters, idManga,titleManga}:GeneralInfoAboutAnimeInterface) => {
+const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, season,realeseDateStamp,studio, episodes,ganres, characters, idManga,titleManga, currentEpisode}:GeneralInfoAboutAnimeInterface) => {
 
 
+    function calcDateForRealese(timeStamp: number): string{
+        const date = new Date(timeStamp * 1000)
 
+        return `с ${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`
+    }
 
     return (
         <dl className={cl.tableData}>
-            <dt>
+            <dt style={Number(episodes) === currentEpisode ? {display:"none"} : {}}>
                 Следующий эпизод
                 <span>
                     <InfoToolTip cssProperties={{marginLeft: "4px"}} width={18} height={18} message={"Указана дата выхода Эпизода на телеэкранах Японии. На сайте появится в течении нескольких часов"}/>
                 </span>
             </dt>
-            <dd>
+            <dd style={Number(episodes) === currentEpisode ? {display:"none"} : {}}>
                 <TextWithAdditionalInfo textAbove={"Через 6 дней"} title={"7 авг. 2024 ср 17.30"}/>
                 ожидается выход 6 серии
             </dd>
@@ -47,10 +53,10 @@ const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, 
             <dt>Тип</dt>
             <dd>ТВ Сериал</dd>
             <dt>Эпизоды</dt>
-            <dd>{episodes}</dd>
+            <dd>{Number(episodes) === currentEpisode ? episodes : `${currentEpisode} / ${episodes}`}</dd>
             <dt>Статус</dt>
             <dd>
-                <RedirectionText>{status}</RedirectionText>
+                <RedirectionText>{Number(episodes) === currentEpisode ? "Вышел" : "Онгоинг"}</RedirectionText>
             </dd>
             <dt>Жанр</dt>
             <dd>
@@ -64,8 +70,8 @@ const GeneralInfoAboutAnime = ({duration, ageLimit, originalSource,raitingMPAA, 
             <dd>
                 <RedirectionText>{season}</RedirectionText>
             </dd>
-            <dt>Выпуск</dt>
-            <dd>с 3 июля 2024</dd>
+            <dt style={Number(episodes) === currentEpisode ? {} : {display:"none"}}>Выпуск</dt>
+            <dd style={Number(episodes) === currentEpisode ? {} : {display:"none"}}>{calcDateForRealese(realeseDateStamp)}</dd>
             <dt>Студия</dt>
             <dd>
                 <RedirectionText>{studio}</RedirectionText>

@@ -10,6 +10,7 @@ export interface MessegesInterface {
     when: string,
     imgUrl: string
     styles?: CSSProperties
+    id:number
 }
 
 
@@ -112,7 +113,7 @@ export interface ScheduleItemType{
     nameOfSeries: string,
     dateOfOut: string,
     status: boolean
-
+    seriesWatched?: number[]
 }
 
 
@@ -259,6 +260,7 @@ export interface  getALlAnimeItems{
     mainName: string,
     secondName?: string,
     maxEpisodes?: number,
+    maxEpisodess: number
     originalSource: string,
     raitingMPAA: number,
     ageLimit: number,
@@ -268,6 +270,7 @@ export interface  getALlAnimeItems{
     trailerPath: string,
     realeseDate: string,
     createdAt: string,
+    lastEpisode?: number,
     status: {
         id: number,
         status: string,
@@ -361,4 +364,43 @@ export interface userMessagesInterface{
     voiceOver: string,
     howLongBefore: string,
     animeImgUrl:string,
+}
+
+
+
+export interface setWatchedStatus{
+    userId: number,
+    animeId: number,
+    seriesWatched: number[]
+}
+
+
+
+
+export interface  commentsItemsInterface{
+    id: number,
+    userId: number,
+    message: string
+    name?: string
+    likes: number[],
+    commentsId: number | null,
+    animePageId?: number,
+    mangaPageId?: number,
+    createdAt: string
+    photoPath?: string
+    answers?: commentsItemsInterface[],
+    comments: {
+        userId: number,
+        name: number,
+        message: string,
+    }
+}
+
+
+export interface createCommentsInterface{
+    commentsId?: number,
+    likes: number[]
+    message: string
+    userId: number
+    animePageId: number
 }

@@ -1,23 +1,28 @@
 import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import cl from '../modules/AnimePageModules/VideoPlayer.module.css'
 import MiniWindowPage from "../AdditionalComponents/MiniWindowPage";
-import {AnimePageType} from "../../types";
+import {AnimePageType, getALlAnimeItems, setWatchedStatus} from "../../types";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import {getAllSeries} from "../../http/kodik-Api";
 import {useLocation} from "react-router-dom";
 import {animeItemsInerface} from "../../http/anilibriaApi";
 import {Months} from "../../util/CurrentDate";
+import {setWatchedSeries} from "../../http/UserApi";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
 
 
 
 
 interface VideoPlayerInterface{
     seriesData?: animeItemsInerface
+    setDataForAnimePage: (e:getALlAnimeItems )=>void
+    dataForAnimePage?: getALlAnimeItems
+    watchedSeries: number[]
 }
 
 
 
-const VideoPlayer = ({seriesData}:VideoPlayerInterface) => {
+const VideoPlayer = ({seriesData, dataForAnimePage,setDataForAnimePage,watchedSeries}:VideoPlayerInterface) => {
     const [dataOfAnime, setDataofAnime] = useState<AnimePageType[] | null>()
     const [sortedMassive, setSortedMassive] = useState<AnimePageType>()
     const [currentEpisode, setCurrentEpisode] = useState<number>(1)
@@ -29,8 +34,12 @@ const VideoPlayer = ({seriesData}:VideoPlayerInterface) => {
     const [startX, setStartX] = useState<number>(0)
     const [phantomSeriesChosen, setPhantomSeriesChosen] = useState<number>(0)
     const [accessToSwapActios, setAccessToSwapActios] = useState<boolean>(false)
+    const [eyeCheckedSeries, setEyeCheckSeries] = useState<boolean>(false)
 
     const {TranslationsSideBarActive, setTranslationsSideBarActive, setMobileNavBarActive,setFunmassive,setTranslationsStateMassive }:ToggleContextProps = useContext(ToggleContext)!
+
+
+
 
 
 
@@ -39,6 +48,8 @@ const VideoPlayer = ({seriesData}:VideoPlayerInterface) => {
     const refCurrentPositionTape = useRef<number>(0)
     const refLastPositionTape = useRef<number>(0)
     const refTapeContainer = useRef<HTMLDivElement | null>(null)
+
+    const userData = useTypedSelector(user => user.user);
     const location = useLocation()
 
 
@@ -228,6 +239,26 @@ const VideoPlayer = ({seriesData}:VideoPlayerInterface) => {
     }
 
 
+    async function wathcedSeriesController(){
+        let newMassive = [...watchedSeries]
+        if(eyeCheckedSeries){
+            newMassive = newMassive.filter((value)=>value !== currentEpisode)
+            setEyeCheckSeries(false)
+        }else{
+            newMassive.push(currentEpisode)
+            setEyeCheckSeries(true)
+        }
+
+
+
+
+
+        const response = await  setWatchedSeries({seriesWatched: newMassive, userId: userData.id, animeId: Number(location.pathname.split("/")[2])})
+        if(response === 1){
+            watchedSeries = newMassive;
+        }
+    }
+
     useEffect(() => {
 
         getAllDataAbaoutAnime()
@@ -242,6 +273,9 @@ const VideoPlayer = ({seriesData}:VideoPlayerInterface) => {
     }, []);
 
     useEffect(()=>{
+        if(dataForAnimePage  && dataForAnimePage.maxEpisodess === undefined){
+            setDataForAnimePage({...dataForAnimePage!, maxEpisodess: maxEpisode})
+        }
         if(refTapeContainer.current && maxEpisode){
             controllerStateSwapSeriesBtnActive()
             window.addEventListener("resize", controllerStateSwapSeriesBtnActive)
@@ -269,7 +303,15 @@ const VideoPlayer = ({seriesData}:VideoPlayerInterface) => {
         if(RenderTranslationMassive){
             setTranslationsStateMassive([...RenderTranslationMassive])
         }
+
+        if(watchedSeries.includes(currentEpisode)){
+            setEyeCheckSeries(true)
+        }else{
+            setEyeCheckSeries(false)
+        }
     }, [currentEpisode,RenderTranslationMassive]);
+
+
 
 
     function dateForSeries(timeStamp: number): string{
@@ -342,9 +384,9 @@ const VideoPlayer = ({seriesData}:VideoPlayerInterface) => {
                                         </svg>
                                     </button>
                                 </div>
-                                <div className={cl.sawTheSeries}>
-                                    <svg className={cl.sawIcon}>
-                                        <use xlinkHref={"/sprite.svg#EyeIcon"}></use>
+                                <div  onClick={()=>wathcedSeriesController()} className={cl.sawTheSeries}>
+                                    <svg style={eyeCheckedSeries ?  {} : {fill:"gray"}} className={cl.sawIcon}>
+                                        <use xlinkHref={eyeCheckedSeries ? "/sprite.svg#EyeIcon"  : "/sprite.svg#EyeCrossedIcon" }></use>
                                     </svg>
                                 </div>
                             </div>

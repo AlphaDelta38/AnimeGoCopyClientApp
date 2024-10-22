@@ -35,52 +35,10 @@ const WithLoginBar = ({searching, setSerching}:WithLogin) => {
     const [messegeas, setMessegeas] = useState("");
     const [distansePopat, setDistancePopat] = useState(0);
     const [tempTypePopat, setTempTypePopat] = useState("none");
+    const [currentMessageLenght, setCurrentMessageLenght]  =useState<number>(0)
     const data = useTypedSelector(state => state.user)
     const dataFriend = useTypedSelector(state => state.friends)
     const dispatch = useDispatch()
-
-    const [meseggesObjects, setMessegesObjects] = useState([
-        {
-            AnimeName: "Кайдзю номер восемь",
-            NofSeries: 9,
-            VoiceOver: "StudioBand",
-            isSaw: false,
-            when: "5 часов назад",
-        },
-        {
-            AnimeName: "Злодейка наслаждается своей седьмой жизнью в качестве свободолюбивой невесты во вражеской стране",
-            NofSeries: 24,
-            VoiceOver: "StudioBand",
-            isSaw: false,
-            when: "11 часов назад",
-
-        },
-        {
-            AnimeName: "Злодейка наслаждается своей седьмой жизнью в качестве свободолюбивой невесты во вражеской стране",
-            NofSeries: 5,
-            VoiceOver: "StudioBand",
-            isSaw: false,
-            when: "5 дней назад",
-        },
-        {
-            AnimeName: "История покорения знаменитого горячего источника в другом мире: Реинкарнация сорокалетнего любителя горячих источников в умиротворяющем курортном раю",
-            NofSeries: 4,
-            VoiceOver: "StudioBand",
-            isSaw: false,
-            when: "16 дней назад",
-        },
-        {
-            AnimeName: "Семь смертных грехов",
-            NofSeries: 3,
-            VoiceOver: "StudioBand",
-            isSaw: false,
-            when: "месяц назад",
-        },
-
-    ]);
-
-
-
 
 
 
@@ -118,6 +76,32 @@ const WithLoginBar = ({searching, setSerching}:WithLogin) => {
     }
 
 
+    function messageStorageEventFunction(e: StorageEvent){
+        if(e.key === "isSeenMessage"){
+            const newLenght = JSON.parse(e.newValue!)
+            if(newLenght !== null){
+                setCurrentMessageLenght(newLenght.length)
+            }else{
+                setCurrentMessageLenght(0)
+            }
+        }
+    }
+
+    useEffect(() => {
+        const string = localStorage.getItem("isSeenMessage")
+
+        if(string !== null){
+            const massive = JSON.parse(string)
+            setCurrentMessageLenght(massive.length)
+        }else{
+            setCurrentMessageLenght(0)
+        }
+        window.addEventListener("storage", messageStorageEventFunction)
+        return () =>{
+            window.removeEventListener("storage", messageStorageEventFunction)
+        }
+    }, );
+
 
     return (
         <ul className={cl.WithLoginNavigation}>
@@ -146,9 +130,13 @@ const WithLoginBar = ({searching, setSerching}:WithLogin) => {
                         </div>
                     </li>
                     <li onClick={() => {ActivateUpdatePopat(ObjectsType.messeges)}}>
-                        <svg width={"16"} height={"16"} fill={"none"} stroke={"#FFF"} strokeWidth={"16px"} strokeMiterlimit={"10px"} >
+                        <svg width={"16"} height={"16"} fill={"none"} stroke={"#FFF"} strokeWidth={"16px"}
+                             strokeMiterlimit={"10px"}>
                             <use xlinkHref={"/sprite.svg#messegesBell"}></use>
                         </svg>
+                        <div style={ data.messages && (data.messages?.length - currentMessageLenght) > 0 ? {} : {display: "none"}} className={cl.messageCircle}>
+                            <span>{data.messages && data.messages?.length - currentMessageLenght}</span>
+                        </div>
                     </li>
                     <PopatUniversal
                         objects2={dataFriend.friendsRequest}

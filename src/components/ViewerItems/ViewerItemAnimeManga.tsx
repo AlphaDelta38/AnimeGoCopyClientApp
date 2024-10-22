@@ -4,7 +4,9 @@ import InfoToolTip from "../AdditionalComponents/InfoToolTip";
 import RedirectionText from "../AnimePage/RedirectionText";
 import TextWithAdditionalInfo from "../AdditionalComponents/TextWithAdditionalInfo";
 import {getOneAnimePage} from "../../http/AnimePageItemApi";
-import {getALlAnimeItems} from "../../types";
+import {getALlAnimeItems, ScheduleItemType} from "../../types";
+import {animeItemsInerface, getNamesOfSeriesAndDateOfOut} from "../../http/anilibriaApi";
+import {Months} from "../../util/CurrentDate";
 
 
 interface ViewerItemAnimeManga{
@@ -16,7 +18,7 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
 
     const [hidingBtnActive, setHidingBtnActive] = useState(false);
     const [dataOfAnime, setDataOfAnime] = useState<getALlAnimeItems>();
-
+    const  [seriesData,setSeriesData] = useState<animeItemsInerface>();
 
 
     function getAdditionalInfo(type:string): ReactNode{
@@ -50,14 +52,29 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
 
     }
 
+    async function getallSeriesInfo(){
+        try {
+            if(dataOfAnime?.mainName){
+                const data: animeItemsInerface = await getNamesOfSeriesAndDateOfOut(dataOfAnime.mainName);
+                setSeriesData(data)
 
+            }
+        }catch(e){
+
+        }
+    }
 
 
     useEffect(()=>{
-        if(id !== 0){
-            getAnimePage()
+        if(id !== 0 && !dataOfAnime?.mainName){
+            getAnimePage();
+
         }
-    }, [])
+        if(dataOfAnime?.mainName){
+            getallSeriesInfo();
+
+        }
+    }, [dataOfAnime])
 
     return (
         <div className={cl.container}>
@@ -95,9 +112,14 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
                             }
                         </dd>
                         <dt>Эпизоды</dt>
-                        <dd>{dataOfAnime?.maxEpisodes}</dd>
+                        <dd>
+                            {Number(seriesData?.player.episodes.string.split("-")[1] ) === dataOfAnime?.lastEpisode!
+                                ? seriesData?.player.episodes.string.split("-")[1]
+                                : `${dataOfAnime?.lastEpisode!} / ${seriesData?.player.episodes.string.split("-")[1]}`
+                            }
+                        </dd>
                         <dt>Статус</dt>
-                        <dd><RedirectionText>{dataOfAnime?.status.status ? dataOfAnime.status.status : "Не известно"}</RedirectionText></dd>
+                        <dd> <RedirectionText>{Number(seriesData?.player.episodes.string.split("-")[1]) === dataOfAnime?.lastEpisode! ? "Вышел" : "Онгоинг"}</RedirectionText></dd>
                         <dt>Жанр</dt>
                         <dd>
                             {dataOfAnime?.genres.map((value)=>
@@ -109,7 +131,15 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
                         <dt>Сезон</dt>
                         <dd><RedirectionText>{dataOfAnime?.season.season ? dataOfAnime.season.season : ""}</RedirectionText></dd>
                         <dt>Выпуск</dt>
-                        <dd>выпуск</dd>
+                        <dd>с
+                            {  seriesData &&
+                            `
+                            ${ new Date(seriesData?.player.list[1].created_timestamp!).getDate()}
+                            ${Months[new Date(seriesData?.player.list[1].created_timestamp!).getMonth() + 1]}
+                            ${new Date(seriesData?.player.list[1].created_timestamp!*1000).getFullYear()}
+                            `
+                        }
+                        </dd>
                         <dt>Студия</dt>
                         <dd><RedirectionText>{dataOfAnime?.studio.studios}</RedirectionText></dd>
                         <dt>Рейтинг MPAA

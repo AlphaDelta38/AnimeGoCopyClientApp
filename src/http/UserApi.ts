@@ -1,6 +1,6 @@
 import {
     animeStatusResponse,
-    getOneUserInterFace, starsOfuser,
+    getOneUserInterFace, setWatchedStatus, starsOfuser,
     updateProfileRequestTypes,
     userDataAuthAndRegistation, userMessagesInterface,
     UserRegistrationDataInteraface,
@@ -119,6 +119,43 @@ export const getALlMyMessage = async (): Promise< userMessagesInterface[] | unde
         const  {data}: AxiosResponse<userMessagesInterface[], any> = await $authHost.get(`/users/messages`);
 
         return data;
+    }catch (e){
+        return undefined
+    }
+}
+
+export const deleteMesseage = async (messageId:number): Promise< number | undefined>  =>{
+    try {
+        const  {data}: AxiosResponse<number, any> = await $authHost.delete(`/users/messages/delete/${messageId}`);
+        return data;
+    }catch (e){
+        return undefined
+    }
+}
+
+export const setWatchedSeries = async (info: setWatchedStatus): Promise< number | undefined>  =>{
+    try {
+        const  {data}: AxiosResponse<number, any> = await $authHost.post(`/series/setWatched`, {...info});
+        return data;
+    }catch (e){
+        return undefined
+    }
+}
+
+export const getWatchedSeries = async (info: setWatchedStatus): Promise< setWatchedStatus[] | setWatchedStatus | undefined>  =>{
+    try {
+
+       if(info.animeId && info.userId){
+           const  {data}: AxiosResponse<setWatchedStatus, any> = await $authHost.get(`/series/setWatched`, {params:{
+                    animeId: info.animeId,
+                    userId: info.userId,
+               }});
+           return  data;
+       }else{
+           const  {data}: AxiosResponse<setWatchedStatus[], any> = await $authHost.get(`/series/setWatched`, );
+           return  data;
+       }
+
     }catch (e){
         return undefined
     }

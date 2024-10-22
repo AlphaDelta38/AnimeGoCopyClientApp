@@ -1,6 +1,6 @@
 import {$authHost, $host} from "./index";
 import {AxiosResponse} from "axios";
-import {getALlAnimeItems} from "../types";
+import {commentsItemsInterface, createCommentsInterface, getALlAnimeItems} from "../types";
 import exp from "node:constants";
 
 
@@ -82,6 +82,49 @@ export const getAllWatchStatus =  async (animePageId: number): Promise<getAllWat
             params: {
                 animePageId
             }
+        });
+
+        return  data;
+    }catch (e){
+
+    }
+}
+
+
+export const getAllCommentsAboutAnime =  async (animePageId: number): Promise<commentsItemsInterface[] | undefined> =>{
+    try {
+        const {data}:AxiosResponse<commentsItemsInterface[], any> = await $authHost.get(`/comments`, {
+            params: {
+                animePageId
+            }
+        });
+        let copy = [...data]
+
+
+        return  copy;
+    }catch (e){
+
+    }
+}
+
+
+export const createNewComments =  async (body: createCommentsInterface): Promise<commentsItemsInterface| undefined> =>{
+    try {
+        const {data}:AxiosResponse<commentsItemsInterface, any> = await $authHost.post(`/comments`, {
+            ...body
+        });
+
+        return  data;
+    }catch (e){
+
+    }
+}
+
+export const setLikesForAnime =  async (id: number, likes: number): Promise<number| undefined> =>{
+    try {
+        const {data}:AxiosResponse<number, any> = await $authHost.put(`/comments/likes`, {
+            id: id,
+            likes: likes,
         });
 
         return  data;

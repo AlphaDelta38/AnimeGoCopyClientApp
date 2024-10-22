@@ -1296,6 +1296,23 @@
     text-align: center;
 }
 
+.messageCircle{
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    right: 12px;
+    top: 8px;
+    line-height: 1.2;
+    font-family: none !important;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
 
 
 

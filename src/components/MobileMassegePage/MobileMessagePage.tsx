@@ -32,6 +32,7 @@ const MobileMessagePage = () => {
                     <div className={cl.messegeas__container}>
                         { dataUser.messages?.map((value, index, array)=>
                             <MessegesComponent
+                                id={value.id}
                                 key={index+array.length}
                                 AnimeName={value.name}
                                 isSaw={false}

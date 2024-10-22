@@ -16,10 +16,14 @@ export interface animeItemsInerface{
         episodes: {
             first: number,
             last: number,
+            string: string,
         }
         list: {
             [key: string]: Episode;
         };
+    },
+    status: {
+        string: string
     }
 }
 
@@ -38,11 +42,13 @@ export const getNamesOfSeriesAndDateOfOut = async  (animeName: string): Promise<
         return p1;
     });
 
+
     const {data}: AxiosResponse<namesOfSeriesInterface, any> = await axios.get("https://api.anilibria.tv/v3/title/search", {
         params : {
             search: newStr,
-            filter: "player"
+            filter: "player,status,episodes"
         }
     } )
+
     return data.list[0]
 }

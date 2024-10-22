@@ -8,8 +8,30 @@
     display: flex;
     box-sizing: content-box;
     border-bottom: 1px solid rgba(0,0,0,.125);
+    cursor: pointer;
 
 }
+
+.MessegeContainer:hover{
+    background-color: rgba(175, 175, 175, 0.2);
+}
+
+
+.MessegeContainerNotSeen{
+    min-width: 100px;
+    padding: .75rem 1.25rem;
+    position: relative;
+    display: flex;
+    box-sizing: content-box;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    cursor: pointer;
+    background-color: rgba(163, 126, 89, 0.2);
+}
+
+.MessegeContainerNotSeen:hover{
+    background-color: rgba(175, 175, 175, 0.2);
+}
+
 
 .MessegeContainer:nth-child(1){
 }
@@ -70,4 +92,23 @@
 
 .friendsBtnContainer button:hover{
     background-color: #9d0e0e;
+}
+
+
+.deleteIconContainer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    margin-right: 12px;
+    margin-top: 12px;
+}
+
+
+.deleteIcon{
+    width: 14px;
+    height: 14px;
+    fill: black;
 }

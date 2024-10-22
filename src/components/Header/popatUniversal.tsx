@@ -33,7 +33,7 @@ const PopatUniversal = ({Title,objects,objects2, message , active, type,distanse
                 {
                     type === ObjectsType.messeges &&
                     objects?.map((value, index, array)=>
-                        <MessegesComponent key={index+array.length}  imgUrl={value.animeImgUrl} AnimeName={value.name} isSaw={false} NofSeries={value.number}  VoiceOver={value.voiceOver} when={value.howLongBefore}/>
+                        <MessegesComponent key={index+array.length}  id={value.id} imgUrl={value.animeImgUrl} AnimeName={value.name} isSaw={false} NofSeries={value.number}  VoiceOver={value.voiceOver} when={value.howLongBefore}/>
                     )
                 }
                 {type === ObjectsType.friends &&

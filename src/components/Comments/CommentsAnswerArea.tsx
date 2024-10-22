@@ -2,21 +2,29 @@ import React, {useRef, useState} from 'react';
 import cl from '../modules/CommentsModules/CommentsAnswerArea.module.css'
 import TextWithAdditionalInfo from "../AdditionalComponents/TextWithAdditionalInfo";
 import {textEncoder} from "../../util/TextEncoder";
+import {createCommentsInterface} from "../../types";
+import {useLocation} from "react-router-dom";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
 
 interface CommentsAnswerAreaInterface{
     cancelBtnFunc?: ()=>void
     cancelBtnFalse?: boolean
+    setData: (e:string)=>void
+    data: string
+    createCommentFunc: ( body: createCommentsInterface )=>void
+    id?: number
 }
 
 
-const CommentsAnswerArea = ({cancelBtnFunc, cancelBtnFalse}:CommentsAnswerAreaInterface) => {
+const CommentsAnswerArea = ({id,createCommentFunc,setData,data,cancelBtnFunc, cancelBtnFalse}:CommentsAnswerAreaInterface) => {
 
-    const [textAreaInputdata,setTextAreaInputdata] = useState<string>("")
     const refTextArea = useRef<HTMLTextAreaElement>(null)
+    const location = useLocation()
+    const userData = useTypedSelector(user => user.user)
 
     function customizeText(type:string){
-        let text = textEncoder(textAreaInputdata, type, refTextArea.current!.selectionStart, refTextArea.current!.selectionEnd);
-        setTextAreaInputdata(text)
+        let text = textEncoder(data, type, refTextArea.current!.selectionStart, refTextArea.current!.selectionEnd);
+        setData(text)
     }
 
     return (
@@ -49,8 +57,15 @@ const CommentsAnswerArea = ({cancelBtnFunc, cancelBtnFalse}:CommentsAnswerAreaIn
                     </TextWithAdditionalInfo>
                 </div>
             </div>
-            <textarea value={textAreaInputdata} onChange={(e) => setTextAreaInputdata(e.target.value)} ref={refTextArea} className={cl.textAreaInput} placeholder={"Текст отзыва"}></textarea>
-            <button className={cl.sendBtn}>
+            <textarea value={data} onChange={(e) => setData(e.target.value)} ref={refTextArea} className={cl.textAreaInput} placeholder={"Текст отзыва"}></textarea>
+            <button onClick={()=>createCommentFunc(
+                {
+                    commentsId: id,
+                    animePageId: Number(location.pathname.split("/")[2]),
+                    userId: userData.id,
+                    message: data ,
+                    likes :[0]
+                })} className={cl.sendBtn}>
                 Отправить
             </button>
             <button style={cancelBtnFalse ? {display:"none"} : {}} onClick={cancelBtnFunc} className={cl.cancelBtn}>
