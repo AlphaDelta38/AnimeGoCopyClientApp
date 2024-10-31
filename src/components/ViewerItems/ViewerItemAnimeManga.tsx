@@ -55,7 +55,7 @@ const ViewerItemAnimeManga = ({id,type}:ViewerItemAnimeManga) => {
     async function getallSeriesInfo(){
         try {
             if(dataOfAnime?.mainName){
-                const data: animeItemsInerface = await getNamesOfSeriesAndDateOfOut(dataOfAnime.mainName);
+                const data: animeItemsInerface | undefined = await getNamesOfSeriesAndDateOfOut(dataOfAnime.mainName);
                 setSeriesData(data)
 
             }

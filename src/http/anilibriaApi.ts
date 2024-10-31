@@ -33,22 +33,25 @@ interface namesOfSeriesInterface{
 }
 
 
-export const getNamesOfSeriesAndDateOfOut = async  (animeName: string): Promise<animeItemsInerface> =>{
+export const getNamesOfSeriesAndDateOfOut = async  (animeName: string): Promise<animeItemsInerface | undefined> =>{
+    try {
+        let newStr = animeName.replace(/\[ТВ-(\d+)\]/, (match, p1) => {
+            if (p1 === "1") {
+                return ""; // Убираем [ТВ-1]
+            }
+            return p1;
+        });
 
-    let newStr = animeName.replace(/\[ТВ-(\d+)\]/, (match, p1) => {
-        if (p1 === "1") {
-            return ""; // Убираем [ТВ-1]
-        }
-        return p1;
-    });
 
+        const {data}: AxiosResponse<namesOfSeriesInterface, any> = await axios.get("https://api.anilibria.tv/v3/title/search", {
+            params : {
+                search: newStr,
+                filter: "player,status,episodes"
+            }
+        } )
 
-    const {data}: AxiosResponse<namesOfSeriesInterface, any> = await axios.get("https://api.anilibria.tv/v3/title/search", {
-        params : {
-            search: newStr,
-            filter: "player,status,episodes"
-        }
-    } )
+        return data.list[0]
+    }catch (e){
 
-    return data.list[0]
+    }
 }

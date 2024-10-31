@@ -404,3 +404,29 @@ export interface createCommentsInterface{
     userId: number
     animePageId: number
 }
+
+
+export interface createReviewInterface {
+    title: string
+    text: string
+    userId: number
+    animeId: number
+}
+
+export interface reviewInterface {
+    stars: number
+    likes: number[]
+    title: string
+    text: string
+    userId: number
+    animeId: number
+    createdAt: string
+    id:number
+    user: getOneUserInterFace
+}
+
+export interface setReviewLikesInterface{
+    reviewId: number
+    likes: number
+    type: string
+}

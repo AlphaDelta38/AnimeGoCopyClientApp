@@ -5,6 +5,10 @@ import TextWithAdditionalInfo from "../AdditionalComponents/TextWithAdditionalIn
 import {textDecoder, textEncoder} from '../../util/TextEncoder'
 import {currentDate} from "../../util/CurrentDate";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
+import {createReviewForAnime, getOneAnimePage} from "../../http/AnimePageItemApi";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {getALlAnimeItems} from "../../types";
+import {useTypedSelector} from "../../hooks/useTypeSelector";
 
 
 const ReviewPage = () => {
@@ -17,6 +21,11 @@ const ReviewPage = () => {
     const refDescription = useRef<HTMLDivElement>(null)
 
     const {MobileNavBarActive, setMobileNavBarActive}:ToggleContextProps = useContext(ToggleContext)!
+    const [animeDate, setAnimeDate] = useState<getALlAnimeItems>()
+
+    const  userData = useTypedSelector(user => user.user)
+    const location = useLocation()
+    const navigate = useNavigate()
 
     function customizeText(type:string){
         let text = textEncoder(textAreaInputdata, type, refTextArea.current!.selectionStart, refTextArea.current!.selectionEnd);
@@ -30,11 +39,44 @@ const ReviewPage = () => {
             }
     }
 
+
+
+    async function getDataOfAnimePage(){
+        let id = Number(location.pathname.split("/")[2])
+        const dated = await getOneAnimePage({id: id});
+
+        if(dated){
+            setAnimeDate(dated)
+        }
+    }
+
+
+    async function createReview(){
+        if(headerInputData.length > 30 && textAreaInputdata.length > 500 && animeDate){
+            const response = await createReviewForAnime({userId: userData.id, text: textAreaInputdata, animeId: animeDate.id, title: headerInputData});
+            if(response === 1){
+                navigate(`/anime/${animeDate.id}`)
+            }else{
+                alert("Ошибка создания рецензии");
+            }
+        }
+    }
+
+
     useEffect(() => {
         if(!reviewCreateActive){
             refDescription.current!.innerHTML = textDecoder(textAreaInputdata);
         }
-    }, [reviewCreateActive]);
+        if(location.pathname){
+            getDataOfAnimePage()
+        }
+    }, [reviewCreateActive, location.pathname]);
+
+
+
+
+
+
 
 
     return (
@@ -43,7 +85,7 @@ const ReviewPage = () => {
                 <div className={cl.contentContainer}>
                     <div className={cl.content}>
                         <div className={cl.header}>
-                            <h1>Мой отзыв к аниме «<span>Аля иногда кокетничает со мной по-русски</span>»</h1>
+                            <h1>Мой отзыв к аниме «<span><Link style={{textDecoration:"inherit", color:"inherit"}} to={`/anime/${location.pathname.split("/")[2]}`}>{animeDate?.mainName}</Link></span>»</h1>
                         </div>
                         <RaitingChoose/>
                         <div className={cl.infoContainer}>
@@ -92,7 +134,7 @@ const ReviewPage = () => {
                                 </div>
                                 <textarea   value={textAreaInputdata} onChange={(e)=>setTextAreaInputdata(e.target.value)} ref={refTextArea} className={cl.textAreaInput} placeholder={"Текст отзыва"}></textarea>
                                 <div className={cl.btnContainer}>
-                                    <button className={cl.sendBtn}>
+                                    <button  onClick={()=>createReview()} className={cl.sendBtn}>
                                         Отправить
                                     </button>
                                     <button onClick={()=>controllerReviewActive()} className={cl.preViewBtn}>
@@ -105,14 +147,14 @@ const ReviewPage = () => {
                             <h3 className={cl.previewTitle}>Предварительный просмотр</h3>
                             <div className={cl.previewHeader}>
                                 <div className={cl.userImageContainer}>
-                                    <img src={"https://animego.org/media/cache/thumbs_60x60/upload/avatar/6294db1666f75353368830.jpg"} alt={""}/>
+                                    <img src={userData.profilePhoto ? `${process.env.REACT_APP_API_URL}/${userData.profilePhoto}` : ""} alt={"none"}/>
                                 </div>
                                 <div className={cl.previewHeaderInfoContainer}>
                                     <div className={cl.previewHeaderName}>
                                         {headerInputData}
                                     </div>
                                     <div className={cl.userInfo}>
-                                        <div className={cl.userName}>alphadelta38</div>
+                                        <div className={cl.userName}>{userData.login}</div>
                                         <div className={cl.currentData}>{currentDate()}</div>
                                     </div>
                                 </div>
@@ -126,7 +168,7 @@ const ReviewPage = () => {
                 <div className={cl.mediaPhotoContainer}>
                     <div className={cl.mediaPhoto}>
                         <img className={cl.photo}
-                             src={"https://animego.org/media/cache/thumbs_250x350/upload/anime/images/6666f004dfd2b410317205.jpg"}
+                             src={`${process.env.REACT_APP_API_URL}/${animeDate?.imagePath}`}
                              alt={""}/>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ import Reviews from "./Reviews";
 import {ToggleContext, ToggleContextProps} from "../../context/ToggleProvider";
 import Coments from "../Comments/Coments";
 import {getAllWatchStatus, getOneAnimePage, getOneStatus, setStatusOfAnimeForUser} from "../../http/AnimePageItemApi";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useTypedSelector} from "../../hooks/useTypeSelector";
 import {useDispatch} from "react-redux";
 import {setUserWatchStatusesActionCreator} from "../../Store/action-creator/userActionCreator";
@@ -182,18 +182,21 @@ const AnimePage = () => {
 
 
     async function getallSeriesInfo(){
+
         if(dataOfAnime?.mainName){
-            const datad: animeItemsInerface = await getNamesOfSeriesAndDateOfOut(dataOfAnime.mainName)
+            const datad: animeItemsInerface | undefined = await getNamesOfSeriesAndDateOfOut(dataOfAnime.mainName)
             setSeriesData(datad)
             let tempSheduleMassive: ScheduleItemType[] =[];
 
-
-            for (let i = 1; i <= datad.player.episodes.last; i++) {
-                const date = new Date(datad.player.list[i].created_timestamp * 1000)
-                if(!datad.player.list[i].name){
-                    tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: "Не известно", numberOfSeries: i})
-                }else if(datad.player.list[i].name && data){
-                    tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: datad.player.list[i].name!, numberOfSeries: i})
+            console.log(datad, "ВІФВФІВФВФ")
+            if(datad){
+                for (let i = 1; i <= datad.player.episodes.last; i++) {
+                    const date = new Date(datad.player.list[i].created_timestamp * 1000)
+                    if(!datad.player.list[i].name){
+                        tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: "Не известно", numberOfSeries: i})
+                    }else if(datad.player.list[i].name && data){
+                        tempSheduleMassive.push({status: false, dateOfOut: `${date.getDate()} ${Months[date.getMonth()+1]} ${date.getFullYear()}`, nameOfSeries: datad.player.list[i].name!, numberOfSeries: i})
+                    }
                 }
             }
 
@@ -255,12 +258,14 @@ const AnimePage = () => {
                                         <span className={cl.watchOnlineBtn__icon}><div></div></span>
                                         Смотреть онлайн
                                     </button>
-                                    <button className={cl.writeFeedbackBtn}>
-                                        <svg className={cl.penIcon} fill={"black"}>
-                                            <use xlinkHref={"/sprite.svg#PenIcon"}></use>
-                                        </svg>
-                                        Написать отзыв
-                                    </button>
+                                    <Link  style={{textDecoration:"none"}} to={`/review/${location.pathname.split("/")[2]}/new`}>
+                                        <button className={cl.writeFeedbackBtn}>
+                                                <svg className={cl.penIcon} fill={"black"}>
+                                                    <use xlinkHref={"/sprite.svg#PenIcon"}></use>
+                                                </svg>
+                                                Написать отзыв
+                                        </button>
+                                    </Link>
                                     <div style={openStatusMenu ? {maxHeight: "400px",} : {}} className={cl.statusList}>
                                         <button style={chosenWatchStatuses !== "none" ? {display: "none"} : {}}
                                                 onClick={() => CheckActiveStatusMenu()}
@@ -470,9 +475,9 @@ const AnimePage = () => {
                         </div>
                         <Linked Items={renderLinkedItems!}/>
                     </div>
-                    <VideoPlayer watchedSeries={sheduleData && sheduleData[0].seriesWatched ? sheduleData[0].seriesWatched : [0]} dataForAnimePage={dataOfAnime} setDataForAnimePage={setDataOfAnime} seriesData={seriesData}/>
+                    <VideoPlayer watchedSeries={sheduleData && sheduleData[0].seriesWatched! ? sheduleData[0].seriesWatched! : [0]} dataForAnimePage={dataOfAnime} setDataForAnimePage={setDataOfAnime} seriesData={seriesData}/>
                     <ScheduleAnime  item={sheduleData && sheduleData[0].seriesWatched ? sheduleData : []}/>
-                    <Reviews/>
+                    <Reviews name={dataOfAnime ? dataOfAnime.mainName : "none"}/>
                     <Coments/>
                 </div>
             </div>

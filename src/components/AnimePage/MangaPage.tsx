@@ -278,7 +278,7 @@ const MangaPage = () => {
                         </div>
                         {/*<Linked Items={LinkedTestMassive}/>*/}
                     </div>
-                    <Reviews/>
+                    <Reviews name={""}/>
                     <Coments/>
                 </div>
             </div>

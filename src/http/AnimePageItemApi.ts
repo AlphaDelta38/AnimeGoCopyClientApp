@@ -1,7 +1,13 @@
 import {$authHost, $host} from "./index";
 import {AxiosResponse} from "axios";
-import {commentsItemsInterface, createCommentsInterface, getALlAnimeItems} from "../types";
-import exp from "node:constants";
+import {
+    commentsItemsInterface,
+    createCommentsInterface,
+    createReviewInterface,
+    getALlAnimeItems,
+    reviewInterface, setReviewLikesInterface
+} from "../types";
+
 
 
 export  const getAllAnimeItems = async (): Promise<getALlAnimeItems[] | undefined> =>{
@@ -132,4 +138,43 @@ export const setLikesForAnime =  async (id: number, likes: number): Promise<numb
 
     }
 }
+
+
+export const createReviewForAnime =  async (requestData: createReviewInterface): Promise<number | undefined> =>{
+    try {
+        const {data}:AxiosResponse<number, any> = await $authHost.post(`/review`, {
+            ...requestData
+        });
+
+        return data;
+    }catch (e){
+
+    }
+}
+
+
+export const getAllReviews =  async (animeId: number): Promise<reviewInterface[] | undefined> =>{
+    try {
+        const {data}:AxiosResponse<reviewInterface[], any> = await $authHost.get(`/review/${animeId}`);
+        return data;
+    }catch (e){
+
+    }
+}
+
+export const setReviewLikes =  async ({reviewId,likes,type}:setReviewLikesInterface): Promise<number | undefined> =>{
+    try {
+        const {data}:AxiosResponse<number, any> = await $authHost.put(`/review/likes`,{
+            reviewId,
+            likes,
+            type,
+        });
+        return data;
+    }catch (e){
+
+    }
+}
+
+
+
 

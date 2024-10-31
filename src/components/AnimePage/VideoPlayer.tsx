@@ -304,11 +304,14 @@ const VideoPlayer = ({seriesData, dataForAnimePage,setDataForAnimePage,watchedSe
             setTranslationsStateMassive([...RenderTranslationMassive])
         }
 
-        if(watchedSeries.includes(currentEpisode)){
-            setEyeCheckSeries(true)
-        }else{
-            setEyeCheckSeries(false)
+        if(watchedSeries.length > 0){
+            if(watchedSeries.includes(currentEpisode)){
+                setEyeCheckSeries(true)
+            }else{
+                setEyeCheckSeries(false)
+            }
         }
+
     }, [currentEpisode,RenderTranslationMassive]);
 
 
